@@ -1,0 +1,21 @@
+:root {
+  --header-background: rgb(221, 222, 227);
+  --dark-background: rgb(245, 245, 245);
+  --ligth-background: rgb(250, 250, 250);
+  --popup-background: rgb(255, 255, 255);
+  --footer-background: rgb(248, 248, 248);
+  --gray-text: rgb(160, 160, 160);
+  --balck-text: rgb(0, 0, 0);
+  --blue-elements: rgb(52, 86, 243, 1);
+  --main-page-button: rgb(232, 232, 232);
+  --movie-page-button: rgb(244, 244, 244);
+  --title: 50px;
+  --title-320: 31px;
+  --section-titlte: 22px;
+  --subtitle: 20px;
+  --common-text: 14xp;
+  --nav-text: 13px;
+  --movie-name: 13px;
+  --mpvie-duration: 11px;
+  --button-text: 14px;
+}
