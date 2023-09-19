@@ -10,7 +10,7 @@
   --main-page-button-color: rgb(232, 232, 232);
   --movie-page-button-color: rgb(244, 244, 244);
   --title-size: 50px;
-  --title-320-size: 31px;
+  --title-size-320: 31px;
   --section-titlte-size: 22px;
   --subtitle-size: 20px;
   --common-text-size: 14xp;
@@ -22,5 +22,5 @@
   --button-text-size: 14px;
   --side-paddings-1280: 70px;
   --side-paddings-768: 30px;
-  --side-paddings-320: 18px;
+  --side-paddings-320: 14px;
 }

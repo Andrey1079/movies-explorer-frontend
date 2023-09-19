@@ -36,7 +36,7 @@
   background-color: var(--ui-elements-color);
   color: white;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 1.333;
   border-radius: 3px;
   margin-left: 27px;
 }
@@ -50,6 +50,12 @@
     grid-template-columns: min-content 1fr min-content;
     padding: 0 var(--side-paddings-768);
   }
+
+  .header__link_type_enter {
+    padding: 8px 20px;
+    margin-left: 31px;
+  }
+
   .header_loggedIn {
     grid-template-columns: 1fr 1fr;
   }
