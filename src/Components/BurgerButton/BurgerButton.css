@@ -16,3 +16,6 @@
   background-color: black;
   border: none;
 }
+.burger-button:hover {
+  opacity: 0.6;
+}

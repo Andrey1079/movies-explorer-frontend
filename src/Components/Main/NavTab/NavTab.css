@@ -1,0 +1,27 @@
+.navigation {
+  width: 100%;
+  min-height: 66px;
+  background-color: var(--dark-background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navigation__link {
+  font-size: var(--nav-text-size);
+  color: var(--common-text-color);
+  margin: 0 20px;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid var(--common-text-color);
+}
+.navigation__link:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 520px) {
+  .navigation__link {
+    font-size: 11px;
+    margin: 0 12px;
+  }
+}

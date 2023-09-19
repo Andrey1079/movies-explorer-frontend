@@ -8,9 +8,12 @@
   background: transparent;
   border-radius: 16px;
   padding: 0 12px;
-
+  cursor: pointer;
   text-align: right;
 }
 .account-button__img {
   margin-right: 7px;
+}
+.account-button:hover {
+  opacity: 0.6;
 }

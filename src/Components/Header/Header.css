@@ -19,8 +19,11 @@
   text-decoration: none;
   font-weight: 400;
   display: none;
+  cursor: pointer;
 }
-
+.header__link:hover {
+  opacity: 0.6;
+}
 .header__link_active {
   font-weight: 500;
 }

@@ -1,6 +1,7 @@
 import './Main.css';
 import Header from '../Header/Header';
 import Promo from './Promo/Promo';
+import NavTab from './NavTab/NavTab';
 export default function Main({ width }) {
   return (
     <main className="main">
@@ -9,6 +10,7 @@ export default function Main({ width }) {
         width={width}
       />
       <Promo />
+      <NavTab></NavTab>
     </main>
   );
 }
