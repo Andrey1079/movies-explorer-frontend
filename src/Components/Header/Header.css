@@ -1,6 +1,5 @@
 .header {
   width: calc(100% - var(--side-paddings-1280) * 2);
-  background-color: var(--header-background-color);
   display: grid;
   grid-template-columns: min-content 1fr min-content;
   justify-content: start;
@@ -33,13 +32,13 @@
   justify-self: flex-end;
 }
 .header__link_type_enter {
-  padding: 8px 20px;
+  padding: 8px 18px;
   background-color: var(--ui-elements-color);
   color: white;
   font-weight: 500;
   line-height: 16px;
   border-radius: 3px;
-  margin-left: 30px;
+  margin-left: 27px;
 }
 .burger-button_place_header {
   justify-self: end;
