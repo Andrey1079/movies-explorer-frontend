@@ -48,7 +48,7 @@
 }
 @media screen and (max-width: 768px) {
   .header {
-    width: calc(100% - var(--side-paddings-768) * 2);
+    width: calc(100% - var(--header-side-paddings-768) * 2);
     background-color: var(--header-background-color);
     grid-template-columns: min-content 1fr min-content;
     padding: 0 var(--side-paddings-768);
@@ -71,7 +71,7 @@
 }
 @media screen and (max-width: 520px) {
   .header {
-    width: calc(100% - var(--side-paddings-320) * 2);
+    width: calc(100% - var(--header-side-paddings-320) * 2);
     padding: 0 var(--side-paddings-320);
   }
   .burger-button_place_header {

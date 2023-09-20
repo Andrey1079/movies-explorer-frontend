@@ -13,8 +13,11 @@
   --title-size: 50px;
   --title-size-320: 31px;
   --section-titlte-size: 22px;
+  --section-titlte-size-320: 18px;
   --subtitle-size: 20px;
-  --common-text-size: 14xp;
+  --common-text-size: 14px;
+  --common-text-size-768: 12px;
+  --common-text-size-320: 12px;
   --nav-text-size: 13px;
   --nav-text-size-768: 12px;
   --nav-text-size-320: 10px;
@@ -22,6 +25,8 @@
   --movie-duration-text-size: 11px;
   --button-text-size: 14px;
   --side-paddings-1280: 70px;
-  --side-paddings-768: 30px;
-  --side-paddings-320: 14px;
+  --side-paddings-768: 50px;
+  --side-paddings-320: 18px;
+  --header-side-paddings-768: 30px;
+  --header-side-paddings-320: 14px;
 }
