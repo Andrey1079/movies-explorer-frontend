@@ -1,0 +1,16 @@
+.title {
+  font-size: var(--section-titlte-size);
+  color: var(--common-text-color);
+  font-weight: 400;
+  padding: 0 0 23px 0;
+  border-bottom: 1px solid var(--common-text-color);
+  letter-spacing: -0.88px;
+  width: 100%;
+}
+
+@media screen and (max-width: 520px) {
+  .title {
+    font-size: var(--section-titlte-size-320);
+    padding-bottom: 28px;
+  }
+}

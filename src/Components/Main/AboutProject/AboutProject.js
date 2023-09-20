@@ -1,9 +1,13 @@
 import './AboutProject.css';
+import SectionTittle from '../SectionTitle/SectionTitle';
 
 export default function AboutProject() {
   return (
     <section className="about-project">
-      <h2 className="about-project__title">О проекте</h2>
+      <SectionTittle
+        text="О проекте"
+        place="about-project"
+      />
       <ul className="about-project__fact-list">
         <li className="about-project__facts">
           <h6 className="about-project__fact-title">

@@ -1,0 +1,14 @@
+.tech-logo {
+  width: 90px;
+  font-size: var(--common-text-size);
+  line-height: 1.21;
+  padding: 21px auto;
+  font-weight: 400;
+  background-color: rgb(232, 232, 232);
+  border-radius: 10px;
+}
+@media screen and (max-width: 768px) {
+  .tech-logo {
+    font-size: var(--common-text-size-768);
+  }
+}

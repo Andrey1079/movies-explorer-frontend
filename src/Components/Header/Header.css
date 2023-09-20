@@ -43,7 +43,7 @@
   border-radius: 3px;
   margin-left: 27px;
 }
-.burger-button_place_header {
+.header__burger-button {
   justify-self: end;
 }
 @media screen and (max-width: 768px) {
@@ -74,7 +74,7 @@
     width: calc(100% - var(--header-side-paddings-320) * 2);
     padding: 0 var(--side-paddings-320);
   }
-  .burger-button_place_header {
+  .header__burger-button {
     max-width: 25px;
     max-height: 25px;
   }

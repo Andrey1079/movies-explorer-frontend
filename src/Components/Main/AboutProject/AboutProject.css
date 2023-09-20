@@ -5,13 +5,7 @@
 }
 .about-project__title {
   margin: 112px 0 0;
-  padding: 0;
   font-size: var(--section-titlte-size);
-  color: var(--common-text-color);
-  font-weight: 400;
-  padding: 0 0 23px 0;
-  border-bottom: 1px solid var(--common-text-color);
-  letter-spacing: -0.88px;
 }
 .about-project__fact-list {
   display: grid;
@@ -44,6 +38,7 @@
   font-size: var(--common-text-size);
   max-width: 520px;
   letter-spacing: -1.1px;
+  line-height: 1.35;
 }
 .about-project__diagram {
   grid-column-start: 1;
@@ -110,9 +105,7 @@
     grid-template-columns: 1fr;
   }
   .about-project__title {
-    font-size: var(--section-titlte-size-320);
     margin-top: 72px;
-    padding-bottom: 28px;
   }
   .about-project__facts:last-of-type {
     grid-column-start: 1;
@@ -122,15 +115,15 @@
     margin-left: 0px;
   }
   .about-project__fact-title {
-    margin-top: 60px;
+    margin-top: 58px;
     letter-spacing: -1.8px;
   }
   .about-project__fact-text {
     font-size: var(--common-text-size-320);
     margin-top: 13px;
     max-width: 280px;
-    line-height: 1.3;
-    letter-spacing: -0.55px;
+    line-height: 1.48;
+    letter-spacing: 0px;
   }
   .about-project__duration {
     margin-top: 60px;
