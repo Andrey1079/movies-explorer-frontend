@@ -1,4 +1,3 @@
-import react from 'react';
 import './Logo.css';
 import logo from '../../images/logo.svg';
 

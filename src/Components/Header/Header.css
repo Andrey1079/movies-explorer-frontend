@@ -1,11 +1,11 @@
 .header {
   width: calc(100% - var(--side-paddings-1280) * 2);
+  padding: 0 var(--side-paddings-1280);
   display: grid;
   grid-template-columns: min-content 1fr min-content;
   justify-content: start;
   align-items: center;
   min-height: 74px;
-  padding: 0 var(--side-paddings-1280);
 }
 
 .header_loggedIn {
@@ -37,7 +37,7 @@
 .header__link_type_enter {
   padding: 8px 18px;
   background-color: var(--ui-elements-color);
-  color: white;
+  color: var(--text-color-in-ui-el);
   font-weight: 500;
   line-height: 1.333;
   border-radius: 3px;
