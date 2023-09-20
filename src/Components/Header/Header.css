@@ -51,7 +51,7 @@
     width: calc(100% - var(--header-side-paddings-768) * 2);
     background-color: var(--header-background-color);
     grid-template-columns: min-content 1fr min-content;
-    padding: 0 var(--side-paddings-768);
+    padding: 0 var(--header-side-paddings-768);
   }
 
   .header__link_type_enter {
@@ -71,8 +71,8 @@
 }
 @media screen and (max-width: 520px) {
   .header {
-    width: calc(100% - var(--header-side-paddings-320) * 2);
-    padding: 0 var(--side-paddings-320);
+    width: calc(100% - var(-header-side-paddings-320) * 2);
+    padding: 0 var(-header-side-paddings-320);
   }
   .header__burger-button {
     max-width: 25px;

@@ -45,12 +45,8 @@ export default function Header({ width, place }) {
       >
         Войти
       </Link>
-      {loggedIn && width > 768 ? <AcountButton></AcountButton> : ''}
-      {loggedIn && width < 768 ? (
-        <BugrerButton place="header"></BugrerButton>
-      ) : (
-        ''
-      )}
+      {loggedIn && width > 768 && <AcountButton />}
+      {loggedIn && width <= 768 && <BugrerButton place="header" />}
     </header>
   );
 }

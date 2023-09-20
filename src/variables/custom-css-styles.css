@@ -9,6 +9,7 @@
   --ui-elements-color: rgb(52, 86, 243, 1);
 
   --title-size: 50px; /*самые крупные заголовки */
+  --title-size-768: 40px;
   --title-size-320: 31px;
 
   --section-titlte-size: 22px; /*заголовки разделов */
@@ -21,6 +22,8 @@
   --common-text-size-320: 11px;
   --common-text-color: rgb(0, 0, 0);
   --alter-text-color: rgb(160, 160, 160); /*бледный текст разлелов */
+
+  --form-text-size: 18px; /*текст форм */
 
   --nav-text-size: 13px; /*текст панели навигации */
   --nav-text-size-768: 12px;
