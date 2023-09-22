@@ -1,9 +1,10 @@
 import './Techs.css';
 import SectionTitle from '../SectionTitle/SectionTitle';
+import SectionTemplate from '../../SectionTemplate/SectionTemplate';
 
 export default function Techs() {
   return (
-    <section className="techs">
+    <SectionTemplate place="techs">
       <SectionTitle
         text="Технологии"
         place="techs"
@@ -22,6 +23,6 @@ export default function Techs() {
         <li className="techs__list-item">Express.js</li>
         <li className="techs__list-item">mongoDB</li>
       </ul>
-    </section>
+    </SectionTemplate>
   );
 }

@@ -1,9 +1,10 @@
 import './AboutProject.css';
 import SectionTittle from '../SectionTitle/SectionTitle';
+import SectionTemplate from '../../SectionTemplate/SectionTemplate';
 
 export default function AboutProject() {
   return (
-    <section className="about-project">
+    <SectionTemplate place="about-project">
       <SectionTittle
         text="О проекте"
         place="about-project"
@@ -46,6 +47,6 @@ export default function AboutProject() {
           </div>
         </li>
       </ul>
-    </section>
+    </SectionTemplate>
   );
 }

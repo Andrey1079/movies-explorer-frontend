@@ -2,10 +2,11 @@ import SectionTitle from '../SectionTitle/SectionTitle';
 import userPhoto from '../../../images/user_photo.jpg';
 import { Link } from 'react-router-dom';
 import './AboutMe.css';
+import SectionTemplate from '../../SectionTemplate/SectionTemplate';
 
 export default function AboutMe() {
   return (
-    <section className="about-me">
+    <SectionTemplate place="about-me">
       <SectionTitle
         text="Студент"
         place="about-me"
@@ -30,6 +31,6 @@ export default function AboutMe() {
           alt="фотография студента"
         />
       </div>
-    </section>
+    </SectionTemplate>
   );
 }

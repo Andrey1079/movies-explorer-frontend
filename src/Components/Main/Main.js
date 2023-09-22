@@ -5,6 +5,7 @@ import NavTab from './NavTab/NavTab';
 import AboutProject from './AboutProject/AboutProject';
 import Techs from './Techs/Techs';
 import AboutMe from './AboutMe/AboutMe';
+import SectionTemplate from '../SectionTemplate/SectionTemplate';
 
 export default function Main({ width }) {
   return (
@@ -18,6 +19,7 @@ export default function Main({ width }) {
       <AboutProject />
       <Techs />
       <AboutMe />
+      <SectionTemplate place="about-me" />
     </main>
   );
 }
