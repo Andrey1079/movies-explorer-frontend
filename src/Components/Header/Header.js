@@ -5,7 +5,7 @@ import AcountButton from '../account/AccountButton';
 import BugrerButton from '../BurgerButton/BurgerButton';
 
 export default function Header({ width, place }) {
-  const loggedIn = true;
+  const loggedIn = false;
   return (
     <header
       className={`header ${

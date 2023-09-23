@@ -5,14 +5,14 @@ import NavTab from './NavTab/NavTab';
 import AboutProject from './AboutProject/AboutProject';
 import Techs from './Techs/Techs';
 import AboutMe from './AboutMe/AboutMe';
-import SectionTemplate from '../SectionTemplate/SectionTemplate';
 import Portfolio from './Portfolio/Portfolio';
+import Footer from '../Footer/Footer';
 
 export default function Main({ width }) {
   return (
     <main className="main">
       <Header
-        place="main"
+        page="main"
         width={width}
       />
       <Promo />
@@ -21,7 +21,7 @@ export default function Main({ width }) {
       <Techs />
       <AboutMe />
       <Portfolio />
-      <SectionTemplate place="about-me" />
+      <Footer />
     </main>
   );
 }

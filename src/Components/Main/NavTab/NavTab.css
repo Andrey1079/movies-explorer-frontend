@@ -21,7 +21,7 @@
 
 @media screen and (max-width: 520px) {
   .navigation__link {
-    font-size: 11px;
+    font-size: var(--common-text-size-320);
     margin: 0 12px;
   }
 }

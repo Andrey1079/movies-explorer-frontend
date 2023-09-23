@@ -1,9 +1,8 @@
-.about-project__section-template {
+.about-project {
+  width: 100%;
   background-color: var(--light-background-color);
-  min-height: 608px;
-}
-.about-project__title {
-  margin: 112px 0 0;
+  padding: 112px 0 112px;
+  font-size: var(--common-text-size);
 }
 .about-project__fact-list {
   display: grid;
@@ -24,7 +23,6 @@
 .about-project__fact-title {
   margin: 71px 0 0;
   padding: 0;
-  color: var(--common-text-color);
   font-size: var(--subtitle-size);
   font-weight: 400;
   letter-spacing: -0.8px;
@@ -33,9 +31,7 @@
   margin: 26px 0 0 0;
   padding: 0;
   color: var(--common-text-color);
-  font-size: var(--common-text-size);
-  max-width: 520px;
-  letter-spacing: -1.1px;
+  max-width: 490px;
   line-height: 1.35;
 }
 .about-project__diagram {
@@ -51,10 +47,8 @@
   padding: 10px 0;
   box-sizing: border-box;
   color: var(--text-color-in-ui-el);
-  font-size: var(--common-text-size);
   line-height: 1;
   text-align: center;
-  font-weight: 400;
   letter-spacing: -0.7px;
 }
 .about-project__duration_part_back-end {
@@ -62,7 +56,6 @@
 }
 .about-project__duration_part_front-end {
   background-color: rgb(242, 242, 242);
-  color: var(--common-text-color);
 }
 .about-project__project-section {
   margin: 14px 0 0;
@@ -73,11 +66,10 @@
 }
 
 @media screen and (max-width: 768px) {
-  .about-project__section-template {
-    min-height: 585px;
+  .about-project {
+    padding: 92px 0 92px;
   }
   .about-project__title {
-    margin-top: 92px;
   }
   .about-project__facts:nth-of-type(2) {
     margin-left: 15px;
@@ -92,14 +84,14 @@
   }
 }
 @media screen and (max-width: 520px) {
-  .about-project__section-template {
-    min-height: 641px;
+  .about-project {
+    padding: 72px 0 72px;
+    font-size: var(--common-text-size-320);
   }
   .about-project__fact-list {
     grid-template-columns: 1fr;
   }
   .about-project__title {
-    margin-top: 72px;
   }
   .about-project__facts:last-of-type {
     grid-column-start: 1;
@@ -113,7 +105,6 @@
     letter-spacing: -1.8px;
   }
   .about-project__fact-text {
-    font-size: var(--common-text-size-320);
     margin-top: 13px;
     max-width: 280px;
     line-height: 1.48;
@@ -121,10 +112,8 @@
   }
   .about-project__duration {
     margin-top: 60px;
-    font-size: var(--common-text-size-320);
   }
   .about-project__project-section {
-    font-size: var(--common-text-size-320);
     margin-top: 11px;
   }
   .about-project__facts:last-of-type {

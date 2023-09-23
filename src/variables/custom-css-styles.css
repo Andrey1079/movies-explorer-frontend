@@ -41,6 +41,6 @@
   --side-paddings-768: 50px;
   --side-paddings-320: 18px;
 
-  --header-side-paddings-768: 30px; /* боковые отступы header */
-  --header-side-paddings-320: 14px;
+  --alter-side-paddings-768: 30px; /* боковые отступы header/footer/movie */
+  --alter-side-paddings-320: 14px;
 }

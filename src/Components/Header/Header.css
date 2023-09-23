@@ -1,5 +1,6 @@
 .header {
-  width: calc(100% - var(--side-paddings-1280) * 2);
+  width: 100%;
+  box-sizing: border-box;
   padding: 0 var(--side-paddings-1280);
   display: grid;
   grid-template-columns: min-content 1fr min-content;
@@ -48,10 +49,9 @@
 }
 @media screen and (max-width: 768px) {
   .header {
-    width: calc(100% - var(--header-side-paddings-768) * 2);
     background-color: var(--header-background-color);
     grid-template-columns: min-content 1fr min-content;
-    padding: 0 var(--header-side-paddings-768);
+    padding: 0 var(--alter-side-paddings-768);
   }
 
   .header__link_type_enter {
@@ -71,8 +71,7 @@
 }
 @media screen and (max-width: 520px) {
   .header {
-    width: calc(100% - var(-header-side-paddings-320) * 2);
-    padding: 0 var(-header-side-paddings-320);
+    padding: 0 var(--alter-side-paddings-320);
   }
   .header__burger-button {
     max-width: 25px;

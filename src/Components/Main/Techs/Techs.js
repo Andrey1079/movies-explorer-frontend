@@ -4,6 +4,7 @@ import SectionTemplate from '../../SectionTemplate/SectionTemplate';
 
 export default function Techs() {
   return (
+    <section className='techs'>
     <SectionTemplate place="techs">
       <SectionTitle
         text="Технологии"
@@ -24,5 +25,6 @@ export default function Techs() {
         <li className="techs__list-item">mongoDB</li>
       </ul>
     </SectionTemplate>
+    </section>
   );
 }
