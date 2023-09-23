@@ -44,7 +44,7 @@
   object-position: center;
 }
 .about-me__link {
-  margin-top: auto;
+  margin: auto 0 5px;
   padding: 0;
   font-size: 14px;
   font-weight: 500;
@@ -107,7 +107,7 @@
 
 @media screen and (max-width: 520px) {
   .about-me__section-template {
-    padding: 0 var(--side-paddings-320);
+    padding: 0 14px;
   }
   .about-me__title {
     margin-top: 73px;
@@ -116,7 +116,7 @@
     margin-top: 65px;
   }
   .about-me__name {
-    margin-top: 40px;
+    margin-top: 32px;
     font-size: var(--title-size-320);
     letter-spacing: -2px;
     font-weight: 400;
