@@ -11,17 +11,12 @@ import Footer from '../Footer/Footer';
 export default function Main({ width }) {
   return (
     <main className="main">
-      <Header
-        page="main"
-        width={width}
-      />
       <Promo />
       <NavTab />
       <AboutProject />
       <Techs />
       <AboutMe />
       <Portfolio />
-      <Footer />
     </main>
   );
 }

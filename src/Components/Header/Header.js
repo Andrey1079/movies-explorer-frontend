@@ -1,16 +1,24 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import './Header.css';
 import Logo from '../Logo/Logo';
 import AcountButton from '../account/AccountButton';
 import BugrerButton from '../BurgerButton/BurgerButton';
 
-export default function Header({ width, place }) {
-  const loggedIn = false;
+export default function Header({ width, loggedIn, setIsLoggedIn }) {
+  const location = useLocation().pathname;
+  const handleLogIn = () => {
+    if (loggedIn) {
+      setIsLoggedIn(false);
+    } else {
+      setIsLoggedIn(true);
+    }
+  };
   return (
     <header
-      className={`header ${
-        loggedIn ? 'header_loggedIn' : ''
-      } header_place_${place}`}
+      className={`header ${loggedIn ? 'header_loggedIn' : ''} ${
+        location === '/' && 'header_place_main'
+      }`}
     >
       <Logo place="header" />
       <NavLink
@@ -39,13 +47,14 @@ export default function Header({ width, place }) {
         Регистрация
       </Link>
       <Link
+        onClick={handleLogIn}
         className={`header__link header__link_type_enter header__link_position_right ${
           !loggedIn ? 'header__link_visible' : ''
         }`}
       >
         Войти
       </Link>
-      {loggedIn && width > 768 && <AcountButton />}
+      {loggedIn && width > 768 && <AcountButton handleLogIn={handleLogIn} />}
       {loggedIn && width <= 768 && <BugrerButton place="header" />}
     </header>
   );
