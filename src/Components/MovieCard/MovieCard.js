@@ -3,8 +3,6 @@ import './MovieCard.css';
 
 export default function MovieCard({ movieName, duration, isSaved, img }) {
   const location = useLocation().pathname;
-  // const location = '/movie/saved';
-  console.log(movieName, duration, isSaved, img);
   return (
     <li className="card">
       <img
@@ -16,7 +14,7 @@ export default function MovieCard({ movieName, duration, isSaved, img }) {
       <p className="card__movie-duration">{duration}</p>
       <button
         className={`card__button ${isSaved ? 'card__button_saved' : ''} ${
-          location === '/movie/saved' ? 'card__button_location_saved' : ''
+          location === '/movies/saved' ? 'card__button_location_saved' : ''
         } `}
       ></button>
     </li>

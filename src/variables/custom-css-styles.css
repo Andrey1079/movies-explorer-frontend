@@ -31,11 +31,15 @@
   --nav-text-size-768: 12px;
   --nav-text-size-320: 10px;
 
+  --input-text-size: 14px; /*текст инпутов */
+
   --movie-name-text-size: 13px; /*текст названия фильмов */
 
   --movie-duration-text-size: 11px; /*текст продолжительности фильмов */
 
   --button-text-size: 14px; /* кнопки */
+
+  --button-text-size-320: 12px; /* кнопки */
   --main-page-button-color: rgb(232, 232, 232);
   --movie-page-button-color: rgb(244, 244, 244);
 
