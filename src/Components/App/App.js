@@ -6,6 +6,8 @@ import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
 import useResize from '../../customHooks/useResize';
 import FilmSearchForm from '../FilmSearchForm/FilmSearchForm';
+import MovieContainer from '../MovieContainer/MovieContainer';
+import moviesArray from '../../variables/movies';
 
 function App() {
   const windowWidth = useResize(100);
@@ -18,13 +20,14 @@ function App() {
         setIsLoggedIn={setIsLoggedIn}
       />
       <FilmSearchForm width={windowWidth} />
+      <MovieContainer moviesArray={moviesArray} />
       {/* <Routes>
         <Route
           path="/"
           element={<Main />}
         ></Route>
       </Routes> */}
-      <Footer />
+      {/* <Routes> */}
     </div>
   );
 }

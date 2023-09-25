@@ -15,7 +15,7 @@
   margin-left: 19px;
 }
 .search-film-section__line {
-  borcolor: rgb(232, 232, 232);
+  border: 0.5px solid rgb(232, 232, 232);
   width: 100%;
 }
 .search-film-section__search-form {
@@ -46,7 +46,7 @@
   }
   .search-film-section__checkbox {
     padding: 0 30px 0 29px;
-    margin-bottom: 56px;
+    margin-bottom: 35px;
     border-left: none;
   }
 }
@@ -57,9 +57,4 @@
   .search-film-section__section-template {
     padding: var(--movie-side-paddings-320);
   }
-
-  /* .search-film-section__checkbox {
-    padding: 0 30px 0 29px;
-    margin-bottom: 56px;
-  } */
 }

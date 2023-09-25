@@ -2,7 +2,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import './Header.css';
 import Logo from '../Logo/Logo';
-import AcountButton from '../account/AccountButton';
+import AcountButton from '../AccountButton/AccountButton';
 import BugrerButton from '../BurgerButton/BurgerButton';
 
 export default function Header({ width, loggedIn, setIsLoggedIn }) {
