@@ -35,6 +35,10 @@
   position: relative;
   bottom: 0;
 }
+
+.layout-for-auth__link:hover {
+  opacity: 0.8;
+}
 @media screen and (max-width: 768px) {
   .layout-for-auth {
     padding: 232px calc(30px + (186 - 30) * ((100vw - 320px) / (768 - 320)));

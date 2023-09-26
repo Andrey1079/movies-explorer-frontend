@@ -6,8 +6,10 @@ export default function Input({
   required,
   nameOfField,
   name,
+  onChange,
+  errors,
 }) {
-  const errorMessage = '';
+  const errorMessage = errors[name];
   return (
     <div className={`input`}>
       <label
@@ -18,6 +20,7 @@ export default function Input({
         {nameOfField}
       </label>
       <input
+        onChange={onChange}
         name={name}
         minLength={minLength}
         maxLength={maxLength}
