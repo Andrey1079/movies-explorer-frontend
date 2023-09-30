@@ -6,7 +6,10 @@ import SectionTemplate from '../../SectionTemplate/SectionTemplate';
 
 export default function AboutMe() {
   return (
-    <section className="about-me">
+    <section
+      id="about-student"
+      className="about-me"
+    >
       <SectionTemplate place="about-me">
         <SectionTitle
           text="Студент"

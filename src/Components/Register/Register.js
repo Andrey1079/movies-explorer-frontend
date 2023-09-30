@@ -1,21 +1,25 @@
-import LayoutForAuth from '../Layouts/LayoutForAuth/LayoutForAuth';
+import LayoutWithoutHeaderFooter from '../Layouts/LayoutWithoutHeaderFooter/LayoutWithoutHeaderFooter';
 import AuthForm from '../AuthForm/AuthForm';
 import Input from '../Input/Input';
+import Logo from '../Logo/Logo';
 
-export default function Register({ errorMessage }) {
+export default function Register({ handleSubmit }) {
   return (
-    <LayoutForAuth
+    <LayoutWithoutHeaderFooter
       linkText="Войти"
       text="Уже зарегистрированы?"
       path="/signin"
-      title="Добро пожаловать!"
     >
+      <Logo place="register" />
       <AuthForm
-        // text="Уже зарегистрированы?"
+        errorMessages={{
+          conflict: 'Пользователь с таким email уже существует.',
+          serever: 'При регистрации пользователя произошла ошибка',
+        }}
+        handleSubmit={handleSubmit}
         submitText="Зарегистрироваться"
-        // linkText="Войти"
-        // url="/signin"
         place="register"
+        title="Добро пожаловать!"
       >
         <Input
           type="text"
@@ -23,7 +27,7 @@ export default function Register({ errorMessage }) {
           maxLength={30}
           minLength={2}
           nameOfField="Имя"
-          name="user-name"
+          name="name"
         ></Input>
         <Input
           type="email"
@@ -40,6 +44,6 @@ export default function Register({ errorMessage }) {
           name="password"
         ></Input>
       </AuthForm>
-    </LayoutForAuth>
+    </LayoutWithoutHeaderFooter>
   );
 }

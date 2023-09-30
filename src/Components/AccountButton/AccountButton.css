@@ -5,11 +5,14 @@
   align-items: center;
   min-height: 32px;
   min-width: 100px;
+  border: 2px solid rgb(170, 170, 170);
   background: transparent;
-  border-radius: 16px;
+  border-radius: 18px;
   padding: 0 12px;
   cursor: pointer;
   text-align: right;
+  text-decoration: none;
+  color: var(--basic-text-color);
 }
 .account-button__img {
   margin-right: 7px;

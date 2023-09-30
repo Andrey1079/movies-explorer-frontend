@@ -12,10 +12,12 @@
   color: var(--alter-text-color);
   line-height: 1.2;
   padding: 0;
+  border-bottom: 1px solid #e8e8e8;
 }
 .input__field {
+  width: 100%;
   border: none;
-  border-bottom: 1px solid #e8e8e8;
+
   padding-bottom: 9px;
   padding-top: 5px;
   font-size: var(--input-text-size);
@@ -33,4 +35,7 @@
 .input__field:focus {
   border-bottom: 1px solid #3456f3;
   outline-style: none;
+}
+.input__name:focus {
+  border-bottom: 1px solid #3456f3;
 }

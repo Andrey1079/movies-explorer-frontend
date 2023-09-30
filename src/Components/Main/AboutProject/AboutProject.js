@@ -4,7 +4,10 @@ import SectionTemplate from '../../SectionTemplate/SectionTemplate';
 
 export default function AboutProject() {
   return (
-    <section className="about-project">
+    <section
+      id="about-project"
+      className="about-project"
+    >
       <SectionTemplate place="about-project">
         <SectionTittle
           text="О проекте"

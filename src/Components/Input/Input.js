@@ -8,8 +8,11 @@ export default function Input({
   name,
   onChange,
   errors,
+  inputRef,
+  readonly,
 }) {
   const errorMessage = errors[name];
+
   return (
     <div className={`input`}>
       <label
@@ -18,16 +21,21 @@ export default function Input({
         htmlFor={name}
       >
         {nameOfField}
+
+        <input
+          autoComplete="true"
+          readOnly={readonly}
+          ref={inputRef}
+          onChange={onChange}
+          name={name}
+          id={name}
+          minLength={minLength}
+          maxLength={maxLength}
+          required={required}
+          type={type}
+          className="input__field"
+        ></input>
       </label>
-      <input
-        onChange={onChange}
-        name={name}
-        minLength={minLength}
-        maxLength={maxLength}
-        required={required}
-        type={type}
-        className="input__field"
-      ></input>
       <p className="input__error-message">{errorMessage ? errorMessage : ''}</p>
     </div>
   );

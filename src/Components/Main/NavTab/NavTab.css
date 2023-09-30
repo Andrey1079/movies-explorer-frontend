@@ -13,8 +13,12 @@
   cursor: pointer;
   font-weight: 500;
   text-decoration: none;
-  border-bottom: 1px solid var(--common-text-color);
+  /* border-bottom: 1px solid var(--common-text-color); */
 }
+
+/* .navigation__link_active {
+  border-bottom: 1px solid var(--common-text-color);
+} */
 .navigation__link:hover {
   opacity: 0.6;
 }

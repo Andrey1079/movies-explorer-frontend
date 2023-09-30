@@ -9,6 +9,9 @@
   align-items: center;
   min-height: 74px;
 }
+.header_invisible {
+  display: none;
+}
 .header_place_main {
   background-color: var(--promo-background-color);
 }
@@ -53,7 +56,6 @@
 }
 @media screen and (max-width: 768px) {
   .header {
-    /* grid-template-columns: min-content 1fr min-content; */
     padding: 0 var(--alter-side-paddings-768);
   }
 
@@ -67,6 +69,9 @@
   }
   .header__nav-link {
     display: none;
+  }
+  .header__link_active {
+    border-bottom: 2px solid var(--common-text-color);
   }
   .header__link {
     font-size: var(--nav-text-size-768);

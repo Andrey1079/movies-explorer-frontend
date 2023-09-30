@@ -1,0 +1,54 @@
+.profile__auth-form .input__name {
+  display: flex;
+  white-space: nowrap;
+  color: var(--common-text-color);
+}
+.profile__auth-form .input__field {
+  text-align: right;
+  margin-left: auto;
+}
+
+.profile__layout-without-header-footer {
+  padding: 74px calc(179px + (435 - 179) * ((100vw - 768px) / (1280 - 768)))
+    70px;
+}
+
+.auth-form__submit_place_profile {
+  background-color: #fff;
+  color: var(--common-text-color);
+  font-size: 13px;
+  padding: 0;
+}
+.profile__layout-without-header-footer {
+  .logo {
+    display: none;
+  }
+  .layout-without-header-footer__link {
+    color: #ee3465;
+    font-size: 13px;
+  }
+  .layout-without-header-footer__title {
+    text-align: center;
+  }
+  .input__name {
+    font-weight: 500;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .profile__layout-without-header-footer {
+    padding-left: 435px;
+    padding-right: 435px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .profile__layout-without-header-footer {
+    padding: 236px calc(30px + (179 - 30) * ((100vw - 320px) / (768 - 320)))
+      269px;
+  }
+}
+@media screen and (max-width: 520px) {
+  .profile__layout-without-header-footer {
+    padding-top: 70px;
+    padding-bottom: 40px;
+  }
+}

@@ -1,18 +1,26 @@
-import LayoutForAuth from '../Layouts/LayoutForAuth/LayoutForAuth';
 import AuthForm from '../AuthForm/AuthForm';
 import Input from '../Input/Input';
+import LayoutWithoutHeaderFooter from '../Layouts/LayoutWithoutHeaderFooter/LayoutWithoutHeaderFooter';
+import Logo from '../Logo/Logo';
 
-export default function Login({ errorMessage }) {
+export default function Login({ handleSubmit }) {
   return (
-    <LayoutForAuth
+    <LayoutWithoutHeaderFooter
       linkText="Регистрация"
-      text="Еще не зарегистрированы?"
       path="/signup"
-      title="Рады видеть!"
+      text="Еще не зарегистрированы?"
     >
+      <Logo place="login" />
       <AuthForm
+        errorMessages={{
+          badRequest: 'Вы ввели неправильный логин или пароль.',
+          serever: 'При авторизации произошла ошибка',
+          token: 'Токен не передан или передан не в том формате',
+        }}
         submitText="Войти"
         place="login"
+        title="Рады видеть!"
+        handleSubmit={handleSubmit}
       >
         <Input
           type="email"
@@ -29,6 +37,6 @@ export default function Login({ errorMessage }) {
           name="password"
         ></Input>
       </AuthForm>
-    </LayoutForAuth>
+    </LayoutWithoutHeaderFooter>
   );
 }
