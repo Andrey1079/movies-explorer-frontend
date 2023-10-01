@@ -14,18 +14,24 @@ export default function Footer({ footerPages }) {
         </h3>
         <p className="footer__created-data">&copy; 2023</p>
         <ul className="footer__links-list">
-          <Link
-            className="footer__link"
-            target="blanc"
-          >
-            Яндекс.Практикум
-          </Link>
-          <Link
-            className="footer__link"
-            target="blanc"
-          >
-            Github
-          </Link>
+          <li className="footer__list-item">
+            <Link
+              to="https://practicum.yandex.ru/"
+              className="footer__link"
+              target="blanc"
+            >
+              Яндекс.Практикум
+            </Link>
+          </li>
+          <li className="footer__list-item">
+            <Link
+              to="https://github.com/Andrey1079"
+              className="footer__link"
+              target="blanc"
+            >
+              Github
+            </Link>
+          </li>
         </ul>
       </SectionTemplate>
     </footer>
