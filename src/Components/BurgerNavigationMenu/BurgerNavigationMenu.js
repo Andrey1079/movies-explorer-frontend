@@ -20,39 +20,47 @@ export default function BurgerNavigationMenu({ isOpen, setIsOpen }) {
           onClick={handleClose}
           className="burger-navigation-page__button"
         ></button>
-        <NavLink
-          onClick={handleClose}
-          to="/"
-          className={({ isActive }) =>
-            `burger-navigation-page__link ${
-              isActive ? 'burger-navigation-page__link_active' : ''
-            }`
-          }
-        >
-          Главная
-        </NavLink>
-        <NavLink
-          onClick={handleClose}
-          to="/movies"
-          className={({ isActive }) =>
-            `burger-navigation-page__link ${
-              isActive ? 'burger-navigation-page__link_active' : ''
-            }`
-          }
-        >
-          Фильмы
-        </NavLink>
-        <NavLink
-          onClick={handleClose}
-          to="/saved-movies"
-          className={({ isActive }) =>
-            `burger-navigation-page__link ${
-              isActive ? 'burger-navigation-page__link_active' : ''
-            }`
-          }
-        >
-          Сохраненные фильмы
-        </NavLink>
+        <ul className="burger-navigation-page__lilnk-list">
+          <li className="burger-navigation-page__list-item">
+            <NavLink
+              onClick={handleClose}
+              to="/"
+              className={({ isActive }) =>
+                `burger-navigation-page__link ${
+                  isActive ? 'burger-navigation-page__link_active' : ''
+                }`
+              }
+            >
+              Главная
+            </NavLink>
+          </li>
+          <li className="burger-navigation-page__list-item">
+            <NavLink
+              onClick={handleClose}
+              to="/movies"
+              className={({ isActive }) =>
+                `burger-navigation-page__link ${
+                  isActive ? 'burger-navigation-page__link_active' : ''
+                }`
+              }
+            >
+              Фильмы
+            </NavLink>
+          </li>
+          <li className="burger-navigation-page__list-item">
+            <NavLink
+              onClick={handleClose}
+              to="/saved-movies"
+              className={({ isActive }) =>
+                `burger-navigation-page__link ${
+                  isActive ? 'burger-navigation-page__link_active' : ''
+                }`
+              }
+            >
+              Сохраненные фильмы
+            </NavLink>
+          </li>
+        </ul>
         <AccountButton onClick={handleClose} />
       </nav>
     </div>
