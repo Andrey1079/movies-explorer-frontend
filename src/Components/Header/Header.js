@@ -13,6 +13,12 @@ export default function Header({ props }) {
     <header
       className={`header ${loggedIn ? 'header_loggedIn' : ''} ${
         headerVisible ? 'header_visible' : ''
+      } ${
+        location === '/'
+          ? 'header_place_main'
+          : location === '/profile'
+          ? 'header_place_profile'
+          : ''
       }`}
     >
       <Logo place="header" />
