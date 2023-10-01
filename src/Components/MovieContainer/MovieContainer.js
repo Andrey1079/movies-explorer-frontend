@@ -3,8 +3,9 @@ import SectionTemplate from '../SectionTemplate/SectionTemplate';
 import MovieCard from '../MovieCard/MovieCard';
 import { useLocation } from 'react-router-dom';
 import FilmSearchForm from '../FilmSearchForm/FilmSearchForm';
+import cards from '../../variables/movies';
 
-export default function MovieContainer({ cards, width }) {
+export default function MovieContainer({ width }) {
   const location = useLocation().pathname;
   let arrayForMaping;
   if (location === '/saved-movies') {

@@ -34,7 +34,7 @@ export default function Profile({ handleLink, handleSubmit, ...props }) {
       <LayoutWithoutHeaderFooter
         linkText="Выйти из аккаунта"
         text=""
-        path="/signin"
+        path="/"
         place="profile"
         handleLink={handleLink}
       >
