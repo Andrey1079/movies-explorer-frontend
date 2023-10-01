@@ -1,16 +1,37 @@
-.profile__auth-form .input__name {
-  display: flex;
-  white-space: nowrap;
-  color: var(--common-text-color);
-}
-.profile__auth-form .input__field {
-  text-align: right;
-  margin-left: auto;
+.profile__layout-without-header-footer {
+  padding: 34px calc(179px + (435 - 179) * ((100vw - 768px) / (1280 - 768)))
+    70px;
+  min-height: 626px;
 }
 
-.profile__layout-without-header-footer {
-  padding: 74px calc(179px + (435 - 179) * ((100vw - 768px) / (1280 - 768)))
-    70px;
+.profile__auth-form {
+  .auth-form__title {
+    text-align: center;
+    margin-bottom: 124px;
+  }
+  .input__name {
+    display: flex;
+    white-space: nowrap;
+    color: var(--common-text-color);
+    font-weight: 500;
+  }
+  .input:last-of-type .input__name {
+    border: none;
+  }
+
+  .input__field {
+    text-align: right;
+    margin-left: auto;
+    padding-top: 0;
+    padding-bottom: 15px;
+    font-size: 11px;
+  }
+  .input__error-message {
+    font-size: 8px;
+  }
+  .auth-form__error-message {
+    color: #fff;
+  }
 }
 
 .auth-form__submit_place_profile {
@@ -23,17 +44,13 @@
   .logo {
     display: none;
   }
+
   .layout-without-header-footer__link {
     color: #ee3465;
     font-size: 13px;
   }
-  .layout-without-header-footer__title {
-    text-align: center;
-  }
-  .input__name {
-    font-weight: 500;
-  }
 }
+
 @media screen and (min-width: 1280px) {
   .profile__layout-without-header-footer {
     padding-left: 435px;
@@ -42,13 +59,22 @@
 }
 @media screen and (max-width: 768px) {
   .profile__layout-without-header-footer {
-    padding: 236px calc(30px + (179 - 30) * ((100vw - 320px) / (768 - 320)))
-      269px;
+    padding: 199px calc(30px + (179 - 30) * ((100vw - 320px) / (768 - 320)))
+      195px;
+    min-height: 876px;
+
+    .auth-form__title {
+      margin-bottom: 95px;
+    }
   }
 }
 @media screen and (max-width: 520px) {
   .profile__layout-without-header-footer {
-    padding-top: 70px;
+    min-height: 706px;
+    padding-top: 20px;
     padding-bottom: 40px;
+    .auth-form__title {
+      margin-bottom: 80px;
+    }
   }
 }

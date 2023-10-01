@@ -23,6 +23,9 @@
   grid-template-columns: min-content min-content 1fr min-content;
 }
 
+.header__link:nth-of-type(1) {
+  margin-left: 44px;
+}
 .header__link {
   color: var(--common-text-color);
   font-size: var(--nav-text-size);
