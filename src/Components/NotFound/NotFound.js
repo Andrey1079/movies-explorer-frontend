@@ -6,8 +6,10 @@ export default function NotFound({ navigate }) {
   return (
     <LayoutWithoutHeaderFooter
       linkText="Назад"
-      path={navigate(-1)}
       place="not-found-page"
+      handleLink={() => {
+        navigate(-1);
+      }}
     >
       <div className="not-found-page__text-container">
         <h1 className="not-found-page__title">404</h1>

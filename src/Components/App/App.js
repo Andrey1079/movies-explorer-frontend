@@ -23,10 +23,12 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedIn = true;
   const [isBurgerNavMenuOpened, setIsBurgerNavMenuOpened] = useState(false);
+
   const handleLogIn = (data) => {
-    setIsLoggedIn(true);
+    // setIsLoggedIn(true);
     navigate('/', { replace: true });
   };
   useEffect(() => {
@@ -34,17 +36,17 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (isLoggedIn) {
-      setIsLoading(true);
-      setCards(moviesArray);
-      setIsLoading(false);
-    }
+    // if (isLoggedIn) {
+    setIsLoading(true);
+    setCards(moviesArray);
+    setIsLoading(false);
+    // }
   }, [isLoggedIn]);
 
   const handleLogOut = () => {
     setIsLoading(true);
     setTimeout(() => {
-      setIsLoggedIn(false);
+      // setIsLoggedIn(false);
       navigate('/signin', { replace: true });
       setIsLoading(false);
     }, 1000);
