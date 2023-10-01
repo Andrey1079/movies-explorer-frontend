@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import Main from '../Main/Main';
 import BasicLayout from '../Layouts/BasicLayout/BasicLayout';
 import useResize from '../../customHooks/useResize';
-import FilmSearchForm from '../FilmSearchForm/FilmSearchForm';
 import MovieContainer from '../MovieContainer/MovieContainer';
 import moviesArray from '../../variables/movies';
 import user from '../../variables/userInfo';
@@ -75,6 +74,8 @@ function App() {
             burgerButtonOnClick={setIsBurgerNavMenuOpened}
             width={windowWidth}
             loggedIn={isLoggedIn}
+            headerPages={['/', '/profile', '/movies', '/saved-movies']}
+            footerPages={['/', '/movies', '/saved-movies']}
           >
             <Routes>
               <Route

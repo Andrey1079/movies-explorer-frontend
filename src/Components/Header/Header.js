@@ -5,18 +5,14 @@ import AcountButton from '../AccountButton/AccountButton';
 import BugrerButton from '../BurgerButton/BurgerButton';
 
 export default function Header({ props }) {
-  const { width, loggedIn, burgerButtonOnClick } = props;
+  const { width, loggedIn, burgerButtonOnClick, headerPages } = props;
   const location = useLocation().pathname;
+  const headerVisible = headerPages.includes(location);
+
   return (
     <header
       className={`header ${loggedIn ? 'header_loggedIn' : ''} ${
-        location === '/'
-          ? 'header_place_main'
-          : location === '/signin'
-          ? 'header_invisible'
-          : location === '/signup'
-          ? 'header_invisible'
-          : ''
+        headerVisible ? 'header_visible' : ''
       }`}
     >
       <Logo place="header" />

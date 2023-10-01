@@ -2,9 +2,10 @@ footer {
   width: 100%;
   background-color: var(--footer-background-color);
   padding: 75px 0 20px;
-}
-.footer_invisible {
   display: none;
+}
+.footer_visible {
+  display: block;
 }
 .footer__section-template {
   display: flex;

@@ -2,20 +2,12 @@ import './Footer.css';
 import { useLocation } from 'react-router-dom';
 import SectionTemplate from '../SectionTemplate/SectionTemplate';
 import { Link } from 'react-router-dom';
-export default function Footer() {
+
+export default function Footer({ footerPages }) {
   const location = useLocation().pathname;
+  const footerVisible = footerPages.includes(location);
   return (
-    <footer
-      className={`footer ${
-        location === '/profile'
-          ? 'footer_invisible'
-          : location === '/signin'
-          ? 'footer_invisible'
-          : location === '/signup'
-          ? 'footer_invisible'
-          : ''
-      }`}
-    >
+    <footer className={`footer ${footerVisible ? 'footer_visible' : ''}`}>
       <SectionTemplate place="footer">
         <h3 className="footer__title">
           Учебный проект Яндекс.Практикум х BeatFilm.

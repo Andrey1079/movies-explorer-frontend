@@ -3,14 +3,14 @@
   width: 100%;
   box-sizing: border-box;
   padding: 0 var(--side-paddings-1280);
-  display: grid;
+  display: none;
   grid-template-columns: min-content 1fr min-content;
   justify-content: start;
   align-items: center;
   min-height: 74px;
 }
-.header_invisible {
-  display: none;
+.header_visible {
+  display: grid;
 }
 .header_place_main {
   background-color: var(--promo-background-color);
