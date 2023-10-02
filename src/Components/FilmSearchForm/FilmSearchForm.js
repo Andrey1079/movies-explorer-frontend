@@ -2,29 +2,29 @@ import './FilmSearchForm.css';
 import Thumb from './Thumb/Thumb';
 import SearchForm from './SearchForm/SearchForm';
 
-export default function FilmSearchForm({ width }) {
+export default function FilmSearchForm({ width, place }) {
   if (width <= '760') {
     return (
-      <div className="search-film">
-        <SearchForm place="search-film" />
+      <div className={`search-film-form ${place}__search-film-form`}>
+        <SearchForm place="search-film-form" />
 
         <Thumb
           text="Короткометражки"
-          place="search-film"
+          place="search-film-form"
         />
-        <hr className="search-film__line"></hr>
+        <hr className="search-film-form__line"></hr>
       </div>
     );
   } else {
     return (
-      <div className="search-film">
-        <SearchForm place="search-film">
+      <div className="search-film-form">
+        <SearchForm place="search-film-form">
           <Thumb
             text="Короткометражки"
-            place="search-film"
+            place="search-film-form"
           />
         </SearchForm>
-        <hr className="search-film__line"></hr>
+        <hr className="search-film-form__line"></hr>
       </div>
     );
   }

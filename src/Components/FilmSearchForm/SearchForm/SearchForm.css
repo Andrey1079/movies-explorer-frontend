@@ -26,7 +26,7 @@
   border: none;
   flex: auto;
 }
-.checkbox__label-for-search-input::after {
+.search-form__label-for-search-input::after {
   content: 'Фильм';
   padding-left: 63px;
   display: flex;
@@ -54,7 +54,7 @@
   content: '';
 }
 @media screen and (max-width: 520px) {
-  .checkbox__label-for-search-input::after {
+  .search-form__label-for-search-input::after {
     padding-left: 19px;
     font-size: 14px;
     background-image: none;

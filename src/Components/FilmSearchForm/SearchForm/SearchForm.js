@@ -12,7 +12,7 @@ export default function SearchForm({ place, children }) {
         className="search-form__input"
       ></input>
       <label
-        className="checkbox__label-for-search-input"
+        className="search-form__label-for-search-input"
         htmlFor="search-input"
       ></label>
       <input

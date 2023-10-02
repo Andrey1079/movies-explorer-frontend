@@ -31,16 +31,19 @@ export default function MovieContainer({ width }) {
   });
   return (
     <>
-      <section className="movie-container">
+      <main className="movie-container">
         <SectionTemplate place="movie-container">
-          <FilmSearchForm width={width} />
+          <FilmSearchForm
+            width={width}
+            place="movie-container"
+          />
           {arrayForMaping.length < 1 ? (
             <h2 className="movie-container__title">Ничего не нашлось :( </h2>
           ) : (
             <ul className="movie-container__list">{movies}</ul>
           )}
         </SectionTemplate>
-      </section>
+      </main>
     </>
   );
 }

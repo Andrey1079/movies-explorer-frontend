@@ -10,7 +10,7 @@ export default function MovieCard({ movieName, duration, isSaved, img, id }) {
         className="card__img"
         alt="постер фильма"
       />
-      <p className="card__movie-name">{movieName}</p>
+      <h2 className="card__movie-name">{movieName}</h2>
       <p className="card__movie-duration">{duration}</p>
       <button
         className={`card__button ${isSaved ? 'card__button_saved' : ''} ${
