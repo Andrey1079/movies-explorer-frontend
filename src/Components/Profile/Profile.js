@@ -29,7 +29,7 @@ export default function Profile({ handleLink, handleSubmit, ...props }) {
     }
   };
   return (
-    <section className="profile">
+    <main className="profile">
       {/* <Header props={props} /> */}
       <LayoutWithoutHeaderFooter
         linkText="Выйти из аккаунта"
@@ -71,6 +71,6 @@ export default function Profile({ handleLink, handleSubmit, ...props }) {
           ></Input>
         </AuthForm>
       </LayoutWithoutHeaderFooter>
-    </section>
+    </main>
   );
 }

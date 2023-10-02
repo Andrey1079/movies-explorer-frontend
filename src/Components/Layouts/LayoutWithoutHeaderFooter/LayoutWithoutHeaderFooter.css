@@ -1,7 +1,8 @@
 .layout-without-header-footer {
   display: flex;
   flex-direction: column;
-  min-height: 700px;
+  /* min-height: 700px; */
+  height: 100vh;
   box-sizing: border-box;
   width: 100%;
   padding: 70px calc(186px + (442 - 186) * ((100vw - 768px) / (1280 - 768)))
@@ -37,7 +38,7 @@
 @media screen and (max-width: 768px) {
   .layout-without-header-footer {
     padding: 232px calc(30px + (186 - 30) * ((100vw - 320px) / (768 - 320)));
-    min-height: 1024px;
+    /* min-height: 1024px; */
   }
 }
 
@@ -45,7 +46,7 @@
   .layout-without-header-footer {
     align-items: center;
     padding: 56px 30px 30px;
-    min-height: 780px;
+    /* min-height: 780px; */
   }
   .layout-without-header-footer__logo {
     margin: 0 auto;

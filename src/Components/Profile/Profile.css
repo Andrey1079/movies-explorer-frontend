@@ -1,7 +1,7 @@
 .profile__layout-without-header-footer {
   padding: 34px calc(179px + (435 - 179) * ((100vw - 768px) / (1280 - 768)))
     70px;
-  min-height: 626px;
+  height: calc(100vh - 74px);
 }
 
 .profile__auth-form {
@@ -60,8 +60,7 @@
 @media screen and (max-width: 768px) {
   .profile__layout-without-header-footer {
     padding: 199px calc(30px + (179 - 30) * ((100vw - 320px) / (768 - 320)))
-      195px;
-    min-height: 876px;
+      269px;
 
     .auth-form__title {
       margin-bottom: 95px;
@@ -70,7 +69,6 @@
 }
 @media screen and (max-width: 520px) {
   .profile__layout-without-header-footer {
-    min-height: 706px;
     padding-top: 20px;
     padding-bottom: 40px;
     .auth-form__title {

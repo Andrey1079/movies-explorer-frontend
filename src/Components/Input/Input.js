@@ -16,14 +16,13 @@ export default function Input({
   return (
     <div className={`input`}>
       <label
-        value={nameOfField}
         className="input__name"
         htmlFor={name}
       >
         {nameOfField}
 
         <input
-          autoComplete="true"
+          autoComplete
           readOnly={readonly}
           ref={inputRef}
           onChange={onChange}
