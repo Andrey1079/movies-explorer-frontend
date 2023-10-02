@@ -31,9 +31,9 @@ export default function MovieContainer({ width }) {
   });
   return (
     <>
-      <FilmSearchForm width={width} />
       <section className="movie-container">
         <SectionTemplate place="movie-container">
+          <FilmSearchForm width={width} />
           {arrayForMaping.length < 1 ? (
             <h2 className="movie-container__title">Ничего не нашлось :( </h2>
           ) : (

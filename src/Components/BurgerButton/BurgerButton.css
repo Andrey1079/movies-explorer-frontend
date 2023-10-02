@@ -3,9 +3,10 @@
   flex-direction: column;
   justify-content: space-between;
   width: 28px;
-  height: 28px;
+  height: 24px;
   background: transparent;
   cursor: pointer;
+  padding-right: 10px;
 }
 
 .burger-button-top,
