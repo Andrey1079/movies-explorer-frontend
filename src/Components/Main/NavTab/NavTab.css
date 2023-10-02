@@ -1,10 +1,16 @@
 .navigation {
   width: 100%;
+}
+.navigation__link-list {
+  width: 100%;
   min-height: 66px;
   background-color: var(--dark-background-color);
   display: flex;
   justify-content: center;
   align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 .navigation__link {
   font-size: var(--nav-text-size);
@@ -13,12 +19,9 @@
   cursor: pointer;
   font-weight: 500;
   text-decoration: none;
-  /* border-bottom: 1px solid var(--common-text-color); */
+  border-bottom: 1px solid var(--common-text-color);
 }
 
-/* .navigation__link_active {
-  border-bottom: 1px solid var(--common-text-color);
-} */
 .navigation__link:hover {
   opacity: 0.6;
 }

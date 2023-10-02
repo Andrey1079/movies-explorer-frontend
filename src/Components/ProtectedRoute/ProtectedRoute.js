@@ -4,7 +4,7 @@ function ProtectedRoute({ element: Component, ...props }) {
     <Component {...props} />
   ) : (
     <Navigate
-      to="/signin"
+      to="/"
       replace
     />
   );
