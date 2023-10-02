@@ -1,21 +1,32 @@
-import { useLocation } from 'react-router-dom';
 import './MovieCard.css';
+import { Link } from 'react-router-dom';
 
-export default function MovieCard({ movieName, duration, isSaved, img, id }) {
-  const location = useLocation().pathname;
+export default function MovieCard({
+  movieName,
+  duration,
+  isSaved,
+  img,
+  trailerLink,
+}) {
+  console.log(trailerLink);
   return (
     <>
-      <img
-        src={img}
-        className="card__img"
-        alt="постер фильма"
-      />
+      <Link
+        to={trailerLink}
+        className="card__container"
+        target="blanc"
+      >
+        <img
+          src={img}
+          className="card__img"
+          alt={`постер фильма ${movieName}`}
+        />
+      </Link>
       <h2 className="card__movie-name">{movieName}</h2>
       <p className="card__movie-duration">{duration}</p>
       <button
-        className={`card__button ${isSaved ? 'card__button_saved' : ''} ${
-          location === '/movies/saved' ? 'card__button_location_saved' : ''
-        } `}
+        type="button"
+        className={`card__button ${isSaved ? 'card__button_saved' : ''}`}
       ></button>
     </>
   );

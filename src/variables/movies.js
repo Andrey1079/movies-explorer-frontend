@@ -6,7 +6,8 @@ const moviesArray = [
     nameRU: '33 слова о дизайне',
     image: poster,
     duration: '1ч40мин',
-    isLiked: true,
+
+    treiler: 'https://www.youtube.com/',
   },
   {
     _id: '123456789123456789123415',
@@ -15,13 +16,15 @@ const moviesArray = [
     image: poster,
     duration: '1ч40мин',
     isLiked: false,
+    treiler: 'https://www.youtube.com/',
   },
   {
     _id: '123456789123456789123414',
     nameRU: '33 слова о дизайне',
     image: poster,
     duration: '1ч40мин',
-    isLiked: true,
+
+    treiler: 'https://www.youtube.com/',
   },
   {
     _id: '123456789123456789123413',
@@ -29,6 +32,7 @@ const moviesArray = [
     image: poster,
     duration: '1ч40мин',
     isLiked: false,
+    treiler: 'https://www.youtube.com/',
   },
   {
     _id: '123456789123456789123412',
@@ -36,6 +40,7 @@ const moviesArray = [
     image: poster,
     duration: '1ч40мин',
     isLiked: true,
+    treiler: 'https://www.youtube.com/',
   },
   {
     _id: '123456789123456789123411',
@@ -43,6 +48,7 @@ const moviesArray = [
     image: poster,
     duration: '1ч40мин',
     isLiked: false,
+    treiler: 'https://www.youtube.com/',
   },
   {
     _id: '123456789123456789123410',
@@ -50,6 +56,7 @@ const moviesArray = [
     image: poster,
     duration: '1ч40мин',
     isLiked: true,
+    treiler: 'https://www.youtube.com/',
   },
   {
     _id: '123456789123456789123459',
@@ -57,6 +64,7 @@ const moviesArray = [
     image: poster,
     duration: '1ч40мин',
     isLiked: false,
+    treiler: 'https://www.youtube.com/',
   },
   {
     _id: '123456789123456789123458',
@@ -64,6 +72,7 @@ const moviesArray = [
     image: poster,
     duration: '1ч40мин',
     isLiked: true,
+    treiler: 'https://www.youtube.com/',
   },
   {
     _id: '123456789123456789123457',
@@ -71,13 +80,15 @@ const moviesArray = [
     image: poster,
     duration: '1ч40мин',
     isLiked: false,
+    treiler: 'https://www.youtube.com/',
   },
   {
     _id: '123456789123456789123456',
     nameRU: '33 слова о дизайне',
     image: poster,
     duration: '1ч40мин',
-    isLiked: true,
+    isLiked: false,
+    treiler: 'https://www.youtube.com/',
   },
   {
     _id: '123456789123456789123455',
@@ -85,13 +96,15 @@ const moviesArray = [
     image: poster,
     duration: '1ч40мин',
     isLiked: false,
+    treiler: 'https://www.youtube.com/',
   },
   {
     _id: '123456789123456789123454',
     nameRU: '33 слова о дизайне',
     image: poster,
     duration: '1ч40мин',
-    isLiked: true,
+    isLiked: false,
+    treiler: 'https://www.youtube.com/',
   },
   {
     _id: '123456789123456789123453',
@@ -99,13 +112,15 @@ const moviesArray = [
     image: poster,
     duration: '1ч40мин',
     isLiked: false,
+    treiler: 'https://www.youtube.com/',
   },
   {
     _id: '123456789123456789123452',
     nameRU: '33 слова о дизайне',
     image: poster,
     duration: '1ч40мин',
-    isLiked: true,
+    isLiked: false,
+    treiler: 'https://www.youtube.com/',
   },
   {
     _id: '123456789123456789123451',
@@ -113,6 +128,7 @@ const moviesArray = [
     image: poster,
     duration: '1ч40мин',
     isLiked: false,
+    treiler: 'https://www.youtube.com/',
   },
 ];
 export default moviesArray;

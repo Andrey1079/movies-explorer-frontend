@@ -25,6 +25,7 @@ export default function MovieContainer({ width }) {
           movieName={movie.nameRU}
           duration={movie.duration}
           isSaved={movie.isLiked}
+          trailerLink={movie.treiler}
         />
       </li>
     );
@@ -42,6 +43,7 @@ export default function MovieContainer({ width }) {
           ) : (
             <ul className="movie-container__list">{movies}</ul>
           )}
+          <button className="movie-container__button">Еще</button>
         </SectionTemplate>
       </main>
     </>

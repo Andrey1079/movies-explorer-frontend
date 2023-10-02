@@ -33,6 +33,9 @@ export default function Input({
           required={required}
           type={type}
           className="input__field"
+          placeholder={
+            nameOfField === 'E-mail' ? 'example@mail.ru' : nameOfField
+          }
         ></input>
       </label>
       <p className="input__error-message">{errorMessage ? errorMessage : ''}</p>

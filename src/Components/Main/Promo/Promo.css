@@ -4,7 +4,7 @@
   background-color: var(--promo-background-color);
   min-height: 524px;
   width: 100%;
-  background-image: url(../../../images/promo_backgroung_image.png);
+  background-image: url(../../../images/promo_backgroung_image.svg);
   background-repeat: no-repeat;
   background-position: center top 82px;
 }

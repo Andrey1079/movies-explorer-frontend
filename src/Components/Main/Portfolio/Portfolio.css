@@ -3,8 +3,6 @@
   background-color: var(--light-background-color);
   padding: 0 0 110px 0;
 }
-.portfolio__section-template {
-}
 .portfolio__title {
   font-size: 18px;
   font-weight: 400;
@@ -45,10 +43,6 @@
   .portfolio {
     padding: 0 0 80px;
   }
-  .portfolio__section-template {
-  }
-  .portfolio__title {
-  }
   .portfolio__project-list {
     letter-spacing: -2.3px;
   }
@@ -64,8 +58,6 @@
     padding: 0 var(--alter-side-paddings-320);
   }
 
-  .portfolio__section-template {
-  }
   .portfolio__title {
     font-size: 14px;
   }

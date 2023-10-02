@@ -2,6 +2,10 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  cursor: pointer;
+}
+.checkbox__hidden-element:hover + .checkbox__pseudo-checkbox {
+  opacity: 0.6;
 }
 .checkbox__hidden-element {
   clip-path: inset(0 0 0 0);

@@ -3,6 +3,7 @@ footer {
   background-color: var(--footer-background-color);
   padding: 75px 0 20px;
   display: none;
+  margin-top: auto;
 }
 .footer_visible {
   display: block;
@@ -75,6 +76,9 @@ footer {
     align-items: center;
   }
   .footer__link {
+    margin: 0;
+  }
+  .footer__list-item {
     margin: 12px 0 0 0;
   }
 }

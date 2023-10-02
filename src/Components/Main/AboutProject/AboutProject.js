@@ -15,9 +15,9 @@ export default function AboutProject() {
         />
         <ul className="about-project__fact-list">
           <li className="about-project__facts">
-            <h6 className="about-project__fact-title">
+            <h3 className="about-project__fact-title">
               Дипломный проект включал 5 этапов
-            </h6>
+            </h3>
             <p className="about-project__fact-text">
               Составление плана, работу над бэкендом, вёрстку, добавление
               функциональности и финальные доработки.

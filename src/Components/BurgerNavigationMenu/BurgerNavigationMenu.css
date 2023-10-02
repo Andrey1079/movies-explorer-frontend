@@ -41,7 +41,7 @@
   aspect-ratio: 1;
   background-color: transparent;
   border: none;
-  background-image: url(../../images/burger-menu-close-button.png);
+  background-image: url(../../images/burger-menu-close-button.svg);
   background-repeat: no-repeat;
   background-position: center;
 }

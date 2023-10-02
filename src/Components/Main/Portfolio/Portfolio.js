@@ -20,7 +20,7 @@ export default function Portfolio() {
           <li className="portfolio__project">
             <Link
               className="portfolio__link"
-              to="https://github.com/Andrey1079/russian-travel"
+              to="https://andrey1079.github.io/russian-travel/"
               target="blanc"
             >
               Адаптивный сайт <p className="portfolio__link-arrow">↗</p>
@@ -29,7 +29,7 @@ export default function Portfolio() {
           <li className="portfolio__project">
             <Link
               className="portfolio__link"
-              to="https://github.com/Andrey1079/react-mesto-auth"
+              to="https://andrey1079.github.io/react-mesto-auth/#/"
               target="blanc"
             >
               Одностраничное приложение{' '}

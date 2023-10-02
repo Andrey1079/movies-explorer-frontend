@@ -17,6 +17,7 @@ export default function BurgerNavigationMenu({ isOpen, setIsOpen }) {
     >
       <nav className="burger-navigation-page__menu">
         <button
+          type="button"
           onClick={handleClose}
           className="burger-navigation-page__button"
         ></button>
