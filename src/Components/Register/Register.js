@@ -13,10 +13,10 @@ export default function Register({ handleSubmit }) {
       >
         <Logo place="register" />
         <AuthForm
-          errorMessages={{
-            conflict: 'Пользователь с таким email уже существует.',
-            serever: 'При регистрации пользователя произошла ошибка',
-          }}
+          // errorMessages={{
+          //   conflict: 'Пользователь с таким email уже существует.',
+          //   serever: 'При регистрации пользователя произошла ошибка',
+          // }}
           handleSubmit={handleSubmit}
           submitText="Зарегистрироваться"
           place="register"

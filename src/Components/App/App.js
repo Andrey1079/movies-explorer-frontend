@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Main from '../Main/Main';
 import BasicLayout from '../Layouts/BasicLayout/BasicLayout';
@@ -11,26 +11,54 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
+import { AuthErrorContext } from '../../context/AuthErrorContext';
 import NotFound from '../NotFound/NotFound';
 import BurgerNavigationMenu from '../BurgerNavigationMenu/BurgerNavigationMenu';
-import { IsLoading } from '../../context/IsLoadingContext';
+// import { IsLoading } from '../../context/IsLoadingContext';
 import Preloader from '../Preloader/Preloader';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import authentification from '../../utils/Authentification';
 
 function App() {
+  const location = useLocation().pathname;
   const navigate = useNavigate();
   const windowWidth = useResize(100);
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [authError, setAuthError] = useState('');
 
   const [isBurgerNavMenuOpened, setIsBurgerNavMenuOpened] = useState(false);
 
-  const handleLogIn = (data) => {
-    setIsLoggedIn(true);
-    navigate('/', { replace: true });
+  const handleLogIn = (signInData) => {
+    setIsLoading(true);
+    authentification
+      .signIn(signInData)
+      .then((token) => {
+        localStorage.setItem('token', token.token);
+        setIsLoggedIn(true);
+        navigate('/', { replace: true });
+        checkToken();
+      })
+      .catch((err) => setAuthError(err))
+      .finally(() => setIsLoading(false));
   };
+
+  const checkToken = () => {
+    const savedToken = localStorage.getItem('token');
+    if (savedToken) {
+      setIsLoading(true);
+      authentification
+        .checkToken(savedToken)
+        .then((userData) => setCurrentUser(userData))
+        .catch((err) => setAuthError(err))
+        .finally(() => setIsLoading(false));
+    }
+  };
+  useEffect(() => {
+    setAuthError({});
+  }, [location]);
   useEffect(() => {
     setCurrentUser(user);
   }, []);
@@ -48,14 +76,13 @@ function App() {
     }, 1000);
   };
 
-  const handleSignUp = (data) => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setCurrentUser(data);
-      setIsLoading(false);
-      navigate('/signin');
-    }, 1000);
-  };
+  const handleSignUp = (signUpData) => {};
+  // setTimeout(() => {
+  //     setCurrentUser(signInData);
+  //     setIsLoading(false);
+  //     navigate('/signin');
+  //   }, 1000);
+  // };
   const handleChangeUserInfo = (changedUserInfo) => {
     setIsLoading(true);
     setTimeout(() => {
@@ -66,7 +93,8 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <IsLoading.Provider value={isLoading}>
+      <AuthErrorContext.Provider value={authError}>
+        {/* <IsLoading.Provider value={isLoading}> */}
         <div className="page root">
           <BasicLayout
             burgerButtonOnClick={setIsBurgerNavMenuOpened}
@@ -140,7 +168,8 @@ function App() {
           />
           <Preloader isLoading={isLoading} />
         </div>
-      </IsLoading.Provider>
+        {/* </IsLoading.Provider> */}
+      </AuthErrorContext.Provider>
     </CurrentUserContext.Provider>
   );
 }

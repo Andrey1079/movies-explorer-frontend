@@ -30,7 +30,6 @@ export default function Profile({ handleLink, handleSubmit, ...props }) {
   };
   return (
     <main className="profile">
-      {/* <Header props={props} /> */}
       <LayoutWithoutHeaderFooter
         linkText="Выйти из аккаунта"
         text=""
@@ -39,10 +38,6 @@ export default function Profile({ handleLink, handleSubmit, ...props }) {
         handleLink={handleLink}
       >
         <AuthForm
-          errorMessages={{
-            conflict: 'Пользователь с таким email уже существует',
-            serever: 'При обновлении профиля произошла ошибка',
-          }}
           handleSubmit={submit}
           submitText={`${isEdit ? 'Сохранить' : 'Редактировать'}`}
           place="profile"

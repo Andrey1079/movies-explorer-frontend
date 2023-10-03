@@ -20,6 +20,7 @@ export function useValidate() {
       setErrors(newErrors);
       setIsValid(newIsValid);
     },
+
     [setValues, setErrors, setIsValid]
   );
 
