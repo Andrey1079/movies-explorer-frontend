@@ -1,12 +1,9 @@
-import { useRef } from 'react';
 import AuthForm from '../AuthForm/AuthForm';
 import Input from '../Input/Input';
 import LayoutWithoutHeaderFooter from '../Layouts/LayoutWithoutHeaderFooter/LayoutWithoutHeaderFooter';
 import Logo from '../Logo/Logo';
 
 export default function Login({ handleSubmit }) {
-  const inputEmail = useRef();
-  const inputPassword = useRef();
   return (
     <main className="login">
       <LayoutWithoutHeaderFooter
@@ -16,13 +13,13 @@ export default function Login({ handleSubmit }) {
       >
         <Logo place="login" />
         <AuthForm
+          formInputInitialValues={{ email: '', password: '' }}
           submitText="Войти"
           place="login"
           title="Рады видеть!"
           handleSubmit={handleSubmit}
         >
           <Input
-            inputRef={inputEmail}
             type="email"
             required={true}
             minLength={5}
@@ -30,7 +27,6 @@ export default function Login({ handleSubmit }) {
             name="email"
           ></Input>
           <Input
-            inputRef={inputPassword}
             type="password"
             required={true}
             minLength={8}

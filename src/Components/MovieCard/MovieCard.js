@@ -8,7 +8,6 @@ export default function MovieCard({
   img,
   trailerLink,
 }) {
-  console.log(trailerLink);
   return (
     <>
       <Link

@@ -1,10 +1,11 @@
 import './AuthForm.css';
-import { Children, cloneElement, useContext, useEffect } from 'react';
+import { Children, cloneElement, useContext } from 'react';
 import { useValidate } from '../../customHooks/useValidate';
 import { AuthErrorContext } from '../../context/AuthErrorContext';
 import authErrorMessages from '../../variables/authErrorMessages';
 
 export default function AuthForm({
+  formInputInitialValues,
   children,
   place,
   submitText,
@@ -31,14 +32,14 @@ export default function AuthForm({
       authErrorMessage = '';
       break;
   }
-  const { handleChange, resetForm, errors, isValid, values } = useValidate();
+  const { handleChange, resetForm, errors, isValid, values } = useValidate(
+    formInputInitialValues
+  );
+
   const submit = (evt) => {
     evt.preventDefault();
     handleSubmit(values, evt);
-    for (let value in values) {
-      values[value] = '';
-    }
-    resetForm(values);
+    resetForm(formInputInitialValues);
   };
   return (
     <form
@@ -48,7 +49,11 @@ export default function AuthForm({
     >
       <h1 className="auth-form__title">{title}</h1>
       {Children.map(children, (child) => {
-        return cloneElement(child, { onChange: handleChange, errors, values });
+        return cloneElement(child, {
+          onChange: handleChange,
+          errors,
+          values,
+        });
       })}
       <p className="auth-form__error-message">{authErrorMessage}</p>
       <input
