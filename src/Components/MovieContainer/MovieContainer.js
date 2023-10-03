@@ -43,7 +43,12 @@ export default function MovieContainer({ width }) {
           ) : (
             <ul className="movie-container__list">{movies}</ul>
           )}
-          <button className="movie-container__button">Еще</button>
+          <button
+            type="button"
+            className="movie-container__button"
+          >
+            Еще
+          </button>
         </SectionTemplate>
       </main>
     </>
