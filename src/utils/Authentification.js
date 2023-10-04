@@ -1,10 +1,12 @@
 import authRequestObj from './constants';
+import authErrorMessages from '../variables/authErrorMessages';
 class Authentification {
-  constructor(requestObj) {
+  constructor(requestObj, authErrorMessages) {
     this._baseUrl = requestObj.baseUrl;
     this._settingsObj = {};
     this._settingsObj.headers = requestObj.headers;
     this._settingsObj.method = '';
+    this._authErrorMessages = authErrorMessages;
   }
 
   signUp(signUpData) {
@@ -38,14 +40,24 @@ class Authentification {
       this._checkResponse
     );
   }
-  _checkResponse(response) {
+
+  _checkResponse = (response) => {
     if (response.ok) {
       return response.json();
     } else {
-      return Promise.reject(response.status);
+      return Promise.reject(this._setErrorMessage(response));
     }
+  };
+  _setErrorMessage(error) {
+    if (error.status === 400) return authErrorMessages.badRequest;
+    if (error.status === 409) return authErrorMessages.conflict;
+    if (error.status === 500) return authErrorMessages.server;
+    if (error.error.status === 401) return authErrorMessages.badRequest;
   }
 }
 
-const authentification = new Authentification(authRequestObj);
+const authentification = new Authentification(
+  authRequestObj,
+  authErrorMessages
+);
 export default authentification;

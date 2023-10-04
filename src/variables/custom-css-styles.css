@@ -8,8 +8,8 @@
   --card-background-color: rgb(255, 255, 255);
 
   --text-color-in-ui-el: rgb(255, 255, 255); /*цветные элементы */
-  --ui-elements-color: rgb(52, 86, 243, 1);
-  --error-color: #ff004c;
+  --ui-elements-color: rgb(52, 86, 243);
+  --error-color: rgb(255, 0, 76);
 
   --title-size: 50px; /*самые крупные заголовки */
   --title-size-768: 40px;

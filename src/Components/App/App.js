@@ -5,8 +5,6 @@ import Main from '../Main/Main';
 import BasicLayout from '../Layouts/BasicLayout/BasicLayout';
 import useResize from '../../customHooks/useResize';
 import MovieContainer from '../MovieContainer/MovieContainer';
-import moviesArray from '../../variables/movies';
-import user from '../../variables/userInfo';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
@@ -14,10 +12,10 @@ import { CurrentUserContext } from '../../context/CurrentUserContext';
 import { AuthErrorContext } from '../../context/AuthErrorContext';
 import NotFound from '../NotFound/NotFound';
 import BurgerNavigationMenu from '../BurgerNavigationMenu/BurgerNavigationMenu';
-// import { IsLoading } from '../../context/IsLoadingContext';
 import Preloader from '../Preloader/Preloader';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import authentification from '../../utils/Authentification';
+import Infotooltip from '../InfoToolTip/InfotoolTip';
 
 function App() {
   const location = useLocation().pathname;
@@ -28,9 +26,10 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authError, setAuthError] = useState('');
-
   const [isBurgerNavMenuOpened, setIsBurgerNavMenuOpened] = useState(false);
+  const [isToolTipOpen, setIsToolTipOpen] = useState(false);
 
+  // -------------------------------------------------------------Функции для работы с данными пользователя
   const handleLogIn = (signInData) => {
     setIsLoading(true);
     authentification
@@ -71,7 +70,10 @@ function App() {
         setCurrentUser(updatedUserData);
       })
       .catch((err) => setAuthError(err))
-      .finally(setIsLoading(false));
+      .finally(() => {
+        setIsLoading(false);
+        setIsToolTipOpen(true);
+      });
   };
 
   const checkToken = (path) => {
@@ -89,30 +91,28 @@ function App() {
         .finally(() => setIsLoading(false));
     }
   };
-  useEffect(() => {
-    setAuthError({});
-  }, [location]);
-  useEffect(() => {
-    setCurrentUser(user);
-  }, []);
-
-  useEffect(() => {
-    setCards(moviesArray);
-    setIsLoading(false);
-  }, []);
-
   const handleLogOut = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoggedIn(false);
-      setIsLoading(false);
-    }, 1000);
+    setIsLoggedIn(false);
+    localStorage.removeItem('token');
+  };
+
+  // -------------------------------------------------------------Эффекты
+  useEffect(() => {
+    setAuthError('');
+  }, [location]);
+
+  useEffect(() => {
+    checkToken('');
+  }, []);
+  // -------------------------------------------------------------Закрытие tooltipa
+  const toolTipClose = (path) => {
+    setIsToolTipOpen(false);
+    navigate(path);
   };
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <AuthErrorContext.Provider value={authError}>
-        {/* <IsLoading.Provider value={isLoading}> */}
         <div className="page root">
           <BasicLayout
             burgerButtonOnClick={setIsBurgerNavMenuOpened}
@@ -185,8 +185,11 @@ function App() {
             setIsOpen={setIsBurgerNavMenuOpened}
           />
           <Preloader isLoading={isLoading} />
+          <Infotooltip
+            isToolTipOpen={isToolTipOpen}
+            handleButton={toolTipClose}
+          ></Infotooltip>
         </div>
-        {/* </IsLoading.Provider> */}
       </AuthErrorContext.Provider>
     </CurrentUserContext.Provider>
   );

@@ -10,6 +10,7 @@ export default function Input({
   errors,
   readonly,
   values,
+  value,
 }) {
   const errorMessage = errors[name];
   return (
@@ -21,7 +22,7 @@ export default function Input({
         {nameOfField}
 
         <input
-          value={values[name]}
+          value={values?.[name] || ''}
           autoComplete={name}
           readOnly={readonly}
           onChange={onChange}

@@ -29,9 +29,6 @@
   .input__error-message {
     font-size: 8px;
   }
-  .auth-form__error-message {
-    color: #fff;
-  }
 }
 
 .auth-form__submit_place_profile {

@@ -13,7 +13,7 @@ export default function Login({ handleSubmit }) {
       >
         <Logo place="login" />
         <AuthForm
-          formInputInitialValues={{ email: '', password: '' }}
+          // formInputInitialValues={{ email: '', password: '' }}
           submitText="Войти"
           place="login"
           title="Рады видеть!"

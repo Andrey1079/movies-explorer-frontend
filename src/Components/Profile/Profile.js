@@ -1,12 +1,11 @@
 import './Profile.css';
 import Input from '../Input/Input';
-
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import { useContext, useState } from 'react';
 import LayoutWithoutHeaderFooter from '../Layouts/LayoutWithoutHeaderFooter/LayoutWithoutHeaderFooter';
 import AuthForm from '../AuthForm/AuthForm';
 
-export default function Profile({ handleLink, handleSubmit, ...props }) {
+export default function Profile({ handleLink, handleSubmit }) {
   const userData = useContext(CurrentUserContext);
   const [isEdit, setIsEdit] = useState(false);
   const submit = (values, evt) => {
@@ -40,6 +39,7 @@ export default function Profile({ handleLink, handleSubmit, ...props }) {
           title={`Привет, ${userData.name}!`}
         >
           <Input
+            value={userData.name}
             readonly={isEdit ? false : true}
             type="text"
             required={true}
@@ -49,6 +49,7 @@ export default function Profile({ handleLink, handleSubmit, ...props }) {
             name="name"
           ></Input>
           <Input
+            value={userData.email}
             readonly={isEdit ? false : true}
             noValidate={isEdit ? false : true}
             type="email"

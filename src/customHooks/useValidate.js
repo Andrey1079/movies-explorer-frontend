@@ -15,7 +15,7 @@ export function useValidate(formInputInitialValues) {
   };
 
   const resetForm = useCallback(
-    (newValues) => {
+    (newValues = {}) => {
       setValues(newValues);
       setErrors({});
       setIsValid(false);
