@@ -68,6 +68,7 @@ function App() {
       .changeUserInfo(changedUserInfo)
       .then((updatedUserData) => {
         setCurrentUser(updatedUserData);
+        navigate('/');
       })
       .catch((err) => setAuthError(err))
       .finally(() => {
@@ -105,9 +106,8 @@ function App() {
     checkToken('');
   }, []);
   // -------------------------------------------------------------Закрытие tooltipa
-  const toolTipClose = (path) => {
+  const toolTipClose = () => {
     setIsToolTipOpen(false);
-    navigate(path);
   };
 
   return (
