@@ -22,7 +22,7 @@ export default function AuthForm({
     case 401:
       authErrorMessage = authErrorMessages.token;
       break;
-    case 403:
+    case 409:
       authErrorMessage = authErrorMessages.conflict;
       break;
     case 500:

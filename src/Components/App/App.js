@@ -37,21 +37,54 @@ function App() {
       .signIn(signInData)
       .then((token) => {
         localStorage.setItem('token', token.token);
-        setIsLoggedIn(true);
-        navigate('/', { replace: true });
-        checkToken();
+        checkToken('');
       })
       .catch((err) => setAuthError(err))
       .finally(() => setIsLoading(false));
   };
+  const handleSignUp = (signUpData) => {
+    setIsLoading(true);
+    const password = signUpData.password;
 
-  const checkToken = () => {
+    authentification
+      .signUp(signUpData)
+      .then((newUserData) =>
+        authentification
+          .signIn({ email: newUserData.email, password })
+          .then((token) => {
+            localStorage.setItem('token', token.token);
+            checkToken('movies');
+          })
+      )
+      .catch((err) => {
+        setAuthError(err);
+        setIsLoading(false);
+      })
+      .finally(() => setIsLoading(false));
+  };
+
+  const handleChangeUserInfo = (changedUserInfo) => {
+    setIsLoading(true);
+    authentification
+      .changeUserInfo(changedUserInfo)
+      .then((updatedUserData) => {
+        setCurrentUser(updatedUserData);
+      })
+      .catch((err) => setAuthError(err))
+      .finally(setIsLoading(false));
+  };
+
+  const checkToken = (path) => {
     const savedToken = localStorage.getItem('token');
     if (savedToken) {
       setIsLoading(true);
       authentification
         .checkToken(savedToken)
-        .then((userData) => setCurrentUser(userData))
+        .then((userData) => {
+          setIsLoggedIn(true);
+          setCurrentUser(userData);
+          navigate(`/${path}`, { replace: true });
+        })
         .catch((err) => setAuthError(err))
         .finally(() => setIsLoading(false));
     }
@@ -72,21 +105,6 @@ function App() {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoggedIn(false);
-      setIsLoading(false);
-    }, 1000);
-  };
-
-  const handleSignUp = (signUpData) => {};
-  // setTimeout(() => {
-  //     setCurrentUser(signInData);
-  //     setIsLoading(false);
-  //     navigate('/signin');
-  //   }, 1000);
-  // };
-  const handleChangeUserInfo = (changedUserInfo) => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setCurrentUser(changedUserInfo);
       setIsLoading(false);
     }, 1000);
   };
