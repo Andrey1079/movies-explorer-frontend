@@ -5,31 +5,30 @@ import FilmSearchForm from '../FilmSearchForm/FilmSearchForm';
 import { useEffect, useState } from 'react';
 import renderMoviesSettings from '../../variables/renderMoviesSettings';
 
-export default function MovieContainer({
-  initialArray,
-  width,
-  submitForm,
-  filmRequest,
-  setFilmRequest,
-  isShortFilm,
-  setIsShortFilm,
-}) {
-  //
-  //
-  // КОНТРОЛЬ ПЕРЕРЕНДЕРА
-  console.log('ПЕРЕРЕНДЕР MOVIE-CONTAINER');
-
-  //
-  //
-  //
+export default function MovieContainer({ initialArray, width }) {
   // setStateOfPage({ ...{}, request: filmRequest, isShort: isShortFilm });
+
+  const [filmRequest, setFilmRequest] = useState('');
+  const [isShortFilm, setIsShortFilm] = useState(false);
+  // const [searchResalt, setSearchResult] = useState([]);
   const [settingsForRender, setSettingsForRender] = useState({});
-  const [amountOfAddedMovies, setAmountOfAddedMovies] = useState(0);
   const [amountTotal, setAmountTotal] = useState(0);
   const [moviesArrayforMaping, setMoviesArrayforMaping] = useState([]);
-
+  const [stateOfPage, setStateOfPage] = useState({});
+  console.log(document.querySelectorAll('.card'));
   useEffect(() => {
-    console.log('useEffect width');
+    const { filmRequest, isShortFilm, moviesArrayforMaping, amountTotal } =
+      JSON.parse(localStorage.getItem('moviesPage'));
+    if (moviesArrayforMaping) {
+      setFilmRequest(filmRequest);
+      setIsShortFilm(isShortFilm);
+      setMoviesArrayforMaping(moviesArrayforMaping);
+      setAmountTotal(amountTotal);
+    }
+  }, []);
+
+  // эффект контроля ширины экрана назначает набор переменных для отрисовки
+  useEffect(() => {
     setSettingsForRender(
       width > 768
         ? renderMoviesSettings.bigScreen
@@ -38,21 +37,45 @@ export default function MovieContainer({
         : renderMoviesSettings.smallScreen
     );
   }, [width]);
-  useEffect(() => {
-    console.log('useEffect initialArray');
-    setAmountOfAddedMovies(0);
-    setAmountTotal(settingsForRender.amountInit);
-  }, [initialArray, settingsForRender.amountInit]);
 
+  // эффект устанавливает первоначальное количество карточек
   useEffect(() => {
-    setMoviesArrayforMaping(initialArray.slice(0, amountTotal));
-  }, [amountTotal, initialArray]);
+    setAmountTotal(settingsForRender.amountInit);
+  }, [settingsForRender.amountInit]);
+
+  // эффект записывает состояние страницы в переменнную
+  useEffect(() => {
+    setStateOfPage({
+      filmRequest,
+      isShortFilm,
+      moviesArrayforMaping,
+      amountTotal,
+    });
+  }, [filmRequest, isShortFilm, moviesArrayforMaping, amountTotal]);
+
+  // эффект записывает состояние страницы в localstorage
+  useEffect(() => {
+    console.log('stateOfPage');
+    localStorage.setItem('moviesPage', JSON.stringify(stateOfPage));
+  }, [stateOfPage]);
 
   const handleButton = () => {
     setAmountTotal(amountTotal + settingsForRender.amountForAdd);
   };
-
-  const movies = moviesArrayforMaping.map((movie) => {
+  const submitForm = () => {
+    setMoviesArrayforMaping(
+      initialArray.filter((movie) =>
+        filmRequest === ''
+          ? isShortFilm
+            ? movie.duration <= 40
+            : movie.duration
+          : (movie.nameRU.toLowerCase().includes(filmRequest.toLowerCase()) ||
+              movie.nameEN.toLowerCase().includes(filmRequest.toLowerCase())) &&
+            (isShortFilm ? movie.duration <= 40 : movie.duration)
+      )
+    );
+  };
+  const movies = moviesArrayforMaping.slice(0, amountTotal).map((movie) => {
     return (
       <li
         key={movie.id}
@@ -88,7 +111,7 @@ export default function MovieContainer({
           onClick={handleButton}
           type="button"
           className={`movie-container__button ${
-            amountTotal < initialArray.length
+            amountTotal < moviesArrayforMaping.length
               ? 'movie-container__button_visible'
               : ''
           }`}
