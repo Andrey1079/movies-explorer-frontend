@@ -1,14 +1,28 @@
 import Thumb from '../Thumb/Thumb';
 import './SearchForm.css';
 
-export default function SearchForm({ place, children, onChange, value }) {
+export default function SearchForm({
+  place,
+  children,
+  onChange,
+  value,
+  submit,
+}) {
   const handleChange = (evt) => {
     onChange(evt.target.value);
   };
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    submit();
+  };
+
   return (
-    <form className={`search-form ${place ? `${place}__search-form` : ''}`}>
+    <form
+      onSubmit={handleSubmit}
+      className={`search-form ${place ? `${place}__search-form` : ''}`}
+    >
       <input
-        required
+        // required
         onChange={handleChange}
         value={value || ''}
         minLength="1"

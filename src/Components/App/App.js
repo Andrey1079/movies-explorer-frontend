@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Main from '../Main/Main';
 import BasicLayout from '../Layouts/BasicLayout/BasicLayout';
 import useResize from '../../customHooks/useResize';
-import MovieContainer from '../MovieContainer/MovieContainer';
+import Movies from '../Movies/Movies';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
@@ -23,7 +23,6 @@ function App() {
   const navigate = useNavigate();
   const windowWidth = useResize(100);
   const [currentUser, setCurrentUser] = useState({});
-  const [cards, setCards] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authError, setAuthError] = useState('');
@@ -179,12 +178,12 @@ function App() {
                   <ProtectedRoute
                     loggedIn={isLoggedIn}
                     width={windowWidth}
-                    cards={cards}
-                    element={MovieContainer}
+                    movies={movies}
+                    element={Movies}
                   />
                 }
               ></Route>
-              <Route
+              {/* <Route
                 exact
                 path="/saved-movies"
                 element={
@@ -195,7 +194,7 @@ function App() {
                     element={MovieContainer}
                   />
                 }
-              ></Route>
+              ></Route> */}
               <Route
                 path="*"
                 element={<NotFound navigate={navigate} />}

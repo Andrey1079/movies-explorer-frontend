@@ -9,6 +9,7 @@ export default function FilmSearchForm({
   value,
   checkboxSetter,
   checkboxState,
+  submit,
 }) {
   if (width <= '760') {
     return (
@@ -17,6 +18,7 @@ export default function FilmSearchForm({
           place="search-film-form"
           onChange={onChange}
           value={value}
+          submit={submit}
         />
 
         <Thumb
@@ -35,6 +37,7 @@ export default function FilmSearchForm({
           place="search-film-form"
           onChange={onChange}
           value={value}
+          submit={submit}
         >
           <Thumb
             checkboxSetter={checkboxSetter}

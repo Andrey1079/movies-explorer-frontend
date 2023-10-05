@@ -20,6 +20,7 @@
   column-gap: 20px;
 }
 .movie-container__button {
+  display: none;
   font-size: 12px;
   font-weight: 500;
   width: 320px;
@@ -27,6 +28,9 @@
   border: none;
   margin: 80px auto 57px auto;
   background-color: rgb(244, 244, 244);
+}
+.movie-container__button_visible {
+  display: block;
 }
 .movie-container__button:hover {
   cursor: pointer;
