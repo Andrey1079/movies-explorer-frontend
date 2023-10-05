@@ -2,13 +2,26 @@ import './FilmSearchForm.css';
 import Thumb from './Thumb/Thumb';
 import SearchForm from './SearchForm/SearchForm';
 
-export default function FilmSearchForm({ width, place }) {
+export default function FilmSearchForm({
+  width,
+  place,
+  onChange,
+  value,
+  checkboxSetter,
+  checkboxState,
+}) {
   if (width <= '760') {
     return (
       <div className={`search-film-form ${place}__search-film-form`}>
-        <SearchForm place="search-film-form" />
+        <SearchForm
+          place="search-film-form"
+          onChange={onChange}
+          value={value}
+        />
 
         <Thumb
+          checkboxSetter={checkboxSetter}
+          checkboxState={checkboxState}
           text="Короткометражки"
           place="search-film-form"
         />
@@ -18,8 +31,14 @@ export default function FilmSearchForm({ width, place }) {
   } else {
     return (
       <div className="search-film-form">
-        <SearchForm place="search-film-form">
+        <SearchForm
+          place="search-film-form"
+          onChange={onChange}
+          value={value}
+        >
           <Thumb
+            checkboxSetter={checkboxSetter}
+            checkboxState={checkboxState}
             text="Короткометражки"
             place="search-film-form"
           />

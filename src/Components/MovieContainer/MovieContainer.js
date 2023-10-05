@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './MovieContainer.css';
 import SectionTemplate from '../SectionTemplate/SectionTemplate';
 import MovieCard from '../MovieCard/MovieCard';
@@ -6,6 +7,16 @@ import FilmSearchForm from '../FilmSearchForm/FilmSearchForm';
 import cards from '../../variables/movies';
 
 export default function MovieContainer({ width }) {
+  //
+  //
+  // КОНТРОЛЬ ПЕРЕРЕНДЕРА
+  console.log('ПЕРЕРЕНДЕР MOVIE');
+  //
+  //
+  //
+  const [filmRequest, setFilmRequest] = useState('');
+  const [isShortFilm, setIsShortFilm] = useState(false);
+  console.log(isShortFilm);
   const location = useLocation().pathname;
   let arrayForMaping;
   if (location === '/saved-movies') {
@@ -35,6 +46,10 @@ export default function MovieContainer({ width }) {
       <main className="movie-container">
         <SectionTemplate place="movie-container">
           <FilmSearchForm
+            checkboxState={isShortFilm}
+            checkboxSetter={setIsShortFilm}
+            onChange={setFilmRequest}
+            value={filmRequest}
             width={width}
             place="movie-container"
           />

@@ -16,6 +16,7 @@ import Preloader from '../Preloader/Preloader';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import authentification from '../../utils/Authentification';
 import Infotooltip from '../InfoToolTip/InfotoolTip';
+import MovieApi from '../../utils/MovieApi.js/MovieApi';
 
 function App() {
   const location = useLocation().pathname;
@@ -28,8 +29,20 @@ function App() {
   const [authError, setAuthError] = useState('');
   const [isBurgerNavMenuOpened, setIsBurgerNavMenuOpened] = useState(false);
   const [isToolTipOpen, setIsToolTipOpen] = useState(false);
+  const [movies, setMovies] = useState([]);
+
+  //
+  //
+  //
+  // КОНТРОЛЬ ПЕРЕРЕНДЕРА
+  console.log('ПЕРЕРЕНДЕР АПП');
+  //
+  //
+  //
+  //
 
   // -------------------------------------------------------------Функции для работы с данными пользователя
+
   const handleLogIn = (signInData) => {
     setIsLoading(true);
     authentification
@@ -105,6 +118,15 @@ function App() {
   useEffect(() => {
     checkToken('');
   }, []);
+  useEffect(() => {
+    if (isLoggedIn) {
+      MovieApi()
+        .then((res) => res.json())
+        .then((movies) => {
+          setMovies(movies);
+        });
+    }
+  }, [isLoggedIn]);
   // -------------------------------------------------------------Закрытие tooltipa
   const toolTipClose = () => {
     setIsToolTipOpen(false);
@@ -169,7 +191,7 @@ function App() {
                   <ProtectedRoute
                     loggedIn={isLoggedIn}
                     width={windowWidth}
-                    cards={cards}
+                    // cards={cards}
                     element={MovieContainer}
                   />
                 }
