@@ -1,0 +1,129 @@
+.about-project {
+  width: 100%;
+  background-color: var(--light-background-color);
+  padding: 112px 0 112px;
+  font-size: var(--common-text-size);
+}
+.about-project__fact-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.about-project__facts:nth-of-type(2) {
+  margin-left: 20px;
+}
+.about-project__facts:last-of-type {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.about-project__fact-title {
+  margin: 71px 0 0;
+  padding: 0;
+  font-size: var(--subtitle-size);
+  font-weight: 400;
+  letter-spacing: -0.8px;
+}
+.about-project__fact-text {
+  margin: 26px 0 0 0;
+  padding: 0;
+  color: var(--common-text-color);
+  max-width: 490px;
+  line-height: 1.35;
+}
+.about-project__diagram {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+.about-project__diagram:nth-of-type(2) {
+  grid-column-start: 2;
+  grid-column-end: 6;
+}
+.about-project__duration {
+  margin: 113px 0 0;
+  padding: 10px 0;
+  box-sizing: border-box;
+  color: var(--text-color-in-ui-el);
+  line-height: 1;
+  text-align: center;
+  letter-spacing: -0.7px;
+}
+.about-project__duration_part_back-end {
+  background-color: var(--ui-elements-color);
+}
+.about-project__duration_part_front-end {
+  background-color: rgb(242, 242, 242);
+}
+.about-project__project-section {
+  margin: 14px 0 0;
+  padding: 0;
+  text-align: center;
+  color: var(--alter-text-color);
+  letter-spacing: -0.7px;
+}
+
+@media screen and (max-width: 768px) {
+  .about-project {
+    padding: 92px 0 92px;
+  }
+  .about-project__title {
+  }
+  .about-project__facts:nth-of-type(2) {
+    margin-left: 15px;
+  }
+  .about-project__fact-text {
+    margin-top: 24px;
+    line-height: 1.22;
+  }
+  .about-project__duration {
+    margin-top: 94px;
+    padding: 11px 0;
+  }
+}
+@media screen and (max-width: 520px) {
+  .about-project {
+    padding: 72px 0 72px;
+    font-size: var(--common-text-size-320);
+  }
+  .about-project__fact-list {
+    grid-template-columns: 1fr;
+  }
+  .about-project__title {
+  }
+  .about-project__facts:last-of-type {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+  .about-project__facts:nth-of-type(2) {
+    margin-left: 0px;
+  }
+  .about-project__fact-title {
+    margin-top: 58px;
+    letter-spacing: -1.8px;
+  }
+  .about-project__fact-text {
+    margin-top: 13px;
+    max-width: 280px;
+    line-height: 1.48;
+    letter-spacing: 0px;
+  }
+  .about-project__duration {
+    margin-top: 60px;
+  }
+  .about-project__project-section {
+    margin-top: 11px;
+  }
+  .about-project__facts:last-of-type {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .about-project__diagram {
+    grid-column-end: 3;
+  }
+  .about-project__diagram:nth-of-type(2) {
+    grid-column-start: 3;
+    grid-column-end: 7;
+  }
+}

@@ -1,0 +1,118 @@
+.header {
+  background-color: var(--light-background-color);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 var(--side-paddings-1280);
+  display: none;
+  min-height: 74px;
+  align-items: center;
+}
+.header_visible {
+  display: flex;
+}
+
+.header__navigation-menu {
+  width: 100%;
+}
+
+.header_place_main {
+  background-color: var(--promo-background-color);
+}
+.header_place_profile {
+  background-color: white;
+}
+.header__link-list {
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+  justify-content: start;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.header__list-item {
+  display: none;
+}
+
+.header__link-list_loggedIn {
+  grid-template-columns: min-content min-content 1fr min-content;
+}
+
+.header__link {
+  color: var(--common-text-color);
+  font-size: var(--nav-text-size);
+  margin-left: 16px;
+  text-decoration: none;
+  font-weight: 400;
+
+  cursor: pointer;
+}
+.header__list-item:nth-child(2) {
+  margin-left: 28px;
+}
+.header__link:hover {
+  opacity: 0.6;
+}
+.header__link_active {
+  font-weight: 500;
+}
+
+.header__list-item_visible {
+  display: block;
+}
+.header__list-item_position_right {
+  justify-self: flex-end;
+}
+.header__link_type_enter {
+  padding: 8px 18px;
+  background-color: var(--ui-elements-color);
+  color: var(--text-color-in-ui-el);
+  font-weight: 500;
+  line-height: 1.333;
+  border-radius: 3px;
+  margin-left: 27px;
+}
+.header__burger-button {
+  justify-self: end;
+}
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0 var(--alter-side-paddings-768);
+  }
+
+  .header__link_type_enter {
+    padding: 8px 20px;
+    margin-left: 31px;
+  }
+
+  .header__link-list_loggedIn {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .header__link-list_loggedIn .header__list-item:nth-child(n + 2) {
+    display: none;
+  }
+  .header__link_active {
+    border-bottom: 2px solid var(--common-text-color);
+  }
+  .header__link {
+    font-size: var(--nav-text-size-768);
+  }
+}
+@media screen and (max-width: 520px) {
+  .header {
+    padding: 0 var(--alter-side-paddings-320);
+  }
+  .header__burger-button {
+    max-width: 25px;
+    max-height: 25px;
+  }
+  .header__link {
+    font-size: var(--nav-text-size-320);
+  }
+
+  .header__link_type_enter {
+    padding: 7px 12px;
+    margin-left: 14px;
+  }
+}

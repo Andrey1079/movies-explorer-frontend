@@ -1,0 +1,54 @@
+:root {
+  --promo-background-color: rgb(221, 222, 227); /*сцвета фона*/
+  --dark-background-color: rgb(245, 245, 245);
+  --light-background-color: rgb(250, 250, 250);
+  --common-background-color: rgb(255, 255, 255);
+  --form-background-color: rgb(255, 255, 255);
+  --footer-background-color: rgb(248, 248, 248);
+  --card-background-color: rgb(255, 255, 255);
+
+  --text-color-in-ui-el: rgb(255, 255, 255); /*цветные элементы */
+  --ui-elements-color: rgb(52, 86, 243, 1);
+  --error-color: #ff004c;
+
+  --title-size: 50px; /*самые крупные заголовки */
+  --title-size-768: 40px;
+  --title-size-320: 31px;
+
+  --section-titlte-size: 22px; /*заголовки разделов */
+  --section-titlte-size-320: 18px;
+
+  --subtitle-size: 20px; /*подзаголовки */
+
+  --common-text-size: 14px; /*основной текст разлелов */
+  --common-text-size-768: 12px;
+  --common-text-size-320: 11px;
+  --common-text-color: rgb(0, 0, 0);
+  --alter-text-color: rgb(160, 160, 160); /*бледный текст разлелов */
+
+  --form-text-size: 18px; /*текст форм */
+
+  --nav-text-size: 13px; /*текст панели навигации */
+  --nav-text-size-768: 12px;
+  --nav-text-size-320: 10px;
+
+  --input-text-size: 14px; /*текст инпутов */
+
+  --movie-name-text-size: 13px; /*текст названия фильмов */
+
+  --movie-duration-text-size: 11px; /*текст продолжительности фильмов */
+
+  --button-text-size: 14px; /* кнопки */
+
+  --button-text-size-320: 12px; /* кнопки */
+  --main-page-button-color: rgb(232, 232, 232);
+  --movie-page-button-color: rgb(244, 244, 244);
+
+  --side-paddings-1280: 70px; /* боковые отступы страницы  */
+  --side-paddings-768: 50px;
+  --side-paddings-320: 18px;
+
+  --alter-side-paddings-768: 30px; /* боковые отступы header/footer/movie */
+  --alter-side-paddings-320: 14px;
+  --movie-side-paddings-320: 10px;
+}

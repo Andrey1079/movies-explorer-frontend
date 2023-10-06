@@ -1,0 +1,9 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header_place_main {
+  background-color: var(--promo-background-color);
+}
