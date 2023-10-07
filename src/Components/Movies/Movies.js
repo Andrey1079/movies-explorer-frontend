@@ -81,7 +81,7 @@ export default function Movies({ width, movies }) {
           onChange={setFilmRequest}
           value={filmRequest}
           width={width}
-          place="movie-container"
+          place="movies"
         />
         <MovieContainer
           moviesArrayforMaping={moviesArrayforMaping}

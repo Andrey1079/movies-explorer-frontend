@@ -5,6 +5,7 @@ import Main from '../Main/Main';
 import BasicLayout from '../Layouts/BasicLayout/BasicLayout';
 import useResize from '../../customHooks/useResize';
 import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
@@ -17,6 +18,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import authentification from '../../utils/Authentification';
 import Infotooltip from '../InfoToolTip/InfotoolTip';
 import MovieApi from '../../utils/MovieApi.js/MovieApi';
+import savedMovies from '../../variables/savedMovies';
 
 function App() {
   const location = useLocation().pathname;
@@ -183,18 +185,18 @@ function App() {
                   />
                 }
               ></Route>
-              {/* <Route
+              <Route
                 exact
                 path="/saved-movies"
                 element={
                   <ProtectedRoute
                     loggedIn={isLoggedIn}
                     width={windowWidth}
-                    // cards={cards}
-                    element={MovieContainer}
+                    movies={savedMovies}
+                    element={SavedMovies}
                   />
                 }
-              ></Route> */}
+              ></Route>
               <Route
                 path="*"
                 element={<NotFound navigate={navigate} />}
