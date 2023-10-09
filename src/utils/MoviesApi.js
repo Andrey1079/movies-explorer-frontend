@@ -1,4 +1,4 @@
-export default async function MovieApi() {
+export default async function MoviesApi() {
   try {
     return await fetch('https://api.nomoreparties.co/beatfilm-movies', {
       method: 'GET',

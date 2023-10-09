@@ -1,16 +1,20 @@
 import './SavedMovies.css';
 import MovieContainer from '../MovieContainer/MovieContainer';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import SectionTemplate from '../SectionTemplate/SectionTemplate';
 import FilmSearchForm from '../FilmSearchForm/FilmSearchForm';
+import { SavedMoviesIdContext } from '../../context/SavedMoviesIdContext';
 
 export default function Movies({ width, movies }) {
+  const savedId = useContext(SavedMoviesIdContext);
   const [filmRequest, setFilmRequest] = useState('');
   const [isShortFilm, setIsShortFilm] = useState(false);
   const [moviesArrayforMaping, setMoviesArrayforMaping] = useState(movies);
   useEffect(() => {
-    setMoviesArrayforMaping(movies);
-  }, []);
+    setMoviesArrayforMaping(
+      movies.filter((movie) => savedId.includes(movie.id))
+    );
+  }, [savedId, movies]);
 
   const submitForm = () => {
     setMoviesArrayforMaping(
@@ -39,6 +43,7 @@ export default function Movies({ width, movies }) {
           place="saved-movies"
         />
         <MovieContainer
+          place="saved-movies"
           moviesArrayforMaping={moviesArrayforMaping}
           amountTotal={moviesArrayforMaping.length}
         ></MovieContainer>

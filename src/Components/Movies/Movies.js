@@ -12,6 +12,8 @@ export default function Movies({ width, movies }) {
   const [amountTotal, setAmountTotal] = useState(0);
   const [moviesArrayforMaping, setMoviesArrayforMaping] = useState([]);
   const [stateOfPage, setStateOfPage] = useState({});
+
+  // эффект восстанавливает состояние страницы, при наличии данных в локалсторадж
   useEffect(() => {
     const { filmRequest, isShortFilm, moviesArrayforMaping, amountTotal } =
       JSON.parse(localStorage.getItem('moviesPage'));
@@ -51,7 +53,6 @@ export default function Movies({ width, movies }) {
 
   // эффект записывает состояние страницы в localstorage
   useEffect(() => {
-    console.log('stateOfPage');
     localStorage.setItem('moviesPage', JSON.stringify(stateOfPage));
   }, [stateOfPage]);
 
@@ -84,6 +85,7 @@ export default function Movies({ width, movies }) {
           place="movies"
         />
         <MovieContainer
+          place="movies"
           moviesArrayforMaping={moviesArrayforMaping}
           amountTotal={amountTotal}
         ></MovieContainer>
