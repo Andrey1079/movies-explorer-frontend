@@ -6,7 +6,6 @@ import FilmSearchForm from '../FilmSearchForm/FilmSearchForm';
 import { SavedMoviesIdContext } from '../../context/SavedMoviesIdContext';
 
 export default function Movies({ width, movies }) {
-  const savedId = useContext(SavedMoviesIdContext);
   const [filmRequest, setFilmRequest] = useState('');
   const [isShortFilm, setIsShortFilm] = useState(false);
   const [moviesArrayforMaping, setMoviesArrayforMaping] = useState([]);

@@ -25,7 +25,7 @@ export default function SearchForm({
       <img
         src={searchImage}
         className="search-form__image"
-        alt="мконка поиска"
+        alt="иконка поиска"
       ></img>
       <input
         placeholder="Фильм"
