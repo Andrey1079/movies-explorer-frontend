@@ -1,5 +1,5 @@
 import './AuthForm.css';
-import { Children, cloneElement, useContext } from 'react';
+import { Children, cloneElement, useContext, useEffect } from 'react';
 import { useValidate } from '../../customHooks/useValidate';
 import { ErrorContext } from '../../context/ErrorContext';
 
@@ -21,6 +21,9 @@ export default function AuthForm({
     handleSubmit(values, evt, resetForm);
     resetForm(formInputInitialValues);
   };
+  useEffect(() => {
+    resetForm(formInputInitialValues);
+  }, [formInputInitialValues, resetForm]);
   return (
     <form
       noValidate={noValidate}

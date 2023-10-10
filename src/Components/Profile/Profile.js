@@ -39,7 +39,7 @@ export default function Profile({ handleLink, handleSubmit }) {
           title={`Привет, ${userData.name}!`}
         >
           <Input
-            value={userData.name}
+            value=""
             readonly={isEdit ? false : true}
             type="text"
             required={true}
@@ -49,7 +49,7 @@ export default function Profile({ handleLink, handleSubmit }) {
             name="name"
           ></Input>
           <Input
-            value={userData.email}
+            value=""
             readonly={isEdit ? false : true}
             noValidate={isEdit ? false : true}
             type="email"

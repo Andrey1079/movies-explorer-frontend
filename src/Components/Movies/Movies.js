@@ -1,6 +1,6 @@
 import './Movies.css';
 import MovieContainer from '../MovieContainer/MovieContainer';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import SectionTemplate from '../SectionTemplate/SectionTemplate';
 import FilmSearchForm from '../FilmSearchForm/FilmSearchForm';
 import renderMoviesSettings from '../../variables/renderMoviesSettings';
@@ -41,8 +41,10 @@ export default function Movies({ width }) {
   // эффект контроля ширины экрана назначает набор переменных для отрисовки
   useEffect(() => {
     setSettingsForRender(
-      width > 768
+      width > 1100
         ? renderMoviesSettings.bigScreen
+        : width > 900
+        ? renderMoviesSettings.bigScreenS
         : width > 520
         ? renderMoviesSettings.mediumScreen
         : renderMoviesSettings.smallScreen
