@@ -10,6 +10,7 @@ export default function Movies({ width, movies }) {
   const [isShortFilm, setIsShortFilm] = useState(false);
   const [moviesArrayforMaping, setMoviesArrayforMaping] = useState([]);
   const [message, setMessage] = useState('');
+  const [formMessage, setFormMessage] = useState('');
 
   // Эффект отфильтровывает в общем массиве фиьлмов сохраненные
   useEffect(() => {
@@ -17,14 +18,17 @@ export default function Movies({ width, movies }) {
   }, [movies]);
 
   const submitForm = () => {
-    const result = movies.filter((movie) =>
-      filmRequest === ''
-        ? isShortFilm
-          ? movie.duration <= 40
-          : movie.duration
-        : (movie.nameRU.toLowerCase().includes(filmRequest.toLowerCase()) ||
-            movie.nameEN.toLowerCase().includes(filmRequest.toLowerCase())) &&
-          (isShortFilm ? movie.duration <= 40 : movie.duration)
+    if (filmRequest === '') {
+      setFormMessage('Введите ключевое слово');
+      return;
+    } else {
+      setFormMessage('');
+    }
+    const result = movies.filter(
+      (movie) =>
+        (movie.nameRU.toLowerCase().includes(filmRequest.toLowerCase()) ||
+          movie.nameEN.toLowerCase().includes(filmRequest.toLowerCase())) &&
+        (isShortFilm ? movie.duration <= 40 : movie.duration)
     );
 
     setMoviesArrayforMaping(result);
@@ -40,6 +44,7 @@ export default function Movies({ width, movies }) {
     <main className="saved-movies">
       <SectionTemplate place="saved-movies">
         <FilmSearchForm
+          message={formMessage}
           submit={submitForm}
           checkboxState={isShortFilm}
           checkboxSetter={setIsShortFilm}
