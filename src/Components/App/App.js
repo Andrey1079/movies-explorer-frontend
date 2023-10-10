@@ -12,15 +12,17 @@ import Profile from '../Profile/Profile';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import { ErrorContext } from '../../context/ErrorContext';
 import { SavedMoviesIdContext } from '../../context/SavedMoviesIdContext';
+import { DeleteMovieContext } from '../../context/DeleteMovieContext';
+import { AddMovieContext } from '../../context/AddMovieContext';
+import { LoadingContext } from '../../context/LoadingContext';
+import { ToolTipSettingsContext } from '../../context/ToolTipSettingsContext';
+import { SetToolTipOpenContext } from '../../context/SetToolTipOpenContext';
 import NotFound from '../NotFound/NotFound';
 import BurgerNavigationMenu from '../BurgerNavigationMenu/BurgerNavigationMenu';
 import Preloader from '../Preloader/Preloader';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import mainApi from '../../utils/MainApi';
 import Infotooltip from '../InfoToolTip/InfotoolTip';
-import { DeleteMovieContext } from '../../context/DeleteMovieContext';
-import { AddMovieContext } from '../../context/AddMovieContext';
-import { LoadingContext } from '../../context/LoadingContext';
 
 function App() {
   const location = useLocation().pathname;
@@ -34,6 +36,7 @@ function App() {
   const [isToolTipOpen, setIsToolTipOpen] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
   const [savedMoviesId, setSavedMoviesId] = useState([]);
+  const [tooltipData, setToolTipData] = useState({ message: '', status: '' });
 
   // -------------------------------------------------------------Функции для работы с данными пользователя
 
@@ -73,6 +76,7 @@ function App() {
       .changeUserInfo(changedUserInfo)
       .then((updatedUserData) => {
         setCurrentUser(updatedUserData);
+        setToolTipData({ message: 'Данные обновлены', status: 'ok' });
         setIsToolTipOpen(true);
       })
       .catch((err) => setError(err))
@@ -121,6 +125,7 @@ function App() {
         console.log(err);
       });
   };
+
   const saveMovie = (newMovie) => {
     mainApi
       .saveMovie(newMovie)
@@ -178,83 +183,93 @@ function App() {
           <DeleteMovieContext.Provider value={deleteMovie}>
             <AddMovieContext.Provider value={saveMovie}>
               <LoadingContext.Provider value={setIsLoading}>
-                <div className="page root">
-                  <BasicLayout
-                    burgerButtonOnClick={setIsBurgerNavMenuOpened}
-                    width={windowWidth}
-                    loggedIn={isLoggedIn}
-                    headerPages={['/', '/profile', '/movies', '/saved-movies']}
-                    footerPages={['/', '/movies', '/saved-movies']}
-                  >
-                    <Routes>
-                      <Route
-                        exact
-                        path="/signin"
-                        element={<Login handleSubmit={handleLogIn} />}
-                      ></Route>
-                      <Route
-                        exact
-                        path="/signup"
-                        element={<Register handleSubmit={handleSignUp} />}
-                      ></Route>
-                      <Route
-                        exact
-                        path="/"
-                        element={<Main />}
-                      ></Route>
-                      <Route
-                        exact
-                        path="/profile"
-                        element={
-                          <ProtectedRoute
-                            loggedIn={isLoggedIn}
-                            handleSubmit={handleChangeUserInfo}
-                            handleLink={handleLogOut}
-                            element={Profile}
-                          />
-                        }
-                      ></Route>
+                <ToolTipSettingsContext.Provider value={setToolTipData}>
+                  <SetToolTipOpenContext.Provider value={setIsToolTipOpen}>
+                    <div className="page root">
+                      <BasicLayout
+                        burgerButtonOnClick={setIsBurgerNavMenuOpened}
+                        width={windowWidth}
+                        loggedIn={isLoggedIn}
+                        headerPages={[
+                          '/',
+                          '/profile',
+                          '/movies',
+                          '/saved-movies',
+                        ]}
+                        footerPages={['/', '/movies', '/saved-movies']}
+                      >
+                        <Routes>
+                          <Route
+                            exact
+                            path="/signin"
+                            element={<Login handleSubmit={handleLogIn} />}
+                          ></Route>
+                          <Route
+                            exact
+                            path="/signup"
+                            element={<Register handleSubmit={handleSignUp} />}
+                          ></Route>
+                          <Route
+                            exact
+                            path="/"
+                            element={<Main />}
+                          ></Route>
+                          <Route
+                            exact
+                            path="/profile"
+                            element={
+                              <ProtectedRoute
+                                loggedIn={isLoggedIn}
+                                handleSubmit={handleChangeUserInfo}
+                                handleLink={handleLogOut}
+                                element={Profile}
+                              />
+                            }
+                          ></Route>
 
-                      <Route
-                        exact
-                        path="/movies"
-                        element={
-                          <ProtectedRoute
-                            loggedIn={isLoggedIn}
-                            width={windowWidth}
-                            // movies={movies}
-                            element={Movies}
-                          />
-                        }
-                      ></Route>
-                      <Route
-                        exact
-                        path="/saved-movies"
-                        element={
-                          <ProtectedRoute
-                            loggedIn={isLoggedIn}
-                            width={windowWidth}
-                            element={SavedMovies}
-                            movies={savedMovies}
-                          />
-                        }
-                      ></Route>
-                      <Route
-                        path="*"
-                        element={<NotFound navigate={navigate} />}
-                      ></Route>
-                    </Routes>
-                  </BasicLayout>
-                  <BurgerNavigationMenu
-                    isOpen={isBurgerNavMenuOpened}
-                    setIsOpen={setIsBurgerNavMenuOpened}
-                  />
-                  <Preloader isLoading={isLoading} />
-                  <Infotooltip
-                    isToolTipOpen={isToolTipOpen}
-                    handleButton={toolTipClose}
-                  ></Infotooltip>
-                </div>
+                          <Route
+                            exact
+                            path="/movies"
+                            element={
+                              <ProtectedRoute
+                                loggedIn={isLoggedIn}
+                                width={windowWidth}
+                                // movies={movies}
+                                element={Movies}
+                              />
+                            }
+                          ></Route>
+                          <Route
+                            exact
+                            path="/saved-movies"
+                            element={
+                              <ProtectedRoute
+                                loggedIn={isLoggedIn}
+                                width={windowWidth}
+                                element={SavedMovies}
+                                movies={savedMovies}
+                              />
+                            }
+                          ></Route>
+                          <Route
+                            path="*"
+                            element={<NotFound navigate={navigate} />}
+                          ></Route>
+                        </Routes>
+                      </BasicLayout>
+                      <BurgerNavigationMenu
+                        isOpen={isBurgerNavMenuOpened}
+                        setIsOpen={setIsBurgerNavMenuOpened}
+                      />
+                      <Preloader isLoading={isLoading} />
+                      <Infotooltip
+                        data={tooltipData}
+                        isToolTipOpen={isToolTipOpen}
+                        handleButton={toolTipClose}
+                      ></Infotooltip>
+                    </div>
+                  </SetToolTipOpenContext.Provider>
+                </ToolTipSettingsContext.Provider>
               </LoadingContext.Provider>
             </AddMovieContext.Provider>
           </DeleteMovieContext.Provider>

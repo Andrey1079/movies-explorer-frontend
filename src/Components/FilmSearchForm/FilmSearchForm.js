@@ -10,12 +10,10 @@ export default function FilmSearchForm({
   checkboxSetter,
   checkboxState,
   submit,
-  message,
 }) {
   if (width <= '760') {
     return (
       <div className={`search-film-form ${place}__search-film-form`}>
-        <p className="search-film-form__message">{message}</p>
         <SearchForm
           place="search-film-form"
           onChange={onChange}
@@ -36,7 +34,6 @@ export default function FilmSearchForm({
   } else {
     return (
       <div className="search-film-form">
-        <p className="search-film-form__message">{message}</p>
         <SearchForm
           place="search-film-form"
           onChange={onChange}

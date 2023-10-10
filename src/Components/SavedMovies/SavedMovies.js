@@ -3,14 +3,16 @@ import MovieContainer from '../MovieContainer/MovieContainer';
 import { useState, useEffect, useContext } from 'react';
 import SectionTemplate from '../SectionTemplate/SectionTemplate';
 import FilmSearchForm from '../FilmSearchForm/FilmSearchForm';
-import { SavedMoviesIdContext } from '../../context/SavedMoviesIdContext';
+import { SetToolTipOpenContext } from '../../context/SetToolTipOpenContext';
+import { ToolTipSettingsContext } from '../../context/ToolTipSettingsContext';
 
 export default function Movies({ width, movies }) {
   const [filmRequest, setFilmRequest] = useState('');
   const [isShortFilm, setIsShortFilm] = useState(false);
   const [moviesArrayforMaping, setMoviesArrayforMaping] = useState([]);
   const [message, setMessage] = useState('');
-  const [formMessage, setFormMessage] = useState('');
+  const setIsToolTipOpen = useContext(SetToolTipOpenContext);
+  const setToolTipSettings = useContext(ToolTipSettingsContext);
 
   // Эффект отфильтровывает в общем массиве фиьлмов сохраненные
   useEffect(() => {
@@ -19,10 +21,12 @@ export default function Movies({ width, movies }) {
 
   const submitForm = () => {
     if (filmRequest === '') {
-      setFormMessage('Введите ключевое слово');
+      setToolTipSettings({
+        message: 'Введите ключевое слово',
+        status: 'notOk',
+      });
+      setIsToolTipOpen(true);
       return;
-    } else {
-      setFormMessage('');
     }
     const result = movies.filter(
       (movie) =>
@@ -44,7 +48,6 @@ export default function Movies({ width, movies }) {
     <main className="saved-movies">
       <SectionTemplate place="saved-movies">
         <FilmSearchForm
-          message={formMessage}
           submit={submitForm}
           checkboxState={isShortFilm}
           checkboxSetter={setIsShortFilm}

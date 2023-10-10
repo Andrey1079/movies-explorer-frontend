@@ -19,6 +19,8 @@ class MainApi {
   }
 
   changeUserInfo(changedUserData) {
+    console.log(changedUserData);
+    this._settingsObj.method = 'PATCH';
     this._settingsObj.body = JSON.stringify(changedUserData);
     this._settingsObj.headers.Authentification = `Bearer ${localStorage.getItem(
       'token'
@@ -64,6 +66,8 @@ class MainApi {
   }
 
   _checkResponse = (response) => {
+    console.log(response);
+    // return Promise.reject(500);
     if (response.ok) {
       return response.json();
     } else {

@@ -16,6 +16,7 @@ class MoviesApi {
     return fetch(this._url, this._settingObject).then(this._checkResponse);
   }
   _checkResponse(response) {
+    // return Promise.reject(500);
     if (response.ok) {
       return response.json();
     } else {

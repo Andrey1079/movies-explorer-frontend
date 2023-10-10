@@ -5,7 +5,8 @@ import SectionTemplate from '../SectionTemplate/SectionTemplate';
 import FilmSearchForm from '../FilmSearchForm/FilmSearchForm';
 import renderMoviesSettings from '../../variables/renderMoviesSettings';
 import { LoadingContext } from '../../context/LoadingContext';
-// import { ErrorContext } from '../../context/ErrorContext';
+import { SetToolTipOpenContext } from '../../context/SetToolTipOpenContext';
+import { ToolTipSettingsContext } from '../../context/ToolTipSettingsContext';
 import moviesApi from '../../utils/MoviesApi';
 
 export default function Movies({ width }) {
@@ -19,7 +20,8 @@ export default function Movies({ width }) {
   const [message, setMessage] = useState('');
   const [formMessage, setFormMessage] = useState('');
   const setIsLoading = useContext(LoadingContext);
-  // const error = useContext(ErrorContext);
+  const setIsToolTipOpen = useContext(SetToolTipOpenContext);
+  const setToolTipSettings = useContext(ToolTipSettingsContext);
 
   // эффект восстанавливает состояние страницы, при наличии данных в локалсторадж
   useEffect(() => {
@@ -33,11 +35,6 @@ export default function Movies({ width }) {
       setAmountTotal(amountTotal);
     }
   }, []);
-
-  // Эффект устанавливает сообщение об ошибке
-  // useEffect(() => {
-  //   setMessage(error);
-  // }, [error]);
 
   // эффект контроля ширины экрана назначает набор переменных для отрисовки
   useEffect(() => {
@@ -93,12 +90,14 @@ export default function Movies({ width }) {
 
   function submitForm() {
     if (filmRequest === '') {
-      setFormMessage('Введите ключевое слово');
-      setMessage('');
+      setToolTipSettings({
+        message: 'Введите ключевое слово',
+        status: 'notOk',
+      });
+      setIsToolTipOpen(true);
       return;
-    } else {
-      setFormMessage('');
     }
+
     if (movies.length < 1) {
       setIsLoading(true);
       moviesApi
@@ -108,9 +107,13 @@ export default function Movies({ width }) {
           searchMovie(movies);
         })
         .catch((err) => {
-          setMessage(
-            'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
-          );
+          setToolTipSettings({
+            message:
+              'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз',
+            status: 'notOk',
+          });
+          setIsToolTipOpen(true);
+
           console.log(err);
         })
         .finally(() => setIsLoading(false));
@@ -134,7 +137,6 @@ export default function Movies({ width }) {
           width={width}
           place="movies"
         />
-
         <p className="movies__message">{message}</p>
         <MovieContainer
           place="movies"
