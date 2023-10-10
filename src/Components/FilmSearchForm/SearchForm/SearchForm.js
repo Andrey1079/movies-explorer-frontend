@@ -1,5 +1,6 @@
 import Thumb from '../Thumb/Thumb';
 import './SearchForm.css';
+import searchImage from '../../../images/search-form__placeholder.svg';
 
 export default function SearchForm({
   place,
@@ -21,11 +22,15 @@ export default function SearchForm({
       onSubmit={handleSubmit}
       className={`search-form ${place ? `${place}__search-form` : ''}`}
     >
+      <img
+        src={searchImage}
+        className="search-form__image"
+        alt="мконка поиска"
+      ></img>
       <input
-        // required
+        placeholder="Фильм"
         onChange={handleChange}
         value={value || ''}
-        minLength="1"
         id="search-input"
         type="text"
         className="search-form__input"

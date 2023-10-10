@@ -10,6 +10,7 @@ export default function FilmSearchForm({
   checkboxSetter,
   checkboxState,
   submit,
+  message,
 }) {
   if (width <= '760') {
     return (
@@ -27,6 +28,7 @@ export default function FilmSearchForm({
           text="Короткометражки"
           place="search-film-form"
         />
+        <p className="search-film-form__message">{message}</p>
         <hr className="search-film-form__line"></hr>
       </div>
     );
@@ -46,6 +48,7 @@ export default function FilmSearchForm({
             place="search-film-form"
           />
         </SearchForm>
+        <p className="search-film-form__message">{message}</p>
         <hr className="search-film-form__line"></hr>
       </div>
     );

@@ -17,6 +17,7 @@ export default function Movies({ width }) {
   const [moviesArrayforMaping, setMoviesArrayforMaping] = useState([]);
   const [stateOfPage, setStateOfPage] = useState({});
   const [message, setMessage] = useState('');
+  const [formMessage, setFormMessage] = useState('');
   const setIsLoading = useContext(LoadingContext);
   // const error = useContext(ErrorContext);
 
@@ -74,14 +75,11 @@ export default function Movies({ width }) {
   }, [stateOfPage, moviesArrayforMaping]);
 
   const searchMovie = (movies) => {
-    const result = movies.filter((movie) =>
-      filmRequest === ''
-        ? isShortFilm
-          ? movie.duration <= 40
-          : movie.duration
-        : (movie.nameRU.toLowerCase().includes(filmRequest.toLowerCase()) ||
-            movie.nameEN.toLowerCase().includes(filmRequest.toLowerCase())) &&
-          (isShortFilm ? movie.duration <= 40 : movie.duration)
+    const result = movies.filter(
+      (movie) =>
+        (movie.nameRU.toLowerCase().includes(filmRequest.toLowerCase()) ||
+          movie.nameEN.toLowerCase().includes(filmRequest.toLowerCase())) &&
+        (isShortFilm ? movie.duration <= 40 : movie.duration)
     );
 
     setMoviesArrayforMaping(result);
@@ -94,6 +92,13 @@ export default function Movies({ width }) {
   };
 
   function submitForm() {
+    if (filmRequest === '') {
+      setFormMessage('Введите ключевое слово');
+      setMessage('');
+      return;
+    } else {
+      setFormMessage('');
+    }
     if (movies.length < 1) {
       setIsLoading(true);
       moviesApi
@@ -120,6 +125,7 @@ export default function Movies({ width }) {
     <main className="movies">
       <SectionTemplate place="movies">
         <FilmSearchForm
+          message={formMessage}
           submit={submitForm}
           checkboxState={isShortFilm}
           checkboxSetter={setIsShortFilm}
