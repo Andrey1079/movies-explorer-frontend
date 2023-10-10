@@ -13,7 +13,6 @@ export default function Register({ handleSubmit }) {
       >
         <Logo place="register" />
         <AuthForm
-          // formInputInitialValues={{ name: '', email: '', password: '' }}
           handleSubmit={handleSubmit}
           submitText="Зарегистрироваться"
           place="register"

@@ -19,8 +19,6 @@ class MainApi {
   }
 
   changeUserInfo(changedUserData) {
-    console.log(changedUserData);
-    this._settingsObj.method = 'PATCH';
     this._settingsObj.body = JSON.stringify(changedUserData);
     this._settingsObj.headers.Authentification = `Bearer ${localStorage.getItem(
       'token'

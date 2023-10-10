@@ -2,6 +2,7 @@ import './AuthForm.css';
 import { Children, cloneElement, useContext, useEffect } from 'react';
 import { useValidate } from '../../customHooks/useValidate';
 import { ErrorContext } from '../../context/ErrorContext';
+import { useState } from 'react';
 
 export default function AuthForm({
   formInputInitialValues,
@@ -12,18 +13,51 @@ export default function AuthForm({
   noValidate,
   title,
 }) {
-  const authError = useContext(ErrorContext);
+  const [errorMessage, setErrorMessage] = useState('');
+  const error = useContext(ErrorContext);
+
   const { handleChange, resetForm, errors, isValid, values } = useValidate(
     formInputInitialValues
   );
   const submit = (evt) => {
     evt.preventDefault();
-    handleSubmit(values, evt, resetForm);
+    handleSubmit(values, evt);
     resetForm(formInputInitialValues);
   };
   useEffect(() => {
     resetForm(formInputInitialValues);
   }, [formInputInitialValues, resetForm]);
+  useEffect(() => {
+    switch (error) {
+      case 400:
+        setErrorMessage('кривые данные');
+
+        break;
+      case 401:
+        setErrorMessage('Вы ввели неправильный логин или пароль ');
+
+        break;
+      case 409:
+        setErrorMessage('Пользователь с таким email уже существует.');
+
+        break;
+      case 500:
+        setErrorMessage(
+          `${
+            place === 'register'
+              ? 'При регистрации пользователя произошла ошибка'
+              : place === 'login'
+              ? 'При авторизации произошла ошибка'
+              : 'При обновлении профиля произошла ошибка'
+          }`
+        );
+
+        break;
+      default:
+        setErrorMessage('');
+        break;
+    }
+  }, [error, place]);
   return (
     <form
       noValidate={noValidate}
@@ -38,7 +72,7 @@ export default function AuthForm({
           values,
         });
       })}
-      <p className="auth-form__error-message">{authError}</p>
+      <p className="auth-form__error-message">{errorMessage}</p>
       <input
         disabled={noValidate ? false : isValid ? false : true}
         type="submit"
