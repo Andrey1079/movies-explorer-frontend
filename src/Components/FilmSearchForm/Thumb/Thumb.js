@@ -3,7 +3,6 @@ import './Thumb.css';
 export default function Thumb({ text, place, checkboxSetter, checkboxState }) {
   const handleCheck = () => {
     checkboxSetter(!checkboxState);
-    console.log(checkboxState);
   };
   return (
     <label

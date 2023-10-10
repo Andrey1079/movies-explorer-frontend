@@ -1,9 +1,10 @@
 import './Movies.css';
 import MovieContainer from '../MovieContainer/MovieContainer';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import SectionTemplate from '../SectionTemplate/SectionTemplate';
 import FilmSearchForm from '../FilmSearchForm/FilmSearchForm';
 import renderMoviesSettings from '../../variables/renderMoviesSettings';
+import { GetMoviesContext } from '../../context/GetMoviesContext';
 
 export default function Movies({ width, movies }) {
   const [filmRequest, setFilmRequest] = useState('');
@@ -12,18 +13,31 @@ export default function Movies({ width, movies }) {
   const [amountTotal, setAmountTotal] = useState(0);
   const [moviesArrayforMaping, setMoviesArrayforMaping] = useState([]);
   const [stateOfPage, setStateOfPage] = useState({});
+  const [message, setMessage] = useState('');
+  const [count, setCount] = useState(0);
+  const getMovies = useContext(GetMoviesContext);
 
   // эффект восстанавливает состояние страницы, при наличии данных в локалсторадж
   useEffect(() => {
-    const { filmRequest, isShortFilm, moviesArrayforMaping, amountTotal } =
-      JSON.parse(localStorage.getItem('moviesPage'));
-    if (moviesArrayforMaping) {
+    if (localStorage.getItem('moviesPage')) {
+      const { filmRequest, isShortFilm, moviesArrayforMaping, amountTotal } =
+        JSON.parse(localStorage.getItem('moviesPage'));
+
       setFilmRequest(filmRequest);
       setIsShortFilm(isShortFilm);
       setMoviesArrayforMaping(moviesArrayforMaping);
       setAmountTotal(amountTotal);
     }
   }, []);
+
+  // Эффект устанавливает сообщение о результатах поиска
+  // useEffect(() => {
+  //   if (moviesArrayforMaping?.length < 1) {
+  //     setMessage('ничего не нашлось :(');
+  //   } else {
+  //     setMessage('');
+  //   }
+  // }, [moviesArrayforMaping]);
 
   // эффект контроля ширины экрана назначает набор переменных для отрисовки
   useEffect(() => {
@@ -53,22 +67,35 @@ export default function Movies({ width, movies }) {
 
   // эффект записывает состояние страницы в localstorage
   useEffect(() => {
-    localStorage.setItem('moviesPage', JSON.stringify(stateOfPage));
-  }, [stateOfPage]);
+    if (moviesArrayforMaping.length > 0) {
+      localStorage.setItem('moviesPage', JSON.stringify(stateOfPage));
+    }
+  }, [stateOfPage, moviesArrayforMaping]);
 
-  const submitForm = () => {
-    setMoviesArrayforMaping(
-      movies.filter((movie) =>
-        filmRequest === ''
-          ? isShortFilm
-            ? movie.duration <= 40
-            : movie.duration
-          : (movie.nameRU.toLowerCase().includes(filmRequest.toLowerCase()) ||
-              movie.nameEN.toLowerCase().includes(filmRequest.toLowerCase())) &&
-            (isShortFilm ? movie.duration <= 40 : movie.duration)
-      )
+  async function submitForm() {
+    if (count === 0) {
+      await getMovies();
+    }
+    setCount(count + 1);
+
+    const result = movies.filter((movie) =>
+      filmRequest === ''
+        ? isShortFilm
+          ? movie.duration <= 40
+          : movie.duration
+        : (movie.nameRU.toLowerCase().includes(filmRequest.toLowerCase()) ||
+            movie.nameEN.toLowerCase().includes(filmRequest.toLowerCase())) &&
+          (isShortFilm ? movie.duration <= 40 : movie.duration)
     );
-  };
+
+    setMoviesArrayforMaping(result);
+
+    if (result.length < 1) {
+      setMessage('ничего не нашлось :(');
+    } else {
+      setMessage('');
+    }
+  }
   const handleButton = () => {
     setAmountTotal(amountTotal + settingsForRender.amountForAdd);
   };
@@ -84,6 +111,8 @@ export default function Movies({ width, movies }) {
           width={width}
           place="movies"
         />
+
+        <p className="movies__message">{message}</p>
         <MovieContainer
           place="movies"
           moviesArrayforMaping={moviesArrayforMaping}

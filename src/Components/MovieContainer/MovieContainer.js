@@ -2,7 +2,6 @@ import './MovieContainer.css';
 import MovieCard from '../MovieCard/MovieCard';
 
 export default function MovieContainer({
-  savedMovies,
   moviesArrayforMaping,
   amountTotal,
   place,
@@ -20,19 +19,19 @@ export default function MovieContainer({
             director: movie.director,
             year: movie.year,
             description: movie.description,
-            image:
-              // place === 'movies'
-              //   ?
-              `https://api.nomoreparties.co${movie.image.url}`,
-            // : movie.image
+            image: `${
+              movie.image.url
+                ? `https://api.nomoreparties.co${movie.image.url}`
+                : movie.image
+            }`,
             trailerLink: movie.trailerLink,
-            thumbnail:
-              // place === 'movies'
-              // ?
-              `https://api.nomoreparties.co${
-                movie.image.previewUrl.slice('/n')[0]
-              }`,
-            // : movie.image.previewUrl
+            thumbnail: `${
+              movie.image.previewUrl
+                ? `https://api.nomoreparties.co${
+                    movie.image.previewUrl.split('\n')[0]
+                  }`
+                : movie.thumbnail
+            }`,
             nameRU: movie.nameRU,
             nameEN: movie.nameEN,
             movieId: movie.id || movie?.movieId,

@@ -1,37 +1,19 @@
 import './MovieCard.css';
 import { Link } from 'react-router-dom';
-import mainApi from '../../utils/MainApi';
 import { SavedMoviesIdContext } from '../../context/SavedMoviesIdContext';
 import { DeleteMovieContext } from '../../context/DeleteMovieContext';
 import { AddMovieContext } from '../../context/AddMovieContext';
 import { useState, useContext, useEffect } from 'react';
 
 export default function MovieCard({ movie }) {
-  const {
-    duration,
-    country,
-    director,
-    year,
-    description,
-    image,
-    trailerLink,
-    thumbnail,
-    nameRU,
-    nameEN,
-    movieId,
-  } = movie;
+  const { duration, image, trailerLink, nameRU, movieId } = movie;
   const savedMoviesId = useContext(SavedMoviesIdContext);
   const deleteMovie = useContext(DeleteMovieContext);
   const addMovie = useContext(AddMovieContext);
   const [isSaved, setIsSaved] = useState(true);
-  // const handleButton = () => {
-  //   mainApi.saveMovie({
-  //     movie,
-  //   });
-  // };
   useEffect(() => {
     savedMoviesId.includes(movieId) ? setIsSaved(true) : setIsSaved(false);
-  }, [savedMoviesId]);
+  }, [savedMoviesId, movieId]);
   const handleButton = () => {
     if (isSaved) {
       deleteMovie(movieId);

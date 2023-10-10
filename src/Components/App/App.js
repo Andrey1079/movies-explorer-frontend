@@ -21,6 +21,7 @@ import Infotooltip from '../InfoToolTip/InfotoolTip';
 import MoviesApi from '../../utils//MoviesApi';
 import { DeleteMovieContext } from '../../context/DeleteMovieContext';
 import { AddMovieContext } from '../../context/AddMovieContext';
+import { GetMoviesContext } from '../../context/GetMoviesContext';
 
 function App() {
   const location = useLocation().pathname;
@@ -100,7 +101,7 @@ function App() {
   };
   const handleLogOut = () => {
     setIsLoggedIn(false);
-    localStorage.removeItem('token');
+    localStorage.clear();
   };
 
   // -------------------------------------------------------------Функции для работы с фильмами
@@ -126,13 +127,23 @@ function App() {
     mainApi
       .saveMovie(newMovie)
       .then((savedMovie) => {
-        setSavedMovies([...savedMovies, savedMovie]);
+        setSavedMovies([savedMovie, ...savedMovies]);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  const getMovies = () => {
+    setIsLoading(true);
+    MoviesApi()
+      .then((res) => res.json())
+      .then((movies) => {
+        setMovies(movies);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
+  };
   // -------------------------------------------------------------Эффекты
 
   // обнуляет сообщение об ошибке при переходе на другую страницу
@@ -148,14 +159,14 @@ function App() {
   // зугружает массивы с фильмами при авторизации пользователя
   useEffect(() => {
     if (isLoggedIn) {
-      MoviesApi()
-        .then((res) => res.json())
-        .then((movies) => {
-          setMovies(movies);
-        });
+      // MoviesApi()
+      //   .then((res) => res.json())
+      //   .then((movies) => {
+      //     setMovies(movies);
+      //   });
       mainApi
         .getMovies()
-        .then((savedMoviesData) => setSavedMovies(savedMoviesData));
+        .then((savedMoviesData) => setSavedMovies(savedMoviesData.reverse()));
     }
   }, [isLoggedIn]);
 
@@ -177,83 +188,85 @@ function App() {
         <SavedMoviesIdContext.Provider value={savedMoviesId}>
           <DeleteMovieContext.Provider value={deleteMovie}>
             <AddMovieContext.Provider value={saveMovie}>
-              <div className="page root">
-                <BasicLayout
-                  burgerButtonOnClick={setIsBurgerNavMenuOpened}
-                  width={windowWidth}
-                  loggedIn={isLoggedIn}
-                  headerPages={['/', '/profile', '/movies', '/saved-movies']}
-                  footerPages={['/', '/movies', '/saved-movies']}
-                >
-                  <Routes>
-                    <Route
-                      exact
-                      path="/signin"
-                      element={<Login handleSubmit={handleLogIn} />}
-                    ></Route>
-                    <Route
-                      exact
-                      path="/signup"
-                      element={<Register handleSubmit={handleSignUp} />}
-                    ></Route>
-                    <Route
-                      exact
-                      path="/"
-                      element={<Main />}
-                    ></Route>
-                    <Route
-                      exact
-                      path="/profile"
-                      element={
-                        <ProtectedRoute
-                          loggedIn={isLoggedIn}
-                          handleSubmit={handleChangeUserInfo}
-                          handleLink={handleLogOut}
-                          element={Profile}
-                        />
-                      }
-                    ></Route>
+              <GetMoviesContext.Provider value={getMovies}>
+                <div className="page root">
+                  <BasicLayout
+                    burgerButtonOnClick={setIsBurgerNavMenuOpened}
+                    width={windowWidth}
+                    loggedIn={isLoggedIn}
+                    headerPages={['/', '/profile', '/movies', '/saved-movies']}
+                    footerPages={['/', '/movies', '/saved-movies']}
+                  >
+                    <Routes>
+                      <Route
+                        exact
+                        path="/signin"
+                        element={<Login handleSubmit={handleLogIn} />}
+                      ></Route>
+                      <Route
+                        exact
+                        path="/signup"
+                        element={<Register handleSubmit={handleSignUp} />}
+                      ></Route>
+                      <Route
+                        exact
+                        path="/"
+                        element={<Main />}
+                      ></Route>
+                      <Route
+                        exact
+                        path="/profile"
+                        element={
+                          <ProtectedRoute
+                            loggedIn={isLoggedIn}
+                            handleSubmit={handleChangeUserInfo}
+                            handleLink={handleLogOut}
+                            element={Profile}
+                          />
+                        }
+                      ></Route>
 
-                    <Route
-                      exact
-                      path="/movies"
-                      element={
-                        <ProtectedRoute
-                          loggedIn={isLoggedIn}
-                          width={windowWidth}
-                          movies={movies}
-                          element={Movies}
-                        />
-                      }
-                    ></Route>
-                    <Route
-                      exact
-                      path="/saved-movies"
-                      element={
-                        <ProtectedRoute
-                          loggedIn={isLoggedIn}
-                          width={windowWidth}
-                          movies={movies}
-                          element={SavedMovies}
-                        />
-                      }
-                    ></Route>
-                    <Route
-                      path="*"
-                      element={<NotFound navigate={navigate} />}
-                    ></Route>
-                  </Routes>
-                </BasicLayout>
-                <BurgerNavigationMenu
-                  isOpen={isBurgerNavMenuOpened}
-                  setIsOpen={setIsBurgerNavMenuOpened}
-                />
-                <Preloader isLoading={isLoading} />
-                <Infotooltip
-                  isToolTipOpen={isToolTipOpen}
-                  handleButton={toolTipClose}
-                ></Infotooltip>
-              </div>
+                      <Route
+                        exact
+                        path="/movies"
+                        element={
+                          <ProtectedRoute
+                            loggedIn={isLoggedIn}
+                            width={windowWidth}
+                            movies={movies}
+                            element={Movies}
+                          />
+                        }
+                      ></Route>
+                      <Route
+                        exact
+                        path="/saved-movies"
+                        element={
+                          <ProtectedRoute
+                            loggedIn={isLoggedIn}
+                            width={windowWidth}
+                            element={SavedMovies}
+                            movies={savedMovies}
+                          />
+                        }
+                      ></Route>
+                      <Route
+                        path="*"
+                        element={<NotFound navigate={navigate} />}
+                      ></Route>
+                    </Routes>
+                  </BasicLayout>
+                  <BurgerNavigationMenu
+                    isOpen={isBurgerNavMenuOpened}
+                    setIsOpen={setIsBurgerNavMenuOpened}
+                  />
+                  <Preloader isLoading={isLoading} />
+                  <Infotooltip
+                    isToolTipOpen={isToolTipOpen}
+                    handleButton={toolTipClose}
+                  ></Infotooltip>
+                </div>
+              </GetMoviesContext.Provider>
             </AddMovieContext.Provider>
           </DeleteMovieContext.Provider>
         </SavedMoviesIdContext.Provider>

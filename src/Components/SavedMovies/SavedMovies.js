@@ -9,25 +9,32 @@ export default function Movies({ width, movies }) {
   const savedId = useContext(SavedMoviesIdContext);
   const [filmRequest, setFilmRequest] = useState('');
   const [isShortFilm, setIsShortFilm] = useState(false);
-  const [moviesArrayforMaping, setMoviesArrayforMaping] = useState(movies);
+  const [moviesArrayforMaping, setMoviesArrayforMaping] = useState([]);
+  const [message, setMessage] = useState('');
+
+  // Эффект отфильтровывает в общем массиве фиьлмов сохраненные
   useEffect(() => {
-    setMoviesArrayforMaping(
-      movies.filter((movie) => savedId.includes(movie.id))
-    );
-  }, [savedId, movies]);
+    setMoviesArrayforMaping(movies);
+  }, [movies]);
 
   const submitForm = () => {
-    setMoviesArrayforMaping(
-      movies.filter((movie) =>
-        filmRequest === ''
-          ? isShortFilm
-            ? movie.duration <= 40
-            : movie.duration
-          : (movie.nameRU.toLowerCase().includes(filmRequest.toLowerCase()) ||
-              movie.nameEN.toLowerCase().includes(filmRequest.toLowerCase())) &&
-            (isShortFilm ? movie.duration <= 40 : movie.duration)
-      )
+    const result = movies.filter((movie) =>
+      filmRequest === ''
+        ? isShortFilm
+          ? movie.duration <= 40
+          : movie.duration
+        : (movie.nameRU.toLowerCase().includes(filmRequest.toLowerCase()) ||
+            movie.nameEN.toLowerCase().includes(filmRequest.toLowerCase())) &&
+          (isShortFilm ? movie.duration <= 40 : movie.duration)
     );
+
+    setMoviesArrayforMaping(result);
+
+    if (result.length < 1) {
+      setMessage('ничего не нашлось :(');
+    } else {
+      setMessage('');
+    }
   };
 
   return (
@@ -42,6 +49,7 @@ export default function Movies({ width, movies }) {
           width={width}
           place="saved-movies"
         />
+        <p className="saved-movies__message">{message}</p>
         <MovieContainer
           place="saved-movies"
           moviesArrayforMaping={moviesArrayforMaping}
