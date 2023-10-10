@@ -1,11 +1,7 @@
 import './MovieContainer.css';
 import MovieCard from '../MovieCard/MovieCard';
 
-export default function MovieContainer({
-  moviesArrayforMaping,
-  amountTotal,
-  place,
-}) {
+export default function MovieContainer({ moviesArrayforMaping, amountTotal }) {
   const movies = moviesArrayforMaping.slice(0, amountTotal).map((movie) => {
     return (
       <li

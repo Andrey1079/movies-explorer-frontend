@@ -1,12 +1,10 @@
 import authRequestObj from './constants';
-import authErrorMessages from '../variables/authErrorMessages';
 class MainApi {
-  constructor(requestObj, authErrorMessages) {
+  constructor(requestObj) {
     this._baseUrl = requestObj.baseUrl;
     this._settingsObj = {};
     this._settingsObj.headers = requestObj.headers;
     this._settingsObj.method = '';
-    this._authErrorMessages = authErrorMessages;
   }
 
   signUp(signUpData) {
@@ -71,16 +69,10 @@ class MainApi {
     if (response.ok) {
       return response.json();
     } else {
-      return Promise.reject(this._setErrorMessage(response));
+      return Promise.reject(response.status);
     }
   };
-  _setErrorMessage(error) {
-    if (error.status === 400) return authErrorMessages.badRequest;
-    if (error.status === 409) return authErrorMessages.conflict;
-    if (error.status === 500) return authErrorMessages.server;
-    if (error.error.status === 401) return authErrorMessages.badRequest;
-  }
 }
 
-const mainApi = new MainApi(authRequestObj, authErrorMessages);
+const mainApi = new MainApi(authRequestObj);
 export default mainApi;

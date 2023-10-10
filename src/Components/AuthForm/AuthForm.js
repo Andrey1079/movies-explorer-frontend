@@ -1,7 +1,7 @@
 import './AuthForm.css';
 import { Children, cloneElement, useContext } from 'react';
 import { useValidate } from '../../customHooks/useValidate';
-import { AuthErrorContext } from '../../context/AuthErrorContext';
+import { ErrorContext } from '../../context/ErrorContext';
 
 export default function AuthForm({
   formInputInitialValues,
@@ -12,7 +12,7 @@ export default function AuthForm({
   noValidate,
   title,
 }) {
-  const authError = useContext(AuthErrorContext);
+  const authError = useContext(ErrorContext);
   const { handleChange, resetForm, errors, isValid, values } = useValidate(
     formInputInitialValues
   );

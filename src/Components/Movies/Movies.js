@@ -4,9 +4,12 @@ import { useState, useEffect, useContext } from 'react';
 import SectionTemplate from '../SectionTemplate/SectionTemplate';
 import FilmSearchForm from '../FilmSearchForm/FilmSearchForm';
 import renderMoviesSettings from '../../variables/renderMoviesSettings';
-import { GetMoviesContext } from '../../context/GetMoviesContext';
+// import { GetMoviesContext } from '../../context/GetMoviesContext';
+// import { ErrorContext } from '../../context/ErrorContext';
+import moviesApi from '../../utils/MoviesApi';
 
-export default function Movies({ width, movies }) {
+export default function Movies({ width }) {
+  const [movies, setMovies] = useState([]);
   const [filmRequest, setFilmRequest] = useState('');
   const [isShortFilm, setIsShortFilm] = useState(false);
   const [settingsForRender, setSettingsForRender] = useState({});
@@ -14,8 +17,8 @@ export default function Movies({ width, movies }) {
   const [moviesArrayforMaping, setMoviesArrayforMaping] = useState([]);
   const [stateOfPage, setStateOfPage] = useState({});
   const [message, setMessage] = useState('');
-  const [count, setCount] = useState(0);
-  const getMovies = useContext(GetMoviesContext);
+  // const getMovies = useContext(GetMoviesContext);
+  // const error = useContext(ErrorContext);
 
   // эффект восстанавливает состояние страницы, при наличии данных в локалсторадж
   useEffect(() => {
@@ -30,14 +33,10 @@ export default function Movies({ width, movies }) {
     }
   }, []);
 
-  // Эффект устанавливает сообщение о результатах поиска
+  // Эффект устанавливает сообщение об ошибке
   // useEffect(() => {
-  //   if (moviesArrayforMaping?.length < 1) {
-  //     setMessage('ничего не нашлось :(');
-  //   } else {
-  //     setMessage('');
-  //   }
-  // }, [moviesArrayforMaping]);
+  //   setMessage(error);
+  // }, [error]);
 
   // эффект контроля ширины экрана назначает набор переменных для отрисовки
   useEffect(() => {
@@ -72,12 +71,7 @@ export default function Movies({ width, movies }) {
     }
   }, [stateOfPage, moviesArrayforMaping]);
 
-  async function submitForm() {
-    if (count === 0) {
-      await getMovies();
-    }
-    setCount(count + 1);
-
+  const searchMovie = (movies) => {
     const result = movies.filter((movie) =>
       filmRequest === ''
         ? isShortFilm
@@ -89,11 +83,30 @@ export default function Movies({ width, movies }) {
     );
 
     setMoviesArrayforMaping(result);
-
+    console.log(movies);
     if (result.length < 1) {
       setMessage('ничего не нашлось :(');
     } else {
       setMessage('');
+    }
+  };
+
+  function submitForm() {
+    if (movies.length < 1) {
+      moviesApi
+        .getMovies()
+        .then((movies) => {
+          setMovies(movies);
+          searchMovie(movies);
+        })
+        .catch((err) => {
+          setMessage(
+            'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
+          );
+          console.log(err);
+        });
+    } else {
+      searchMovie(movies);
     }
   }
   const handleButton = () => {
