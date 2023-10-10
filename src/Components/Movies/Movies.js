@@ -1,10 +1,10 @@
 import './Movies.css';
 import MovieContainer from '../MovieContainer/MovieContainer';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import SectionTemplate from '../SectionTemplate/SectionTemplate';
 import FilmSearchForm from '../FilmSearchForm/FilmSearchForm';
 import renderMoviesSettings from '../../variables/renderMoviesSettings';
-// import { GetMoviesContext } from '../../context/GetMoviesContext';
+import { LoadingContext } from '../../context/LoadingContext';
 // import { ErrorContext } from '../../context/ErrorContext';
 import moviesApi from '../../utils/MoviesApi';
 
@@ -17,7 +17,7 @@ export default function Movies({ width }) {
   const [moviesArrayforMaping, setMoviesArrayforMaping] = useState([]);
   const [stateOfPage, setStateOfPage] = useState({});
   const [message, setMessage] = useState('');
-  // const getMovies = useContext(GetMoviesContext);
+  const setIsLoading = useContext(LoadingContext);
   // const error = useContext(ErrorContext);
 
   // эффект восстанавливает состояние страницы, при наличии данных в локалсторадж
@@ -95,6 +95,7 @@ export default function Movies({ width }) {
 
   function submitForm() {
     if (movies.length < 1) {
+      setIsLoading(true);
       moviesApi
         .getMovies()
         .then((movies) => {
@@ -106,7 +107,8 @@ export default function Movies({ width }) {
             'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
           );
           console.log(err);
-        });
+        })
+        .finally(() => setIsLoading(false));
     } else {
       searchMovie(movies);
     }
