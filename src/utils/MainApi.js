@@ -1,4 +1,4 @@
-import authRequestObj from './constants';
+import MainApiRequestObj from '../constants/MainApiReqObj';
 class MainApi {
   constructor(requestObj) {
     this._baseUrl = requestObj.baseUrl;
@@ -75,5 +75,5 @@ class MainApi {
   };
 }
 
-const mainApi = new MainApi(authRequestObj);
+const mainApi = new MainApi(MainApiRequestObj);
 export default mainApi;

@@ -1,10 +1,10 @@
+import MovieApiRequestObj from '../constants/MovieApiReqObj';
+
 class MoviesApi {
-  constructor(baseUrl) {
-    this._url = baseUrl;
+  constructor(settingObject) {
+    this._url = settingObject.baseUrl;
     this._settingObject = {};
-    this._settingObject.headers = {
-      'Content-Type': 'application/json',
-    };
+    this._settingObject.headers = settingObject.headers;
     this._settingObject.method = 'GET';
   }
 
@@ -25,6 +25,6 @@ class MoviesApi {
   }
 }
 
-const moviesApi = new MoviesApi('https://api.nomoreparties.co/beatfilm-movies');
+const moviesApi = new MoviesApi(MovieApiRequestObj);
 
 export default moviesApi;

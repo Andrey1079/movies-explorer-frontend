@@ -252,7 +252,7 @@ function App() {
                             }
                           ></Route>
                           <Route
-                            path="*"
+                            path={'*'}
                             element={<NotFound navigate={navigate} />}
                           ></Route>
                         </Routes>

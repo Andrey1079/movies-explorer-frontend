@@ -1,8 +1,8 @@
-const authRequestObj = {
+const MainApiRequestObj = {
   baseUrl: 'https://api.dunaev.nomoredomainsrocks.ru',
   headers: {
     'Content-Type': 'application/json',
   },
 };
 
-export default authRequestObj;
+export default MainApiRequestObj;
