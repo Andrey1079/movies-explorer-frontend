@@ -1,5 +1,11 @@
 import './App.css';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+  Navigate,
+} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Main from '../Main/Main';
 import BasicLayout from '../Layouts/BasicLayout/BasicLayout';
@@ -30,7 +36,7 @@ function App() {
   const windowWidth = useResize(100);
   const [currentUser, setCurrentUser] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [error, setError] = useState('');
   const [isBurgerNavMenuOpened, setIsBurgerNavMenuOpened] = useState(false);
   const [isToolTipOpen, setIsToolTipOpen] = useState(false);
@@ -96,7 +102,10 @@ function App() {
         setCurrentUser(userData);
         setSavedMovies(savedMovies);
       })
-      .catch((err) => setError(err))
+      .catch((err) => {
+        setIsLoggedIn(false);
+        setError(err);
+      })
       .finally(() => setIsLoading(false));
   };
   const handleLogOut = () => {
@@ -149,18 +158,16 @@ function App() {
     setError('');
   }, [location]);
 
+  //получает массив сохраненных фильмов и данные пользователя
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      setIsLoggedIn(true);
+      getStartData();
     } else {
       setIsLoggedIn(false);
       localStorage.clear();
     }
-  }, []);
-  //получает массив сохраненных фильмов и данные пользователя
-  useEffect(() => {
-    getStartData();
   }, [isLoggedIn]);
+
   //получает массив id сохраненных фильмов
   useEffect(() => {
     setSavedMoviesId(
@@ -179,88 +186,110 @@ function App() {
               <LoadingContext.Provider value={setIsLoading}>
                 <ToolTipSettingsContext.Provider value={setToolTipData}>
                   <SetToolTipOpenContext.Provider value={setIsToolTipOpen}>
-                    <div className="page root">
-                      <BasicLayout
-                        burgerButtonOnClick={setIsBurgerNavMenuOpened}
-                        width={windowWidth}
-                        loggedIn={isLoggedIn}
-                        headerPages={[
-                          '/',
-                          '/profile',
-                          '/movies',
-                          '/saved-movies',
-                        ]}
-                        footerPages={['/', '/movies', '/saved-movies']}
-                      >
-                        <Routes>
-                          <Route
-                            exact
-                            path="/signin"
-                            element={<Login handleSubmit={handleLogIn} />}
-                          ></Route>
-                          <Route
-                            exact
-                            path="/signup"
-                            element={<Register handleSubmit={handleSignUp} />}
-                          ></Route>
-                          <Route
-                            exact
-                            path="/"
-                            element={<Main />}
-                          ></Route>
-                          <Route
-                            exact
-                            path="/profile"
-                            element={
-                              <ProtectedRoute
-                                loggedIn={isLoggedIn}
-                                handleSubmit={handleChangeUserInfo}
-                                handleLink={handleLogOut}
-                                element={Profile}
-                              />
-                            }
-                          ></Route>
+                    {isLoggedIn === null ? (
+                      <Preloader />
+                    ) : (
+                      <div className="page root">
+                        <BasicLayout
+                          burgerButtonOnClick={setIsBurgerNavMenuOpened}
+                          width={windowWidth}
+                          loggedIn={isLoggedIn}
+                          headerPages={[
+                            '/',
+                            '/profile',
+                            '/movies',
+                            '/saved-movies',
+                          ]}
+                          footerPages={['/', '/movies', '/saved-movies']}
+                        >
+                          <Routes>
+                            <Route
+                              exact
+                              path="/signin"
+                              element={
+                                isLoggedIn ? (
+                                  <Navigate
+                                    to="/"
+                                    replace
+                                  />
+                                ) : (
+                                  <Login handleSubmit={handleLogIn} />
+                                )
+                              }
+                            ></Route>
+                            <Route
+                              exact
+                              path="/signup"
+                              element={
+                                isLoggedIn ? (
+                                  <Navigate
+                                    to="/"
+                                    replace
+                                  />
+                                ) : (
+                                  <Register handleSubmit={handleSignUp} />
+                                )
+                              }
+                            ></Route>
+                            <Route
+                              exact
+                              path="/"
+                              element={<Main />}
+                            ></Route>
+                            <Route
+                              exact
+                              path="/profile"
+                              element={
+                                <ProtectedRoute
+                                  loggedIn={isLoggedIn}
+                                  handleSubmit={handleChangeUserInfo}
+                                  handleLink={handleLogOut}
+                                  element={Profile}
+                                />
+                              }
+                            ></Route>
 
-                          <Route
-                            exact
-                            path="/movies"
-                            element={
-                              <ProtectedRoute
-                                loggedIn={isLoggedIn}
-                                width={windowWidth}
-                                element={Movies}
-                              />
-                            }
-                          ></Route>
-                          <Route
-                            exact
-                            path="/saved-movies"
-                            element={
-                              <ProtectedRoute
-                                loggedIn={isLoggedIn}
-                                width={windowWidth}
-                                element={SavedMovies}
-                                movies={savedMovies}
-                              />
-                            }
-                          ></Route>
-                          <Route
-                            path={'*'}
-                            element={<NotFound navigate={navigate} />}
-                          ></Route>
-                        </Routes>
-                      </BasicLayout>
-                      <BurgerNavigationMenu
-                        isOpen={isBurgerNavMenuOpened}
-                        setIsOpen={setIsBurgerNavMenuOpened}
-                      />
-                      <Preloader isLoading={isLoading} />
-                      <Infotooltip
-                        data={tooltipData}
-                        isToolTipOpen={isToolTipOpen}
-                        handleButton={toolTipClose}
-                      ></Infotooltip>
-                    </div>
+                            <Route
+                              exact
+                              path="/movies"
+                              element={
+                                <ProtectedRoute
+                                  loggedIn={isLoggedIn}
+                                  width={windowWidth}
+                                  element={Movies}
+                                />
+                              }
+                            ></Route>
+                            <Route
+                              exact
+                              path="/saved-movies"
+                              element={
+                                <ProtectedRoute
+                                  loggedIn={isLoggedIn}
+                                  width={windowWidth}
+                                  element={SavedMovies}
+                                  movies={savedMovies}
+                                />
+                              }
+                            ></Route>
+                            <Route
+                              path={'*'}
+                              element={<NotFound navigate={navigate} />}
+                            ></Route>
+                          </Routes>
+                        </BasicLayout>
+                        <BurgerNavigationMenu
+                          isOpen={isBurgerNavMenuOpened}
+                          setIsOpen={setIsBurgerNavMenuOpened}
+                        />
+                        <Preloader isLoading={isLoading} />
+                        <Infotooltip
+                          data={tooltipData}
+                          isToolTipOpen={isToolTipOpen}
+                          handleButton={toolTipClose}
+                        ></Infotooltip>
+                      </div>
+                    )}
                   </SetToolTipOpenContext.Provider>
                 </ToolTipSettingsContext.Provider>
               </LoadingContext.Provider>
