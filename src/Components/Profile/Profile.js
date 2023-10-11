@@ -4,6 +4,7 @@ import { CurrentUserContext } from '../../context/CurrentUserContext';
 import { useContext, useState } from 'react';
 import LayoutWithoutHeaderFooter from '../Layouts/LayoutWithoutHeaderFooter/LayoutWithoutHeaderFooter';
 import AuthForm from '../AuthForm/AuthForm';
+import EmailPattern from '../../constants/EmailPattern';
 
 export default function Profile({ handleLink, handleSubmit }) {
   const userData = useContext(CurrentUserContext);
@@ -49,6 +50,7 @@ export default function Profile({ handleLink, handleSubmit }) {
             name="name"
           ></Input>
           <Input
+            pattern={EmailPattern}
             value=""
             readonly={isEdit ? false : true}
             noValidate={isEdit ? false : true}

@@ -2,6 +2,7 @@ import AuthForm from '../AuthForm/AuthForm';
 import Input from '../Input/Input';
 import LayoutWithoutHeaderFooter from '../Layouts/LayoutWithoutHeaderFooter/LayoutWithoutHeaderFooter';
 import Logo from '../Logo/Logo';
+import EmailPattern from '../../constants/EmailPattern';
 
 export default function Login({ handleSubmit }) {
   return (
@@ -25,6 +26,7 @@ export default function Login({ handleSubmit }) {
             minLength={5}
             nameOfField="E-mail"
             name="email"
+            pattern={EmailPattern}
           ></Input>
           <Input
             type="password"

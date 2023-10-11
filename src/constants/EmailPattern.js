@@ -1,2 +1,2 @@
-const EmailPattern = /[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+/;
+const EmailPattern = '^\\S+@\\S+\\.\\S+$';
 export default EmailPattern;

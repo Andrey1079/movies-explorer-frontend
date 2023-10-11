@@ -1,4 +1,4 @@
-const renderMoviesSettings = {
+const RenderMoviesSettings = {
   bigScreen: {
     amountInit: 16,
     amountForAdd: 4,
@@ -17,4 +17,4 @@ const renderMoviesSettings = {
     amountForAdd: 2,
   },
 };
-export default renderMoviesSettings;
+export default RenderMoviesSettings;

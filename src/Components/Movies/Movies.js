@@ -3,7 +3,7 @@ import MovieContainer from '../MovieContainer/MovieContainer';
 import { useState, useEffect, useContext } from 'react';
 import SectionTemplate from '../SectionTemplate/SectionTemplate';
 import FilmSearchForm from '../FilmSearchForm/FilmSearchForm';
-import renderMoviesSettings from '../../variables/renderMoviesSettings';
+import RenderMoviesSettings from '../../constants/RenderMoviesSettings';
 import { LoadingContext } from '../../context/LoadingContext';
 import { SetToolTipOpenContext } from '../../context/SetToolTipOpenContext';
 import { ToolTipSettingsContext } from '../../context/ToolTipSettingsContext';
@@ -95,12 +95,12 @@ export default function Movies({ width }) {
   useEffect(() => {
     setSettingsForRender(
       width > 1100
-        ? renderMoviesSettings.bigScreen
+        ? RenderMoviesSettings.bigScreen
         : width > 900
-        ? renderMoviesSettings.bigScreenS
+        ? RenderMoviesSettings.bigScreenS
         : width > 520
-        ? renderMoviesSettings.mediumScreen
-        : renderMoviesSettings.smallScreen
+        ? RenderMoviesSettings.mediumScreen
+        : RenderMoviesSettings.smallScreen
     );
   }, [width]);
 

@@ -2,6 +2,7 @@ import LayoutWithoutHeaderFooter from '../Layouts/LayoutWithoutHeaderFooter/Layo
 import AuthForm from '../AuthForm/AuthForm';
 import Input from '../Input/Input';
 import Logo from '../Logo/Logo';
+import EmailPattern from '../../constants/EmailPattern';
 
 export default function Register({ handleSubmit }) {
   return (
@@ -27,6 +28,7 @@ export default function Register({ handleSubmit }) {
             name="name"
           ></Input>
           <Input
+            pattern={EmailPattern}
             type="email"
             required={true}
             minLength={5}

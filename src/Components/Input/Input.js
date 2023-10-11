@@ -10,6 +10,7 @@ export default function Input({
   errors,
   readonly,
   values,
+  pattern,
 }) {
   const errorMessage = errors[name];
   return (
@@ -21,6 +22,7 @@ export default function Input({
         {nameOfField}
 
         <input
+          pattern={pattern}
           value={values?.[name] || ''}
           autoComplete={name}
           readOnly={readonly}
