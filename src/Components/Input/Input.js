@@ -10,7 +10,6 @@ export default function Input({
   errors,
   readonly,
   values,
-  value,
 }) {
   const errorMessage = errors[name];
   return (

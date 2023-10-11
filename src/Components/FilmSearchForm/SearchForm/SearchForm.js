@@ -1,4 +1,3 @@
-import Thumb from '../Thumb/Thumb';
 import './SearchForm.css';
 import searchImage from '../../../images/search-form__placeholder.svg';
 

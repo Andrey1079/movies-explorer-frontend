@@ -22,6 +22,63 @@ export default function Movies({ width }) {
   const setIsToolTipOpen = useContext(SetToolTipOpenContext);
   const setToolTipSettings = useContext(ToolTipSettingsContext);
 
+  //функция поиска фильмов
+  const searchMovie = (movies) => {
+    const result = movies.filter(
+      (movie) =>
+        (movie.nameRU.toLowerCase().includes(filmRequest.toLowerCase()) ||
+          movie.nameEN.toLowerCase().includes(filmRequest.toLowerCase())) &&
+        (isShortFilm ? movie.duration <= 40 : movie.duration)
+    );
+
+    setMoviesArrayforMaping(result);
+
+    if (result.length < 1) {
+      setMessage('ничего не нашлось :(');
+    } else {
+      setMessage('');
+    }
+  };
+
+  // функция сабмита формы
+  function submitForm() {
+    if (filmRequest === '') {
+      setToolTipSettings({
+        message: 'Введите ключевое слово',
+        status: 'notOk',
+      });
+      setIsToolTipOpen(true);
+      return;
+    }
+
+    if (movies.length < 1) {
+      setIsLoading(true);
+      moviesApi
+        .getMovies()
+        .then((movies) => {
+          setMovies(movies);
+          searchMovie(movies);
+        })
+        .catch((err) => {
+          setToolTipSettings({
+            message:
+              'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз',
+            status: 'notOk',
+          });
+          setIsToolTipOpen(true);
+
+          console.log(err);
+        })
+        .finally(() => setIsLoading(false));
+    } else {
+      searchMovie(movies);
+    }
+  }
+  // функция для кнопки ЕЩЕ
+  const handleButton = () => {
+    setAmountTotal(amountTotal + settingsForRender.amountForAdd);
+  };
+
   // эффект восстанавливает состояние страницы, при наличии данных в локалсторадж
   useEffect(() => {
     if (JSON.parse(localStorage.getItem('moviesPage'))) {
@@ -69,59 +126,17 @@ export default function Movies({ width }) {
     }
   }, [stateOfPage]);
 
-  const searchMovie = (movies) => {
-    const result = movies.filter(
-      (movie) =>
-        (movie.nameRU.toLowerCase().includes(filmRequest.toLowerCase()) ||
-          movie.nameEN.toLowerCase().includes(filmRequest.toLowerCase())) &&
-        (isShortFilm ? movie.duration <= 40 : movie.duration)
-    );
-
-    setMoviesArrayforMaping(result);
-
-    if (result.length < 1) {
-      setMessage('ничего не нашлось :(');
-    } else {
-      setMessage('');
+  // эффект фильтрует по короткометражкам
+  useEffect(() => {
+    if (movies.length > 0) {
+      setMoviesArrayforMaping((array) =>
+        array.filter((movie) =>
+          isShortFilm ? movie.duration <= 40 : movie.duration > 0
+        )
+      );
     }
-  };
+  }, [isShortFilm, movies]);
 
-  function submitForm() {
-    if (filmRequest === '') {
-      setToolTipSettings({
-        message: 'Введите ключевое слово',
-        status: 'notOk',
-      });
-      setIsToolTipOpen(true);
-      return;
-    }
-
-    if (movies.length < 1) {
-      setIsLoading(true);
-      moviesApi
-        .getMovies()
-        .then((movies) => {
-          setMovies(movies);
-          searchMovie(movies);
-        })
-        .catch((err) => {
-          setToolTipSettings({
-            message:
-              'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз',
-            status: 'notOk',
-          });
-          setIsToolTipOpen(true);
-
-          console.log(err);
-        })
-        .finally(() => setIsLoading(false));
-    } else {
-      searchMovie(movies);
-    }
-  }
-  const handleButton = () => {
-    setAmountTotal(amountTotal + settingsForRender.amountForAdd);
-  };
   return (
     <main className="movies">
       <SectionTemplate place="movies">

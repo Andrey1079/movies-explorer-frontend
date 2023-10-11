@@ -46,7 +46,7 @@ function App() {
       .signIn(signInData)
       .then((token) => {
         localStorage.setItem('token', token.token);
-        checkToken('');
+        checkToken('movies');
       })
       .catch((err) => setError(err))
       .finally(() => setIsLoading(false));
