@@ -138,6 +138,11 @@ function App() {
       });
   };
 
+  // -------------------------------------------------------------функция закрытия tooltipa
+  const toolTipClose = () => {
+    setIsToolTipOpen(false);
+  };
+
   // -------------------------------------------------------------Эффекты
 
   // обнуляет сообщение об ошибке при переходе на другую страницу
@@ -153,11 +158,6 @@ function App() {
   // зугружает массивы с фильмами при авторизации пользователя
   useEffect(() => {
     if (isLoggedIn) {
-      // MoviesApi()
-      //   .then((res) => res.json())
-      //   .then((movies) => {
-      //     setMovies(movies);
-      //   });
       mainApi
         .getMovies()
         .then((savedMoviesData) => setSavedMovies(savedMoviesData.reverse()));
@@ -171,10 +171,6 @@ function App() {
       })
     );
   }, [savedMovies]);
-  // -------------------------------------------------------------Закрытие tooltipa
-  const toolTipClose = () => {
-    setIsToolTipOpen(false);
-  };
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -234,7 +230,6 @@ function App() {
                               <ProtectedRoute
                                 loggedIn={isLoggedIn}
                                 width={windowWidth}
-                                // movies={movies}
                                 element={Movies}
                               />
                             }

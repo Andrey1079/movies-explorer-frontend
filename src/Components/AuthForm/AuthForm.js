@@ -15,6 +15,7 @@ export default function AuthForm({
 }) {
   const [errorMessage, setErrorMessage] = useState('');
   const error = useContext(ErrorContext);
+  const [valid, setValid] = useState(true);
 
   const { handleChange, resetForm, errors, isValid, values } = useValidate(
     formInputInitialValues
@@ -58,6 +59,17 @@ export default function AuthForm({
         break;
     }
   }, [error, place]);
+  useEffect(() => {
+    if (
+      place === 'profile' &&
+      values.name === formInputInitialValues.name &&
+      values.email === formInputInitialValues.email
+    ) {
+      setValid(false);
+    } else {
+      setValid(true);
+    }
+  }, [values, formInputInitialValues, place]);
   return (
     <form
       noValidate={noValidate}
@@ -74,7 +86,7 @@ export default function AuthForm({
       })}
       <p className="auth-form__error-message">{errorMessage}</p>
       <input
-        disabled={noValidate ? false : isValid ? false : true}
+        disabled={noValidate ? false : !valid ? true : isValid ? false : true}
         type="submit"
         className={`auth-form__submit auth-form__submit_place_${place}`}
         value={submitText}

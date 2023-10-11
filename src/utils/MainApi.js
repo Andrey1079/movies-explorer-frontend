@@ -66,7 +66,6 @@ class MainApi {
   }
 
   _checkResponse = (response) => {
-    console.log(response);
     // return Promise.reject(500);
     if (response.ok) {
       return response.json();

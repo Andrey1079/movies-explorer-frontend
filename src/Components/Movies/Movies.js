@@ -18,17 +18,15 @@ export default function Movies({ width }) {
   const [moviesArrayforMaping, setMoviesArrayforMaping] = useState([]);
   const [stateOfPage, setStateOfPage] = useState({});
   const [message, setMessage] = useState('');
-  const [formMessage, setFormMessage] = useState('');
   const setIsLoading = useContext(LoadingContext);
   const setIsToolTipOpen = useContext(SetToolTipOpenContext);
   const setToolTipSettings = useContext(ToolTipSettingsContext);
 
   // эффект восстанавливает состояние страницы, при наличии данных в локалсторадж
   useEffect(() => {
-    if (localStorage.getItem('moviesPage')) {
+    if (JSON.parse(localStorage.getItem('moviesPage'))) {
       const { filmRequest, isShortFilm, moviesArrayforMaping, amountTotal } =
         JSON.parse(localStorage.getItem('moviesPage'));
-
       setFilmRequest(filmRequest);
       setIsShortFilm(isShortFilm);
       setMoviesArrayforMaping(moviesArrayforMaping);
@@ -66,10 +64,10 @@ export default function Movies({ width }) {
 
   // эффект записывает состояние страницы в localstorage
   useEffect(() => {
-    if (moviesArrayforMaping.length > 0) {
+    if (stateOfPage.moviesArrayforMaping) {
       localStorage.setItem('moviesPage', JSON.stringify(stateOfPage));
     }
-  }, [stateOfPage, moviesArrayforMaping]);
+  }, [stateOfPage]);
 
   const searchMovie = (movies) => {
     const result = movies.filter(
@@ -80,7 +78,7 @@ export default function Movies({ width }) {
     );
 
     setMoviesArrayforMaping(result);
-    console.log(movies);
+
     if (result.length < 1) {
       setMessage('ничего не нашлось :(');
     } else {
@@ -128,7 +126,6 @@ export default function Movies({ width }) {
     <main className="movies">
       <SectionTemplate place="movies">
         <FilmSearchForm
-          message={formMessage}
           submit={submitForm}
           checkboxState={isShortFilm}
           checkboxSetter={setIsShortFilm}
