@@ -31,7 +31,7 @@ export default function AuthForm({
   useEffect(() => {
     switch (error) {
       case 400:
-        setErrorMessage('кривые данные');
+        setErrorMessage('Данные не корректны');
 
         break;
       case 401:

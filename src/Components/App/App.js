@@ -46,7 +46,8 @@ function App() {
       .signIn(signInData)
       .then((token) => {
         localStorage.setItem('token', token.token);
-        checkToken('movies');
+        checkToken();
+        navigate('/movies');
       })
       .catch((err) => setError(err))
       .finally(() => setIsLoading(false));
@@ -60,7 +61,8 @@ function App() {
       .then((newUserData) =>
         mainApi.signIn({ email: newUserData.email, password }).then((token) => {
           localStorage.setItem('token', token.token);
-          checkToken('movies');
+          checkToken();
+          navigate('/movies');
         })
       )
       .catch((err) => {
@@ -85,7 +87,7 @@ function App() {
       });
   };
 
-  const checkToken = (path) => {
+  const checkToken = () => {
     const savedToken = localStorage.getItem('token');
     if (savedToken) {
       setIsLoading(true);
@@ -94,7 +96,6 @@ function App() {
         .then((userData) => {
           setIsLoggedIn(true);
           setCurrentUser(userData);
-          navigate(`/${path}`, { replace: true });
         })
         .catch((err) => setError(err))
         .finally(() => setIsLoading(false));
@@ -152,7 +153,11 @@ function App() {
 
   // поверяет токен при загрузке станицы
   useEffect(() => {
-    checkToken('');
+    if (localStorage.getItem('token')) {
+      checkToken();
+    } else {
+      localStorage.clear();
+    }
   }, []);
 
   // зугружает массивы с фильмами при авторизации пользователя
