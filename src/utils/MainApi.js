@@ -7,6 +7,10 @@ class MainApi {
     this._settingsObj.method = '';
   }
 
+  getStartData() {
+    return Promise.all([this.getMovies(), this.getUserInfo()]);
+  }
+
   signUp(signUpData) {
     this._settingsObj.method = 'POST';
     this._settingsObj.body = JSON.stringify(signUpData);
@@ -27,10 +31,12 @@ class MainApi {
     )}`;
     return this._request('users/me');
   }
-  checkToken(token) {
+  getUserInfo() {
     delete this._settingsObj?.body;
     this._settingsObj.method = 'GET';
-    this._settingsObj.headers.Authorization = `Bearer ${token}`;
+    this._settingsObj.headers.Authorization = `Bearer ${localStorage.getItem(
+      'token'
+    )}`;
     return this._request('users/me');
   }
 

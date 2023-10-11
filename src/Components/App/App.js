@@ -46,7 +46,7 @@ function App() {
       .signIn(signInData)
       .then((token) => {
         localStorage.setItem('token', token.token);
-        checkToken();
+        setIsLoggedIn(true);
         navigate('/movies');
       })
       .catch((err) => setError(err))
@@ -55,13 +55,12 @@ function App() {
   const handleSignUp = (signUpData) => {
     setIsLoading(true);
     const password = signUpData.password;
-
     mainApi
       .signUp(signUpData)
       .then((newUserData) =>
         mainApi.signIn({ email: newUserData.email, password }).then((token) => {
+          setIsLoggedIn(true);
           localStorage.setItem('token', token.token);
-          checkToken();
           navigate('/movies');
         })
       )
@@ -87,19 +86,18 @@ function App() {
       });
   };
 
-  const checkToken = () => {
-    const savedToken = localStorage.getItem('token');
-    if (savedToken) {
-      setIsLoading(true);
-      mainApi
-        .checkToken(savedToken)
-        .then((userData) => {
-          setIsLoggedIn(true);
-          setCurrentUser(userData);
-        })
-        .catch((err) => setError(err))
-        .finally(() => setIsLoading(false));
-    }
+  const getStartData = () => {
+    setIsLoading(true);
+    mainApi
+      .getStartData()
+      .then((startData) => {
+        setIsLoggedIn(true);
+        const [savedMovies, userData] = startData;
+        setCurrentUser(userData);
+        setSavedMovies(savedMovies);
+      })
+      .catch((err) => setError(err))
+      .finally(() => setIsLoading(false));
   };
   const handleLogOut = () => {
     setIsLoggedIn(false);
@@ -151,24 +149,19 @@ function App() {
     setError('');
   }, [location]);
 
-  // поверяет токен при загрузке станицы
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      checkToken();
+      setIsLoggedIn(true);
     } else {
+      setIsLoggedIn(false);
       localStorage.clear();
     }
   }, []);
-
-  // зугружает массивы с фильмами при авторизации пользователя
+  //получает массив сохраненных фильмов и данные пользователя
   useEffect(() => {
-    if (isLoggedIn) {
-      mainApi
-        .getMovies()
-        .then((savedMoviesData) => setSavedMovies(savedMoviesData.reverse()));
-    }
+    getStartData();
   }, [isLoggedIn]);
-
+  //получает массив id сохраненных фильмов
   useEffect(() => {
     setSavedMoviesId(
       savedMovies.map((savedMovie) => {
