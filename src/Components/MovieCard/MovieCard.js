@@ -10,7 +10,7 @@ export default function MovieCard({ movie }) {
   const savedMoviesId = useContext(SavedMoviesIdContext);
   const deleteMovie = useContext(DeleteMovieContext);
   const addMovie = useContext(AddMovieContext);
-  const [isSaved, setIsSaved] = useState(true);
+  const [isSaved, setIsSaved] = useState(false);
   useEffect(() => {
     savedMoviesId.includes(movieId) ? setIsSaved(true) : setIsSaved(false);
   }, [savedMoviesId, movieId]);
