@@ -1,5 +1,5 @@
 import './FilmSearchForm.css';
-import Thumb from './Thumb/Thumb';
+import CheckBox from './CheckBox/CheckBox';
 import SearchForm from './SearchForm/SearchForm';
 
 export default function FilmSearchForm({
@@ -18,9 +18,10 @@ export default function FilmSearchForm({
           place="search-film-form"
           onChange={onChange}
           value={value}
+          setRequest={setRequest}
         />
 
-        <Thumb
+        <CheckBox
           checkboxSetter={checkboxSetter}
           checkboxState={checkboxState}
           text="Короткометражки"
@@ -39,7 +40,7 @@ export default function FilmSearchForm({
           value={value}
           setRequest={setRequest}
         >
-          <Thumb
+          <CheckBox
             checkboxSetter={checkboxSetter}
             checkboxState={checkboxState}
             text="Короткометражки"

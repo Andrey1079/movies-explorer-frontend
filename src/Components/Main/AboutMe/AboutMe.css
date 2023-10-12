@@ -3,6 +3,8 @@
   background-color: var(--light-background-color);
   padding: 110px 0 95px;
   font-size: var(--common-text-size);
+  display: flex;
+  justify-content: center;
 }
 .about-me__section-template {
   display: grid;

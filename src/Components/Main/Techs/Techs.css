@@ -3,6 +3,8 @@
   background-color: var(--dark-background-color);
   padding: 102px 0 102px;
   font-size: var(--common-text-size);
+  display: flex;
+  justify-content: center;
 }
 .techs__section-template {
   display: flex;

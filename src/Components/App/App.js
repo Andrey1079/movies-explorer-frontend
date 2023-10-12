@@ -190,7 +190,7 @@ function App() {
                     {isLoggedIn === null ? (
                       <Preloader />
                     ) : (
-                      <div className="page root">
+                      <div className="page">
                         <BasicLayout
                           burgerButtonOnClick={setIsBurgerNavMenuOpened}
                           width={windowWidth}

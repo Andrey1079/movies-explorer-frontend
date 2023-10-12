@@ -4,9 +4,11 @@ footer {
   padding: 75px 0 20px;
   display: none;
   margin-top: auto;
+
+  justify-content: center;
 }
 .footer_visible {
-  display: block;
+  display: flex;
 }
 .footer__section-template {
   display: flex;

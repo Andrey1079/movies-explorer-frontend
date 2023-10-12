@@ -1,6 +1,11 @@
-import './Thumb.css';
+import './CheckBox.css';
 
-export default function Thumb({ text, place, checkboxSetter, checkboxState }) {
+export default function ChecBox({
+  text,
+  place,
+  checkboxSetter,
+  checkboxState,
+}) {
   const handleCheck = () => {
     checkboxSetter(!checkboxState);
   };

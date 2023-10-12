@@ -1,3 +1,4 @@
+import './Register.css';
 import LayoutWithoutHeaderFooter from '../Layouts/LayoutWithoutHeaderFooter/LayoutWithoutHeaderFooter';
 import AuthForm from '../AuthForm/AuthForm';
 import Input from '../Input/Input';

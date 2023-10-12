@@ -1,4 +1,6 @@
 .about-project {
+  display: flex;
+  justify-content: center;
   width: 100%;
   background-color: var(--light-background-color);
   padding: 112px 0 112px;

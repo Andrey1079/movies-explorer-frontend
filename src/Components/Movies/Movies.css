@@ -1,6 +1,9 @@
 .movies {
   background-color: var(--light-background-color);
   padding: 60px 0 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .movies__section-template {
