@@ -29,6 +29,7 @@ import Preloader from '../Preloader/Preloader';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import mainApi from '../../utils/MainApi';
 import Infotooltip from '../InfoToolTip/InfotoolTip';
+import Messages from '../../constants/Messages';
 
 function App() {
   const location = useLocation().pathname;
@@ -83,7 +84,7 @@ function App() {
       .changeUserInfo(changedUserInfo)
       .then((updatedUserData) => {
         setCurrentUser(updatedUserData);
-        setToolTipData({ message: 'Данные обновлены', status: 'ok' });
+        setToolTipData({ message: Messages.UserDataUpdated, status: 'ok' });
         setIsToolTipOpen(true);
       })
       .catch((err) => setError(err))

@@ -8,6 +8,7 @@ import { LoadingContext } from '../../context/LoadingContext';
 import { SetToolTipOpenContext } from '../../context/SetToolTipOpenContext';
 import { ToolTipSettingsContext } from '../../context/ToolTipSettingsContext';
 import moviesApi from '../../utils/MoviesApi';
+import ErrorMessages from '../../constants/ErrorsMessages';
 
 export default function Movies({ width }) {
   const [movies, setMovies] = useState([]);
@@ -39,8 +40,7 @@ export default function Movies({ width }) {
         })
         .catch((err) => {
           setToolTipSettings({
-            message:
-              'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз',
+            message: ErrorMessages.E500Movies,
             status: 'notOk',
           });
           setIsToolTipOpen(true);
@@ -120,7 +120,7 @@ export default function Movies({ width }) {
   // Эффект установки сообщения о поиске
   useEffect(() => {
     if (movies.length > 0 && moviesArrayforMaping.length < 1) {
-      setMessage('Ничего не нашлось');
+      setMessage(ErrorMessages.MoviesNotFound);
     } else {
       setMessage('');
     }

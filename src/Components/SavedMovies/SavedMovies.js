@@ -3,6 +3,7 @@ import MovieContainer from '../MovieContainer/MovieContainer';
 import { useState, useEffect } from 'react';
 import SectionTemplate from '../SectionTemplate/SectionTemplate';
 import FilmSearchForm from '../FilmSearchForm/FilmSearchForm';
+import ErrorMessages from '../../constants/ErrorsMessages';
 
 export default function Movies({ width, movies }) {
   const [filmRequest, setFilmRequest] = useState('');
@@ -19,7 +20,7 @@ export default function Movies({ width, movies }) {
   // Эффект установки сообщения о поиске
   useEffect(() => {
     if (movies.length > 0 && moviesArrayforMaping.length < 1) {
-      setMessage('Ничего не нашлось');
+      setMessage(ErrorMessages.MoviesNotFound);
     } else {
       setMessage('');
     }

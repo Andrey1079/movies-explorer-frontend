@@ -3,6 +3,7 @@ import { Children, cloneElement, useContext, useEffect } from 'react';
 import { useValidate } from '../../customHooks/useValidate';
 import { ErrorContext } from '../../context/ErrorContext';
 import { useState } from 'react';
+import ErrorMessages from '../../constants/ErrorsMessages';
 
 export default function AuthForm({
   formInputInitialValues,
@@ -12,18 +13,18 @@ export default function AuthForm({
   handleSubmit,
   noValidate,
   title,
+  submitRef,
 }) {
   const [errorMessage, setErrorMessage] = useState('');
   const error = useContext(ErrorContext);
   const [valid, setValid] = useState(true);
-
+  console.log(ErrorMessages.E400);
   const { handleChange, resetForm, errors, isValid, values } = useValidate(
     formInputInitialValues
   );
   const submit = (evt) => {
     evt.preventDefault();
     handleSubmit(values, evt);
-    resetForm(formInputInitialValues);
   };
   useEffect(() => {
     resetForm(formInputInitialValues);
@@ -31,25 +32,25 @@ export default function AuthForm({
   useEffect(() => {
     switch (error) {
       case 400:
-        setErrorMessage('Данные не корректны');
+        setErrorMessage(ErrorMessages.E400);
 
         break;
       case 401:
-        setErrorMessage('Вы ввели неправильный логин или пароль ');
+        setErrorMessage(ErrorMessages.E401);
 
         break;
       case 409:
-        setErrorMessage('Пользователь с таким email уже существует.');
+        setErrorMessage(ErrorMessages.E409);
 
         break;
       case 500:
         setErrorMessage(
           `${
             place === 'register'
-              ? 'При регистрации пользователя произошла ошибка'
+              ? ErrorMessages.E500Register
               : place === 'login'
-              ? 'При авторизации произошла ошибка'
-              : 'При обновлении профиля произошла ошибка'
+              ? ErrorMessages.E500Login
+              : ErrorMessages.E500Profile
           }`
         );
 
@@ -86,6 +87,7 @@ export default function AuthForm({
       })}
       <p className="auth-form__error-message">{errorMessage}</p>
       <input
+        ref={submitRef}
         disabled={noValidate ? false : !valid ? true : isValid ? false : true}
         type="submit"
         className={`auth-form__submit auth-form__submit_place_${place}`}

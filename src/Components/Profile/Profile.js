@@ -1,20 +1,21 @@
 import './Profile.css';
 import Input from '../Input/Input';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
-import { useContext, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import LayoutWithoutHeaderFooter from '../Layouts/LayoutWithoutHeaderFooter/LayoutWithoutHeaderFooter';
 import AuthForm from '../AuthForm/AuthForm';
 import EmailPattern from '../../constants/EmailPattern';
 
 export default function Profile({ handleLink, handleSubmit }) {
+  const submitButtonRef = useRef();
   const userData = useContext(CurrentUserContext);
   const [isEdit, setIsEdit] = useState(false);
   const submit = (values, evt) => {
     if (!isEdit) {
       setIsEdit(true);
-      evt.target
-        .querySelector('.auth-form__submit')
-        .classList.remove('auth-form__submit_place_profile');
+      submitButtonRef.current.classList.remove(
+        'auth-form__submit_place_profile'
+      );
     } else {
       handleSubmit(values);
     }
@@ -29,6 +30,7 @@ export default function Profile({ handleLink, handleSubmit }) {
         handleLink={handleLink}
       >
         <AuthForm
+          submitRef={submitButtonRef}
           formInputInitialValues={{
             name: userData.name,
             email: userData.email,

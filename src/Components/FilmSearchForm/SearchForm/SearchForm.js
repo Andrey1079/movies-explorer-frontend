@@ -3,6 +3,7 @@ import './SearchForm.css';
 import searchImage from '../../../images/search-form__placeholder.svg';
 import { SetToolTipOpenContext } from '../../../context/SetToolTipOpenContext';
 import { ToolTipSettingsContext } from '../../../context/ToolTipSettingsContext';
+import ErrorMessages from '../../../constants/ErrorsMessages';
 
 export default function SearchForm({
   place,
@@ -21,7 +22,7 @@ export default function SearchForm({
     evt.preventDefault();
     if (value === '') {
       setToolTipSettings({
-        message: 'Введите ключевое слово',
+        message: ErrorMessages.EmptyRequest,
         status: 'notOk',
       });
       setIsToolTipOpen(true);
