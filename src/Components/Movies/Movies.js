@@ -13,6 +13,7 @@ export default function Movies({ width }) {
   const [movies, setMovies] = useState([]);
   const [filmRequest, setFilmRequest] = useState('');
   const [formValue, setFormValue] = useState('');
+
   const [isShortFilm, setIsShortFilm] = useState(false);
   const [settingsForRender, setSettingsForRender] = useState({});
   const [amountTotal, setAmountTotal] = useState(0);
