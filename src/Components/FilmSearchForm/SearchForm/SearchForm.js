@@ -1,19 +1,33 @@
+import { useContext } from 'react';
 import './SearchForm.css';
 import searchImage from '../../../images/search-form__placeholder.svg';
+import { SetToolTipOpenContext } from '../../../context/SetToolTipOpenContext';
+import { ToolTipSettingsContext } from '../../../context/ToolTipSettingsContext';
 
 export default function SearchForm({
   place,
   children,
   onChange,
   value,
-  submit,
+  setRequest,
 }) {
+  const setIsToolTipOpen = useContext(SetToolTipOpenContext);
+  const setToolTipSettings = useContext(ToolTipSettingsContext);
+
   const handleChange = (evt) => {
     onChange(evt.target.value);
   };
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    submit();
+    if (value === '') {
+      setToolTipSettings({
+        message: 'Введите ключевое слово',
+        status: 'notOk',
+      });
+      setIsToolTipOpen(true);
+    } else {
+      setRequest(value);
+    }
   };
 
   return (
