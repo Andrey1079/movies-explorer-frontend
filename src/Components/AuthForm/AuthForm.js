@@ -13,7 +13,7 @@ export default function AuthForm({
   handleSubmit,
   noValidate,
   title,
-  submitRef,
+  isEdit,
 }) {
   const [errorMessage, setErrorMessage] = useState('');
   const error = useContext(ErrorContext);
@@ -24,7 +24,7 @@ export default function AuthForm({
   );
   const submit = (evt) => {
     evt.preventDefault();
-    handleSubmit(values, evt);
+    handleSubmit(values);
   };
   useEffect(() => {
     resetForm(formInputInitialValues);
@@ -87,10 +87,11 @@ export default function AuthForm({
       })}
       <p className="auth-form__error-message">{errorMessage}</p>
       <input
-        ref={submitRef}
         disabled={noValidate ? false : !valid ? true : isValid ? false : true}
         type="submit"
-        className={`auth-form__submit auth-form__submit_place_${place}`}
+        className={`auth-form__submit ${
+          !isEdit ? `auth-form__submit_place_${place}` : ''
+        } `}
         value={submitText}
       />
     </form>
