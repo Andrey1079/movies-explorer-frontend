@@ -29,7 +29,7 @@ export default function Movies({ width }) {
   useEffect(() => {
     setAmountTotal(settingsForRender.amountInit);
   }, [settingsForRender.amountInit]);
-  // эффект устанавливает первоначальное количество карточек
+  // эффект загружает массив фильмов
   useEffect(() => {
     if (movies.length < 1 && filmRequest !== '') {
       setIsLoading(true);
@@ -53,6 +53,7 @@ export default function Movies({ width }) {
 
   // Эффект фильтрует массив при изменении данных
   useEffect(() => {
+    console.log('filter');
     setMoviesArrayforMaping(
       movies.filter(
         (movie) =>
@@ -96,6 +97,7 @@ export default function Movies({ width }) {
       setMoviesArrayforMaping(moviesArrayforMaping);
       setAmountTotal(amountTotal);
       setMovies(movies);
+      setFilmRequest(filmRequest);
     }
   }, []);
 

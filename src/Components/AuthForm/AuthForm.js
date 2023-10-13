@@ -18,7 +18,7 @@ export default function AuthForm({
   const [errorMessage, setErrorMessage] = useState('');
   const error = useContext(ErrorContext);
   const [valid, setValid] = useState(true);
-  console.log(ErrorMessages.E400);
+
   const { handleChange, resetForm, errors, isValid, values } = useValidate(
     formInputInitialValues
   );
