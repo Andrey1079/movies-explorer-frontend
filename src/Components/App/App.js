@@ -29,7 +29,7 @@ import Preloader from '../Preloader/Preloader';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import mainApi from '../../utils/MainApi';
 import Infotooltip from '../InfoToolTip/InfotoolTip';
-import Messages from '../../constants/Messages';
+import MESSAGES from '../../constants/messages';
 
 function App() {
   const location = useLocation().pathname;
@@ -53,7 +53,8 @@ function App() {
       .signIn(signInData)
       .then((token) => {
         localStorage.setItem('token', token.token);
-        setIsLoggedIn(true);
+        // setIsLoggedIn(true);
+        getStartData();
         navigate('/movies');
       })
       .catch((err) => setError(err))
@@ -66,8 +67,9 @@ function App() {
       .signUp(signUpData)
       .then((newUserData) =>
         mainApi.signIn({ email: newUserData.email, password }).then((token) => {
-          setIsLoggedIn(true);
+          // setIsLoggedIn(true);
           localStorage.setItem('token', token.token);
+          getStartData();
           navigate('/movies');
         })
       )
@@ -84,7 +86,7 @@ function App() {
       .changeUserInfo(changedUserInfo)
       .then((updatedUserData) => {
         setCurrentUser(updatedUserData);
-        setToolTipData({ message: Messages.UserDataUpdated, status: 'ok' });
+        setToolTipData({ message: MESSAGES.USER_DATA_UPDATED, status: 'ok' });
         setIsToolTipOpen(true);
       })
       .catch((err) => setError(err))
@@ -167,7 +169,7 @@ function App() {
       setIsLoggedIn(false);
       localStorage.clear();
     }
-  }, [isLoggedIn]);
+  }, []);
 
   //получает массив id сохраненных фильмов
   useEffect(() => {

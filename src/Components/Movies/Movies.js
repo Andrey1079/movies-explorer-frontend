@@ -3,12 +3,12 @@ import MovieContainer from '../MovieContainer/MovieContainer';
 import { useState, useEffect, useContext } from 'react';
 import SectionTemplate from '../SectionTemplate/SectionTemplate';
 import FilmSearchForm from '../FilmSearchForm/FilmSearchForm';
-import RenderMoviesSettings from '../../constants/RenderMoviesSettings';
+import RENDER_MOVIES_SETTINGS from '../../constants/renderMoviesSettings';
 import { LoadingContext } from '../../context/LoadingContext';
 import { SetToolTipOpenContext } from '../../context/SetToolTipOpenContext';
 import { ToolTipSettingsContext } from '../../context/ToolTipSettingsContext';
 import moviesApi from '../../utils/MoviesApi';
-import ErrorMessages from '../../constants/ErrorsMessages';
+import ERROR_MESSAGES from '../../constants/errorsMessages';
 
 export default function Movies({ width }) {
   const [movies, setMovies] = useState([]);
@@ -40,7 +40,7 @@ export default function Movies({ width }) {
         })
         .catch((err) => {
           setToolTipSettings({
-            message: ErrorMessages.E500Movies,
+            message: ERROR_MESSAGES.E500_MOVIES,
             status: 'notOk',
           });
           setIsToolTipOpen(true);
@@ -53,7 +53,6 @@ export default function Movies({ width }) {
 
   // Эффект фильтрует массив при изменении данных
   useEffect(() => {
-    console.log('filter');
     setMoviesArrayforMaping(
       movies.filter(
         (movie) =>
@@ -73,12 +72,12 @@ export default function Movies({ width }) {
   useEffect(() => {
     setSettingsForRender(
       width > 1100
-        ? RenderMoviesSettings.bigScreen
+        ? RENDER_MOVIES_SETTINGS.BIG_SCREEN
         : width > 900
-        ? RenderMoviesSettings.bigScreenS
+        ? RENDER_MOVIES_SETTINGS.BIG_SCREEN_S
         : width > 520
-        ? RenderMoviesSettings.mediumScreen
-        : RenderMoviesSettings.smallScreen
+        ? RENDER_MOVIES_SETTINGS.MEDIUM_SCREEN
+        : RENDER_MOVIES_SETTINGS.SMALL_SCREEN
     );
   }, [width]);
 
@@ -122,7 +121,7 @@ export default function Movies({ width }) {
   // Эффект установки сообщения о поиске
   useEffect(() => {
     if (movies.length > 0 && moviesArrayforMaping.length < 1) {
-      setMessage(ErrorMessages.MoviesNotFound);
+      setMessage(ERROR_MESSAGES.MOVIES_NOT_FOUND);
     } else {
       setMessage('');
     }

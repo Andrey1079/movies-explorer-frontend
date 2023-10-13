@@ -1,4 +1,4 @@
-import MovieApiRequestObj from '../constants/MovieApiReqObj';
+import MOVIE_API_REQUEST_OBJ from '../constants/movieApiReqObj';
 
 class MoviesApi {
   constructor(settingObject) {
@@ -25,6 +25,6 @@ class MoviesApi {
   }
 }
 
-const moviesApi = new MoviesApi(MovieApiRequestObj);
+const moviesApi = new MoviesApi(MOVIE_API_REQUEST_OBJ);
 
 export default moviesApi;

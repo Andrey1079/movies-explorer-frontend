@@ -1,5 +1,5 @@
-const Messages = {
-  UserDataUpdated: 'Данные обновлены',
+const MESSAGES = {
+  USER_DATA_UPDATED: 'Данные обновлены',
 };
 
-export default Messages;
+export default MESSAGES;

@@ -1,4 +1,4 @@
-import MainApiRequestObj from '../constants/MainApiReqObj';
+import MAIN_API_REQUEST_OBJ from '../constants/mainApiReqObj';
 class MainApi {
   constructor(requestObj) {
     this._baseUrl = requestObj.baseUrl;
@@ -81,5 +81,5 @@ class MainApi {
   };
 }
 
-const mainApi = new MainApi(MainApiRequestObj);
+const mainApi = new MainApi(MAIN_API_REQUEST_OBJ);
 export default mainApi;

@@ -3,7 +3,7 @@ import { Children, cloneElement, useContext, useEffect } from 'react';
 import { useValidate } from '../../customHooks/useValidate';
 import { ErrorContext } from '../../context/ErrorContext';
 import { useState } from 'react';
-import ErrorMessages from '../../constants/ErrorsMessages';
+import ERROR_MESSAGES from '../../constants/errorsMessages';
 
 export default function AuthForm({
   formInputInitialValues,
@@ -32,25 +32,25 @@ export default function AuthForm({
   useEffect(() => {
     switch (error) {
       case 400:
-        setErrorMessage(ErrorMessages.E400);
+        setErrorMessage(ERROR_MESSAGES.E400);
 
         break;
       case 401:
-        setErrorMessage(ErrorMessages.E401);
+        setErrorMessage(ERROR_MESSAGES.E401);
 
         break;
       case 409:
-        setErrorMessage(ErrorMessages.E409);
+        setErrorMessage(ERROR_MESSAGES.E409);
 
         break;
       case 500:
         setErrorMessage(
           `${
             place === 'register'
-              ? ErrorMessages.E500Register
+              ? ERROR_MESSAGES.E500_REGISTER
               : place === 'login'
-              ? ErrorMessages.E500Login
-              : ErrorMessages.E500Profile
+              ? ERROR_MESSAGES.E500_LOGIN
+              : ERROR_MESSAGES.E500P_ROFILE
           }`
         );
 

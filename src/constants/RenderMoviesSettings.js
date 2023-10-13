@@ -1,20 +1,20 @@
-const RenderMoviesSettings = {
-  bigScreen: {
+const RENDER_MOVIES_SETTINGS = {
+  BIG_SCREEN: {
     amountInit: 16,
     amountForAdd: 4,
   },
-  bigScreenS: {
+  BIG_SCREEN_S: {
     amountInit: 12,
     amountForAdd: 3,
   },
 
-  mediumScreen: {
+  MEDIUM_SCREEN: {
     amountInit: 8,
     amountForAdd: 2,
   },
-  smallScreen: {
+  SMALL_SCREEN: {
     amountInit: 5,
     amountForAdd: 2,
   },
 };
-export default RenderMoviesSettings;
+export default RENDER_MOVIES_SETTINGS;
