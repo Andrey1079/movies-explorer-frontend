@@ -1,0 +1,43 @@
+.tooltip {
+  width: 100%;
+  max-width: 1280px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.tooltip__visible {
+  display: flex;
+}
+.tooltip__image {
+  width: 80px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.tooltip__card {
+  padding: 5px;
+  width: 260px;
+
+  background-color: var(--light-background-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 30px;
+}
+.tooltip__message {
+  font-size: 16px;
+  text-align: center;
+}
+.tooltip__button {
+  font-size: 12px;
+  font-weight: 500;
+  width: 200px;
+  padding: 11px 0;
+  border: none;
+  margin: auto 0 30px 0;
+  background-color: var(--ui-elements-color);
+  border-radius: 3px;
+}

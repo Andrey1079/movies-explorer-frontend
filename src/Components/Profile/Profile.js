@@ -1,36 +1,23 @@
 import './Profile.css';
 import Input from '../Input/Input';
-
 import { CurrentUserContext } from '../../context/CurrentUserContext';
-import { useContext, useState, useRef, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import LayoutWithoutHeaderFooter from '../Layouts/LayoutWithoutHeaderFooter/LayoutWithoutHeaderFooter';
 import AuthForm from '../AuthForm/AuthForm';
+import EMAIL_PATTERN from '../../constants/emailPattern';
 
-export default function Profile({ handleLink, handleSubmit, ...props }) {
+export default function Profile({ handleLink, handleSubmit }) {
   const userData = useContext(CurrentUserContext);
   const [isEdit, setIsEdit] = useState(false);
-  const inputName = useRef();
-  const inputEmail = useRef();
-  useEffect(() => {
-    inputName.current.value = userData.name;
-    inputEmail.current.value = userData.email;
-  }, [userData]);
-  const submit = (values, evt) => {
+  const submit = (values) => {
     if (!isEdit) {
       setIsEdit(true);
-      evt.target
-        .querySelector('.auth-form__submit')
-        .classList.remove('auth-form__submit_place_profile');
     } else {
-      handleSubmit({
-        name: inputName.current.value,
-        email: inputEmail.current.value,
-      });
+      handleSubmit(values);
     }
   };
   return (
     <main className="profile">
-      {/* <Header props={props} /> */}
       <LayoutWithoutHeaderFooter
         linkText="Выйти из аккаунта"
         text=""
@@ -39,9 +26,10 @@ export default function Profile({ handleLink, handleSubmit, ...props }) {
         handleLink={handleLink}
       >
         <AuthForm
-          errorMessages={{
-            conflict: 'Пользователь с таким email уже существует',
-            serever: 'При обновлении профиля произошла ошибка',
+          isEdit={isEdit}
+          formInputInitialValues={{
+            name: userData.name,
+            email: userData.email,
           }}
           handleSubmit={submit}
           submitText={`${isEdit ? 'Сохранить' : 'Редактировать'}`}
@@ -50,8 +38,8 @@ export default function Profile({ handleLink, handleSubmit, ...props }) {
           title={`Привет, ${userData.name}!`}
         >
           <Input
+            value=""
             readonly={isEdit ? false : true}
-            inputRef={inputName}
             type="text"
             required={true}
             maxLength={30}
@@ -60,9 +48,10 @@ export default function Profile({ handleLink, handleSubmit, ...props }) {
             name="name"
           ></Input>
           <Input
+            pattern={EMAIL_PATTERN}
+            value=""
             readonly={isEdit ? false : true}
             noValidate={isEdit ? false : true}
-            inputRef={inputEmail}
             type="email"
             required={true}
             minLength={5}

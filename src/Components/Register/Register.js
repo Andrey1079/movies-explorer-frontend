@@ -1,7 +1,9 @@
+import './Register.css';
 import LayoutWithoutHeaderFooter from '../Layouts/LayoutWithoutHeaderFooter/LayoutWithoutHeaderFooter';
 import AuthForm from '../AuthForm/AuthForm';
 import Input from '../Input/Input';
 import Logo from '../Logo/Logo';
+import EMAIL_PATTERN from '../../constants/emailPattern';
 
 export default function Register({ handleSubmit }) {
   return (
@@ -13,10 +15,6 @@ export default function Register({ handleSubmit }) {
       >
         <Logo place="register" />
         <AuthForm
-          errorMessages={{
-            conflict: 'Пользователь с таким email уже существует.',
-            serever: 'При регистрации пользователя произошла ошибка',
-          }}
           handleSubmit={handleSubmit}
           submitText="Зарегистрироваться"
           place="register"
@@ -31,6 +29,7 @@ export default function Register({ handleSubmit }) {
             name="name"
           ></Input>
           <Input
+            pattern={EMAIL_PATTERN}
             type="email"
             required={true}
             minLength={5}

@@ -1,0 +1,27 @@
+.saved-movies {
+  background-color: var(--light-background-color);
+  padding: 60px 0 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.saved-movies__section-template {
+  display: flex;
+  flex-direction: column;
+}
+.saved-movies__message {
+  font-size: var(--section-titlte-size);
+  text-align: center;
+  margin: 0;
+}
+@media screen and (max-width: 900px) {
+  .saved-saved-movies__section-template {
+    padding: 0 var(--alter-side-paddings-768);
+  }
+}
+@media screen and (max-width: 520px) {
+  .saved-saved-movies__section-template {
+    padding: 0 var(--movie-side-paddings-320);
+  }
+}

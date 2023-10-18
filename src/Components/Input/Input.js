@@ -8,11 +8,11 @@ export default function Input({
   name,
   onChange,
   errors,
-  inputRef,
   readonly,
+  values,
+  pattern,
 }) {
   const errorMessage = errors[name];
-
   return (
     <div className={`input`}>
       <label
@@ -22,9 +22,10 @@ export default function Input({
         {nameOfField}
 
         <input
-          autoComplete
+          pattern={pattern}
+          value={values?.[name] || ''}
+          autoComplete={name}
           readOnly={readonly}
-          ref={inputRef}
           onChange={onChange}
           name={name}
           id={name}

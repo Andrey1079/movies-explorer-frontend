@@ -1,3 +1,8 @@
+.profile {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 .profile__layout-without-header-footer {
   padding: 34px calc(179px + (435 - 179) * ((100vw - 768px) / (1280 - 768)))
     70px;
@@ -28,9 +33,6 @@
   }
   .input__error-message {
     font-size: 8px;
-  }
-  .auth-form__error-message {
-    color: #fff;
   }
 }
 

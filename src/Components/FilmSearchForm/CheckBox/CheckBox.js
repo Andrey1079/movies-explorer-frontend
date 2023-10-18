@@ -1,6 +1,14 @@
-import './Thumb.css';
+import './CheckBox.css';
 
-export default function Thumb({ text, place }) {
+export default function ChecBox({
+  text,
+  place,
+  checkboxSetter,
+  checkboxState,
+}) {
+  const handleCheck = () => {
+    checkboxSetter(!checkboxState);
+  };
   return (
     <label
       className={`checkbox 
@@ -9,6 +17,8 @@ export default function Thumb({ text, place }) {
       htmlFor="checkbox"
     >
       <input
+        checked={checkboxState}
+        onChange={handleCheck}
         id="checkbox"
         name="short-moivie"
         type="checkbox"

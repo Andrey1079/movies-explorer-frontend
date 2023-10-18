@@ -1,10 +1,8 @@
-import Logo from '../../Logo/Logo';
 import { Link } from 'react-router-dom';
 import './LayoutWithoutHeaderFooter.css';
 
 export default function LayoutWithoutHeaderFooter({
   children,
-  title,
   text,
   linkText,
   path,
