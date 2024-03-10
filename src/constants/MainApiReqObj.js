@@ -1,5 +1,5 @@
 const MAIN_API_REQUEST_OBJ = {
-  baseUrl: 'https://api.dunaev.nomoredomainsrocks.ru',
+  baseUrl: 'https://api.dunaevi-dev.ru',
   headers: {
     'Content-Type': 'application/json',
   },

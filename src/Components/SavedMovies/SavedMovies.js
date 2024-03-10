@@ -3,7 +3,7 @@ import MovieContainer from '../MovieContainer/MovieContainer';
 import { useState, useEffect } from 'react';
 import SectionTemplate from '../SectionTemplate/SectionTemplate';
 import FilmSearchForm from '../FilmSearchForm/FilmSearchForm';
-import ERROR_MESSAGES from '../../constants/errorsMessages';
+import ERROR_MESSAGES from '../../constants/ErrorsMessages';
 
 export default function Movies({ width, movies }) {
   const [filmRequest, setFilmRequest] = useState('');

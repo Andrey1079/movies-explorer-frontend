@@ -29,7 +29,7 @@ import Preloader from '../Preloader/Preloader';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import mainApi from '../../utils/MainApi';
 import Infotooltip from '../InfoToolTip/InfotoolTip';
-import MESSAGES from '../../constants/messages';
+import MESSAGES from '../../constants/Messages';
 
 function App() {
   const location = useLocation().pathname;
@@ -52,12 +52,14 @@ function App() {
     mainApi
       .signIn(signInData)
       .then((token) => {
-        localStorage.setItem('token', token.token);
+        localStorage.setItem('token', token);
         // setIsLoggedIn(true);
         getStartData();
         navigate('/movies');
       })
-      .catch((err) => setError(err))
+      .catch((err) => {
+        setError(err);
+      })
       .finally(() => setIsLoading(false));
   };
   const handleSignUp = (signUpData) => {

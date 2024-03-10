@@ -3,7 +3,7 @@ import { Children, cloneElement, useContext, useEffect } from 'react';
 import { useValidate } from '../../customHooks/useValidate';
 import { ErrorContext } from '../../context/ErrorContext';
 import { useState } from 'react';
-import ERROR_MESSAGES from '../../constants/errorsMessages';
+import ERROR_MESSAGES from '../../constants/ErrorsMessages';
 
 export default function AuthForm({
   formInputInitialValues,

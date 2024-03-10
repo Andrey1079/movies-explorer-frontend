@@ -1,4 +1,4 @@
-import MAIN_API_REQUEST_OBJ from '../constants/mainApiReqObj';
+import MAIN_API_REQUEST_OBJ from '../constants/MainApiReqObj';
 class MainApi {
   constructor(requestObj) {
     this._baseUrl = requestObj.baseUrl;

@@ -1,4 +1,4 @@
-import MOVIE_API_REQUEST_OBJ from '../constants/movieApiReqObj';
+import MOVIE_API_REQUEST_OBJ from '../constants/MovieApiReqObj';
 
 class MoviesApi {
   constructor(settingObject) {

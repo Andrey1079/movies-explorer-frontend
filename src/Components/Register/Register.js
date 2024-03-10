@@ -3,7 +3,7 @@ import LayoutWithoutHeaderFooter from '../Layouts/LayoutWithoutHeaderFooter/Layo
 import AuthForm from '../AuthForm/AuthForm';
 import Input from '../Input/Input';
 import Logo from '../Logo/Logo';
-import EMAIL_PATTERN from '../../constants/emailPattern';
+import EMAIL_PATTERN from '../../constants/EmailPattern';
 
 export default function Register({ handleSubmit }) {
   return (

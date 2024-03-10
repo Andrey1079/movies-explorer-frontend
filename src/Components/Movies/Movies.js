@@ -3,12 +3,12 @@ import MovieContainer from '../MovieContainer/MovieContainer';
 import { useState, useEffect, useContext } from 'react';
 import SectionTemplate from '../SectionTemplate/SectionTemplate';
 import FilmSearchForm from '../FilmSearchForm/FilmSearchForm';
-import RENDER_MOVIES_SETTINGS from '../../constants/renderMoviesSettings';
+import RENDER_MOVIES_SETTINGS from '../../constants/RenderMoviesSettings';
 import { LoadingContext } from '../../context/LoadingContext';
 import { SetToolTipOpenContext } from '../../context/SetToolTipOpenContext';
 import { ToolTipSettingsContext } from '../../context/ToolTipSettingsContext';
 import moviesApi from '../../utils/MoviesApi';
-import ERROR_MESSAGES from '../../constants/errorsMessages';
+import ERROR_MESSAGES from '../../constants/ErrorsMessages';
 
 export default function Movies({ width }) {
   const [movies, setMovies] = useState([]);

@@ -4,7 +4,7 @@ import { CurrentUserContext } from '../../context/CurrentUserContext';
 import { useContext, useState } from 'react';
 import LayoutWithoutHeaderFooter from '../Layouts/LayoutWithoutHeaderFooter/LayoutWithoutHeaderFooter';
 import AuthForm from '../AuthForm/AuthForm';
-import EMAIL_PATTERN from '../../constants/emailPattern';
+import EMAIL_PATTERN from '../../constants/EmailPattern';
 
 export default function Profile({ handleLink, handleSubmit }) {
   const userData = useContext(CurrentUserContext);

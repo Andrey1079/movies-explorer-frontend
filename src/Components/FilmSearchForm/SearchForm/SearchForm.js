@@ -3,7 +3,7 @@ import './SearchForm.css';
 import searchImage from '../../../images/search-form__placeholder.svg';
 import { SetToolTipOpenContext } from '../../../context/SetToolTipOpenContext';
 import { ToolTipSettingsContext } from '../../../context/ToolTipSettingsContext';
-import ERROR_MESSAGES from '../../../constants/errorsMessages';
+import ERROR_MESSAGES from '../../../constants/ErrorsMessages';
 
 export default function SearchForm({
   place,

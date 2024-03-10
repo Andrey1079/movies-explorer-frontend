@@ -3,7 +3,7 @@ import AuthForm from '../AuthForm/AuthForm';
 import Input from '../Input/Input';
 import LayoutWithoutHeaderFooter from '../Layouts/LayoutWithoutHeaderFooter/LayoutWithoutHeaderFooter';
 import Logo from '../Logo/Logo';
-import EMAIL_PATTERN from '../../constants/emailPattern';
+import EMAIL_PATTERN from '../../constants/EmailPattern';
 
 export default function Login({ handleSubmit }) {
   return (
